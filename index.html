@@ -4,16 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kit Defensa Forestal — AQUADEFENSA</title>
+<meta name="description" content="¿Tu parcela está preparada para un incendio forestal? Kit completo para diseñar tu sistema de protección activa. Solo USD $19 durante abril 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--black:#080A0C;--coal:#0F1318;--slate:#181D26;--slate2:#232A38;--orange:#E84C22;--orange-lt:#FF6B3D;--blue-ice:#5BB8F5;--white:#FFFFFF;--gray:#8A8F9A;--gray-dim:#464D5E;--max-w:760px;--pad:clamp(20px,5vw,48px);}
+:root{
+  --black:#080A0C;--coal:#0F1318;--slate:#181D26;--slate2:#232A38;
+  --orange:#E84C22;--orange-lt:#FF6B3D;--blue-ice:#5BB8F5;
+  --white:#FFFFFF;--gray:#8A8F9A;--gray-dim:#464D5E;
+  --max-w:760px;--pad:clamp(20px,5vw,48px);
+}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-img{max-width:100%;display:block;}a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
 .wrap{max-width:var(--max-w);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);}
-.section{padding:80px 0;}.section-alt{background:var(--coal);}
+.section{padding:80px 0;}
+.section-alt{background:var(--coal);}
 .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);}
 .eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:flex;align-items:center;gap:10px;margin-bottom:14px;}
 .eyebrow::before{content:'';width:22px;height:1px;background:var(--orange);flex-shrink:0;}
@@ -21,44 +29,60 @@ h2.title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,7vw,60px);line
 h2.title em{color:var(--orange);font-style:normal;}
 .lead{font-size:clamp(16px,2.5vw,18px);line-height:1.7;color:rgba(255,255,255,.62);max-width:640px;margin-bottom:48px;}
 .lead strong{color:rgba(255,255,255,.88);font-weight:600;}
+
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,10,12,.92);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.05);padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;}
 .nav-brand{display:flex;align-items:center;gap:10px;}
 .nav-brand img{width:30px;height:30px;object-fit:contain;border-radius:6px;}
 .nav-brand-name{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;}
 .nav-cta{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:9px 18px;border-radius:6px;border:1.5px solid rgba(232,76,34,.5);color:var(--orange-lt);transition:all .2s;}
 .nav-cta:hover{background:var(--orange);border-color:var(--orange);color:#fff;}
+
+/* STICKY BAR */
 .sticky{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(8,10,12,.97);border-top:1px solid rgba(232,76,34,.2);backdrop-filter:blur(20px);padding:12px var(--pad);display:flex;align-items:center;justify-content:center;gap:16px;transform:translateY(100%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);}
 .sticky.show{transform:translateY(0);}
 .sticky-price{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;line-height:1;}
 .sticky-old{font-size:11px;color:var(--gray);text-decoration:line-through;}
 .sticky-btn{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--orange);color:#fff;padding:12px 22px;border-radius:8px;white-space:nowrap;box-shadow:0 0 24px rgba(232,76,34,.35);flex-shrink:0;}
+
+/* HERO */
 .hero{min-height:100svh;padding:110px var(--pad) 70px;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 110% 65% at 50% 110%,rgba(232,76,34,.18) 0%,transparent 65%),radial-gradient(ellipse 60% 50% at 80% 10%,rgba(26,75,140,.08) 0%,transparent 60%),linear-gradient(180deg,#080A0C 0%,#0C0F14 100%);}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 110% 65% at 50% 110%,rgba(232,76,34,.22) 0%,transparent 65%),radial-gradient(ellipse 60% 50% at 80% 10%,rgba(26,75,140,.08) 0%,transparent 60%),linear-gradient(180deg,#080A0C 0%,#0C0F14 100%);}
+.hero-img{position:absolute;inset:0;background-image:url('img/hero-split.jpg');background-size:cover;background-position:center;opacity:.28;}
 .embers{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
 .ember{position:absolute;border-radius:50%;animation:floatUp var(--dur,5s) ease-in infinite var(--delay,0s);opacity:0;}
 @keyframes floatUp{0%{transform:translateY(0) translateX(0) scale(1);opacity:0;}15%{opacity:var(--op,.5);}85%{opacity:var(--op,.5);}100%{transform:translateY(-85vh) translateX(var(--dx,0px)) scale(.2);opacity:0;}}
-.hero-inner{position:relative;z-index:2;max-width:680px;margin:0 auto;}
+.hero-inner{position:relative;z-index:2;max-width:700px;margin:0 auto;}
 .hero-flag{display:inline-flex;align-items:center;gap:8px;background:rgba(232,76,34,.1);border:1px solid rgba(232,76,34,.28);color:var(--orange-lt);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:32px;}
 .flag-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);animation:pulse 1.8s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.5)}}
-.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(54px,13vw,100px);line-height:.95;letter-spacing:.03em;margin-bottom:28px;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,12vw,96px);line-height:.95;letter-spacing:.03em;margin-bottom:28px;}
 .hero h1 .accent{color:var(--orange);display:block;}
-.hero-sub{font-size:clamp(16px,2.5vw,19px);line-height:1.65;color:rgba(255,255,255,.6);max-width:520px;margin:0 auto 44px;}
-.hero-sub strong{color:rgba(255,255,255,.9);font-weight:600;}
+.hero-sub{font-size:clamp(16px,2.5vw,19px);line-height:1.65;color:rgba(255,255,255,.65);max-width:540px;margin:0 auto 44px;}
+.hero-sub strong{color:rgba(255,255,255,.92);font-weight:600;}
 .hero-anchor{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.35);letter-spacing:.1em;text-transform:uppercase;font-weight:500;}
 .hero-anchor svg{animation:bounce 2s ease-in-out infinite;}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* TICKER */
 .ticker{background:var(--orange);padding:11px 0;overflow:hidden;white-space:nowrap;}
-.ticker-track{display:inline-flex;animation:tick 32s linear infinite;}
+.ticker-track{display:inline-flex;animation:tick 36s linear infinite;}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .ticker-track span{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:0 40px;color:rgba(255,255,255,.92);}
 .ticker-track span::before{content:'▸ ';opacity:.6;}
+
+/* BUTTONS */
 .btn{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--orange);color:#fff;padding:18px 36px;border-radius:10px;box-shadow:0 8px 32px rgba(232,76,34,.38),0 0 0 1px rgba(232,76,34,.18);transition:all .2s;text-align:center;}
 .btn:hover{background:var(--orange-lt);box-shadow:0 12px 40px rgba(232,76,34,.5);transform:translateY(-1px);}
-.btn-block{display:block;width:100%;}.btn-lg{font-size:20px;padding:22px 40px;border-radius:12px;}
+.btn-block{display:block;width:100%;}
+.btn-lg{font-size:20px;padding:22px 40px;border-radius:12px;}
+
+/* IMAGES */
+.img-real{width:100%;border-radius:12px;object-fit:cover;display:block;}
 .img-ph{width:100%;background:var(--slate2);border:2px dashed rgba(255,255,255,.1);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:rgba(255,255,255,.3);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:28px;text-align:center;}
-.img-ph svg{opacity:.25;}
 .img-cap{font-size:12px;color:var(--gray-dim);text-align:center;margin-top:8px;font-style:italic;}
+
+/* PAVESAS SECTION */
 .pavesa-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;}
 @media(max-width:540px){.pavesa-grid{grid-template-columns:1fr;}}
 .pcard{background:var(--slate);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:26px 20px;}
@@ -72,6 +96,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,10,12,.92)
 .stat-num-big{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--orange);line-height:1;margin-bottom:6px;}
 .stat-callout p{font-size:15px;line-height:1.6;color:rgba(255,255,255,.65);}
 .stat-source{font-size:11px;color:var(--gray-dim);margin-top:8px;font-style:italic;}
+
+/* MITO BLOCK */
 .mito-block{background:var(--slate2);border:1px solid rgba(255,255,255,.07);border-radius:16px;overflow:hidden;margin-top:48px;}
 .mito-top{padding:28px 26px;border-bottom:1px solid rgba(255,255,255,.06);}
 .mito-badge{display:inline-block;background:rgba(255,210,50,.12);border:1px solid rgba(255,210,50,.3);color:#FFD166;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:4px;margin-bottom:14px;}
@@ -81,15 +107,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,10,12,.92)
 .danger-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
 .danger-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
 .danger-list li{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;color:rgba(255,255,255,.72);}
-.danger-list li::before{content:'X';color:var(--orange);font-weight:700;flex-shrink:0;margin-top:1px;}
+.danger-list li::before{content:'✕';color:var(--orange);font-weight:700;flex-shrink:0;margin-top:1px;}
+
+/* COMPARE */
 .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;}
 @media(max-width:480px){.compare-grid{grid-template-columns:1fr;}}
 .compare-card{border-radius:14px;overflow:hidden;}
+.compare-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;}
+.compare-img-ph{width:100%;aspect-ratio:4/3;background:var(--slate2);display:flex;align-items:center;justify-content:center;font-size:12px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.08em;}
 .compare-foot{padding:16px 18px;}
 .compare-foot .clabel{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:4px 8px;border-radius:3px;margin-bottom:10px;}
-.clsin{background:rgba(232,76,34,.8);color:#fff;}.clcon{background:rgba(91,184,245,.8);color:#fff;}
+.clsin{background:rgba(232,76,34,.8);color:#fff;}
+.clcon{background:rgba(91,184,245,.8);color:#fff;}
 .compare-foot h4{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;margin-bottom:4px;}
 .compare-foot p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;}
+
+/* PASOS */
 .pasos{display:flex;flex-direction:column;margin-top:48px;}
 .paso{display:grid;grid-template-columns:52px 1fr;gap:0 20px;}
 .paso-line{display:flex;flex-direction:column;align-items:center;}
@@ -103,31 +136,64 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,10,12,.92)
 .paso-desc strong{color:rgba(255,255,255,.85);font-weight:600;}
 .paso-note{background:rgba(232,76,34,.07);border:1px solid rgba(232,76,34,.22);border-radius:10px;padding:16px 18px;font-size:14px;line-height:1.6;color:rgba(255,255,255,.65);margin-bottom:18px;}
 .paso-note strong{color:var(--orange-lt);font-weight:600;}
-.kit-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px;}
+
+/* KIT */
+.kit-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px;}
 @media(max-width:520px){.kit-grid{grid-template-columns:1fr;}}
 .kit-card{background:var(--slate);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:22px 18px;}
 .kit-card-n{font-family:'Bebas Neue',sans-serif;font-size:28px;color:rgba(232,76,34,.3);line-height:1;margin-bottom:10px;}
 .kit-card h4{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;margin-bottom:6px;}
 .kit-card p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.5);}
 .chip{display:inline-block;background:rgba(232,76,34,.1);border:1px solid rgba(232,76,34,.22);color:var(--orange-lt);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:3px;margin-bottom:8px;}
+
+/* VALUE STACK */
+.value-stack{margin-top:40px;background:var(--slate2);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;}
+.vs-header{padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.06);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);}
+.vs-row{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid rgba(255,255,255,.04);font-size:15px;}
+.vs-row:last-of-type{border-bottom:none;}
+.vs-label{color:rgba(255,255,255,.7);}
+.vs-price{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--gray);text-decoration:line-through;}
+.vs-total{background:rgba(232,76,34,.06);border-top:1px solid rgba(232,76,34,.15);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;}
+.vs-total-label{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--white);}
+.vs-total-price{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--orange);}
+.vs-kit-price{text-align:center;padding:20px 24px;background:var(--black);border-top:1px solid rgba(232,76,34,.15);}
+.vs-kit-label{font-size:13px;color:var(--gray);margin-bottom:6px;}
+.vs-kit-num{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--white);line-height:1;}
+.vs-kit-num sup{font-size:.45em;color:var(--orange);vertical-align:top;margin-top:10px;}
+.vs-savings{display:inline-block;background:rgba(232,76,34,.15);border:1px solid rgba(232,76,34,.3);color:var(--orange-lt);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-top:8px;}
+
+/* PARA QUIEN */
 .pq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;}
 @media(max-width:520px){.pq-grid{grid-template-columns:1fr;}}
 .pq-col{border-radius:13px;padding:26px 22px;}
 .pq-si{background:rgba(91,184,245,.06);border:1px solid rgba(91,184,245,.18);}
 .pq-no{background:var(--slate);border:1px solid rgba(255,255,255,.07);}
 .pq-col-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px;}
-.pq-si .pq-col-title{color:var(--blue-ice);}.pq-no .pq-col-title{color:var(--gray);}
+.pq-si .pq-col-title{color:var(--blue-ice);}
+.pq-no .pq-col-title{color:var(--gray);}
 .pq-list{list-style:none;display:flex;flex-direction:column;gap:11px;}
-.pq-list li{font-size:15px;line-height:1.5;color:rgba(255,255,255,.72);padding-left:18px;position:relative;}
-.pq-si .pq-list li::before{content:'';position:absolute;left:0;color:var(--blue-ice);font-size:12px;top:2px;}
-.pq-no .pq-list li::before{content:'';position:absolute;left:0;color:var(--gray-dim);font-size:12px;top:2px;}
-.autor-block{display:grid;grid-template-columns:90px 1fr;gap:24px;align-items:start;margin-top:36px;}
+.pq-list li{font-size:15px;line-height:1.5;color:rgba(255,255,255,.72);padding-left:22px;position:relative;}
+.pq-si .pq-list li::before{content:'✓';position:absolute;left:0;color:var(--blue-ice);font-size:13px;top:1px;font-weight:700;}
+.pq-no .pq-list li::before{content:'→';position:absolute;left:0;color:var(--gray-dim);font-size:12px;top:2px;}
+
+/* AUTOR */
+.autor-block{display:grid;grid-template-columns:100px 1fr;gap:24px;align-items:start;margin-top:36px;}
 @media(max-width:400px){.autor-block{grid-template-columns:1fr;}}
-.autor-avatar{width:90px;height:90px;border-radius:14px;background:var(--slate2);border:1.5px solid rgba(232,76,34,.3);display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0;}
+.autor-avatar{width:100px;height:100px;border-radius:14px;background:var(--slate2);border:1.5px solid rgba(232,76,34,.3);object-fit:cover;display:block;flex-shrink:0;}
+.autor-avatar-ph{width:100px;height:100px;border-radius:14px;background:var(--slate2);border:1.5px solid rgba(232,76,34,.3);display:flex;align-items:center;justify-content:center;font-size:42px;flex-shrink:0;}
 .autor-name{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.03em;margin-bottom:4px;}
 .autor-role{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);}
 .autor-bio{font-size:15px;line-height:1.7;color:rgba(255,255,255,.58);grid-column:1/-1;margin-top:6px;}
 .autor-bio strong{color:rgba(255,255,255,.85);font-weight:600;}
+.autor-quote{margin-top:24px;padding:20px 22px;background:rgba(232,76,34,.06);border-left:3px solid var(--orange);border-radius:0 10px 10px 0;font-size:16px;line-height:1.7;color:rgba(255,255,255,.75);font-style:italic;grid-column:1/-1;}
+
+/* GARANTIA */
+.garantia{margin-top:32px;background:var(--slate);border:1px solid rgba(91,184,245,.18);border-radius:12px;padding:22px 24px;display:flex;gap:18px;align-items:flex-start;}
+.garantia-icon{font-size:32px;flex-shrink:0;line-height:1;}
+.garantia h4{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;margin-bottom:6px;color:var(--blue-ice);}
+.garantia p{font-size:14px;line-height:1.6;color:rgba(255,255,255,.55);}
+
+/* PRECIO */
 .price-card{background:var(--slate);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:36px 30px;position:relative;overflow:hidden;}
 .price-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent);}
 .price-badge{display:inline-block;background:var(--orange);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 11px;border-radius:4px;margin-bottom:22px;}
@@ -142,129 +208,148 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,10,12,.92)
 .cd-lbl{font-size:9px;color:var(--gray);text-transform:uppercase;letter-spacing:.1em;margin-top:3px;}
 .trust-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px;}
 .trust-item{font-size:12px;color:rgba(255,255,255,.38);}
+
+/* FAQ */
 .faq-list{display:flex;flex-direction:column;margin-top:48px;}
 .faq-item{border-bottom:1px solid rgba(255,255,255,.06);}
 .faq-btn{width:100%;background:none;border:none;text-align:left;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--white);padding:20px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;}
 .faq-icon{width:26px;height:26px;border:1px solid rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--orange);flex-shrink:0;transition:transform .3s;}
 .faq-item.open .faq-icon{transform:rotate(45deg);}
 .faq-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
-.faq-item.open .faq-body{max-height:300px;}
+.faq-item.open .faq-body{max-height:400px;}
 .faq-body p{padding-bottom:22px;font-size:15px;line-height:1.7;color:rgba(255,255,255,.55);}
+
+/* FINAL CTA */
 .final-cta{text-align:center;position:relative;overflow:hidden;}
 .final-cta::after{content:'';position:absolute;bottom:0;left:0;right:0;top:40%;background:radial-gradient(ellipse 100% 80% at 50% 100%,rgba(232,76,34,.14) 0%,transparent 70%);pointer-events:none;}
 .final-cta .wrap{position:relative;z-index:1;}
 .final-cta h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,8vw,62px);line-height:1.05;letter-spacing:.03em;margin-bottom:20px;}
 .final-cta h2 em{color:var(--orange);font-style:normal;display:block;}
-.final-sub{font-size:clamp(15px,2.5vw,18px);line-height:1.65;color:rgba(255,255,255,.55);max-width:480px;margin:0 auto 40px;}
+.final-sub{font-size:clamp(15px,2.5vw,18px);line-height:1.65;color:rgba(255,255,255,.55);max-width:500px;margin:0 auto 40px;}
 .final-price{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,76px);color:var(--white);line-height:1;margin-bottom:6px;}
 .final-price sup{font-size:.45em;color:var(--orange);vertical-align:top;margin-top:12px;}
 .final-old{font-size:16px;color:var(--gray);text-decoration:line-through;margin-bottom:8px;}
 .final-note{font-size:13px;color:var(--orange-lt);font-weight:500;margin-bottom:36px;}
+
+/* FOOTER */
 footer{background:var(--black);border-top:1px solid rgba(255,255,255,.04);padding:40px var(--pad) 100px;text-align:center;}
 footer p{font-size:13px;color:rgba(255,255,255,.25);line-height:1.9;}
-footer a{color:rgba(255,255,255,.35);}footer a:hover{color:var(--orange-lt);}
+footer a{color:rgba(255,255,255,.35);}
+footer a:hover{color:var(--orange-lt);}
 </style>
 </head>
 <body>
+
+<!-- STICKY BAR -->
 <div class="sticky" id="stickyBar">
   <div><div class="sticky-price">USD $19</div><div class="sticky-old">Normal: $29</div></div>
-  <a href="REEMPLAZAR_CON_LINK_HOTMART" class="sticky-btn" target="_blank">Quiero el Kit &rarr;</a>
+  <a href="https://go.hotmart.com/L104936662L?dp=1" class="sticky-btn" target="_blank">Quiero el Kit &rarr;</a>
 </div>
+
+<!-- NAV -->
 <nav>
   <div class="nav-brand">
     <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/wAARCABAAEADASIAAhEBAxEB/8QAGwAAAgMBAQEAAAAAAAAAAAAABAUCAwYBBwD/xAA1EAABAwMDAgQEBAcAAAAAAAABAAIDBAUREiExBkFRYQgTInGBFDKRoQlCUrHR4fDhFiMz/8QAFwEBAQEBAAAAAAAAAAAAAAAAAwIBAP/EACIRAAICAgEEAwAAAAAAAAAAAAABAgMhETESE0FRYf/aAAwDAQACEQMRAD8A+yoCIgAiIAIiACIiAiIgIiICIiAuF0yjECALrxs0VnbBaJrjK2OMMWXQBBLiB4Fyhce6zVDGdD2Vr4jI1p3EMQG4Dz39FgFGiTyoqyrjpGb3k+Q7leaOrFXF1GlwBsDz2TKm4ppCa5Hh30V6C4qyoqzFCHNBaQcOAyFXjqqmGolMNUXx7j+V7gR8grdHq6OM7rO5zy0EEMPgsqJuR6CqudEKi6u1JJBbqiemqHdaJhLHlo2k+4bvPzCh/Z1VPSNqqukikppZ3uo5bBt3MBFzx+1Z/u6uJfh8dJuJbkEgj+n0W7X1Ey6P7sXBrXyGMWscTzfnxyVv1Z/wCktm2ypnkqHPbDTdoNMZDQ3OfdWY8LKj+0nJqGU0VLTR7R+cvLrhpHHl9Vl1WqKiGpPRzq5nJjDMdI+64E+c2PJR77mtD2Obo4H3uR8VSafNs69Dk2qcVjuT/ANmxRSAksc6wAzuFiPDgVY0lqeqimr22e1jd3dYALuoHcPxbTuLMeqoaXU1FT00ULjUSGJr27nOGTY9t/YcLDMpqKOqmvJE+oqXmV4Bc8OcXXuLDHJPiViWMqFSi+fHuPqfbpXVcNNaGIGxLiSXHnwTbOF0j0cGsNrFdXjkLXljB8ik1IG6SxGM2wOfYLE6BRmpO0kgX8e3CqVVA2pqXTtJAkOSCvQWbFg2XF5z6mF9vCzb9X6mtroPDv7fBaGGgWtb3IBSorY44aaOWEPdI6QEOefGF5zf+P9TZVY6pqWgbM6W4/NU3iWKioq2pqpJN8b3FpPg/sjqo4TGdkTgR3FrFeSoJ2Zb3OT4nIT2NJdGYopNWuqB+VK61rW7oJO0ZVh9PFLDEXwskY07bF1rlVKSaVzS4AuB8gkI68KTBdkjZRXPzY+7dv8oJCjJbK3+Vz2kFhtnGD59VPJnJvUmAGgXx6ER0rncuPkVCjnuDZUGEn0CkWlkpsBxcbzYXxlQljdE1riLZ8Lq7KwmWSwtYn7c2TaWFRgJkO88FGUbXGOz1xIBVjVdPJT1L4pBZzTb0IXCJhDZ3wl+NzS1fVFJRwVE0NZUiCaKAukkLd21p9fBT+FKFTqY4KWrgibWx1NQ1gD5mRlgefFifTxV3TPgq6GmqYiSyWJrxfwIP9q38/TjppXqbkXtYLnlYN+ZZn7xd6c8BW9JVPq/BoGAOtcW81ZmjJuWm3coaRjz9VZmqQ5j2kGx2+iLqljhyxIb7i3ZRpqiOpijfE4Oa8Ag+oTyg0SB6IisCIiAiIgIiICIiAiIgIiIP/Z" alt="Logo">
     <span class="nav-brand-name">Aquadefensa</span>
   </div>
-  <a href="REEMPLAZAR_CON_LINK_HOTMART" class="nav-cta" target="_blank">Obtener el Kit</a>
+  <a href="https://go.hotmart.com/L104936662L?dp=1" class="nav-cta" target="_blank">Obtener el Kit</a>
 </nav>
 
+<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
+  <div class="hero-img"></div>
   <div class="embers" id="embers"></div>
   <div class="hero-inner">
-    <div class="hero-flag"><span class="flag-dot"></span>Proteccion activa para viviendas rurales</div>
-    <h1>Protege tu<br><span class="accent">hogar del</span>incendio</h1>
-    <p class="hero-sub">Un sistema disenado para <strong>reducir significativamente el riesgo de ignicion</strong> ante un incendio forestal, aplicado al techo, muro y perimetro antes de que el fuego llegue.</p>
+    <div class="hero-flag"><span class="flag-dot"></span>Protección activa para viviendas rurales</div>
+    <h1>¿Qué harías si<br><span class="accent">el fuego llegara</span>esta noche?</h1>
+    <p class="hero-sub">Tienes la propiedad. Quizás tienes el equipo. Pero <strong>sin un sistema diseñado, el equipo falla exactamente cuando más lo necesitas.</strong> Este kit te da el método completo.</p>
     <a href="#proceso" class="hero-anchor">
-      Ver como funciona
+      Ver cómo funciona
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 9l5 5 5-5" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
   </div>
 </section>
 
+<!-- TICKER -->
 <div class="ticker">
   <div class="ticker-track">
-    <span>Las pavesas son la principal causa de ignicion en viviendas</span>
-    <span>Pueden viajar kilometros por delante del frente de fuego</span>
     <span>Entre 60% y 90% de casas se pierden por pavesas, no por llamas directas</span>
-    <span>El sistema actua de forma autonoma, sin depender de los bomberos</span>
-    <span>La ventana de actuacion es breve. Hay que estar preparado antes.</span>
-    <span>Las pavesas son la principal causa de ignicion en viviendas</span>
-    <span>Pueden viajar kilometros por delante del frente de fuego</span>
+    <span>Las pavesas viajan kilómetros por delante del frente de fuego</span>
+    <span>La motobomba sin diseño hidráulico entrega una falsa sensación de seguridad</span>
+    <span>El sistema actúa de forma autónoma: activar, proteger y retirarse</span>
+    <span>La ventana de actuación es breve — el diseño tiene que existir antes</span>
     <span>Entre 60% y 90% de casas se pierden por pavesas, no por llamas directas</span>
-    <span>El sistema actua de forma autonoma, sin depender de los bomberos</span>
-    <span>La ventana de actuacion es breve. Hay que estar preparado antes.</span>
+    <span>Las pavesas viajan kilómetros por delante del frente de fuego</span>
+    <span>La motobomba sin diseño hidráulico entrega una falsa sensación de seguridad</span>
+    <span>El sistema actúa de forma autónoma: activar, proteger y retirarse</span>
+    <span>La ventana de actuación es breve — el diseño tiene que existir antes</span>
   </div>
 </div>
 
+<!-- S2: CONTEXTO DEL PROBLEMA — Las Pavesas -->
 <section class="section">
   <div class="wrap">
-    <p class="eyebrow">Lo que hay que entender</p>
-    <h2 class="title">Las pavesas:<br><em>la amenaza real</em></h2>
-    <p class="lead">Los estudios sobre incendios forestales muestran de forma consistente que <strong>la mayoria de las viviendas no se pierden por el frente de fuego directo</strong>, sino por las brasas voladoras que llegan antes, se acumulan y encienden la estructura.</p>
+    <p class="eyebrow">El verdadero enemigo</p>
+    <h2 class="title">Las pavesas:<br><em>brasas voladoras</em></h2>
+    <p class="lead">Los estudios muestran de forma consistente que <strong>la mayoría de las viviendas no se pierden por el frente de fuego directo</strong>, sino por las brasas voladoras que llegan antes, se acumulan y encienden la estructura.</p>
 
-    <div class="img-ph" style="aspect-ratio:16/9;">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-      IMAGEN: Pavesas volando &mdash; agregar foto real
-    </div>
-    <p class="img-cap">Las pavesas (firebrands) son fragmentos encendidos que viajan kilometros por delante del frente de fuego</p>
+    <!-- Imagen: Las casas no se queman por un muro de fuego (pág. 5 del PDF) -->
+    <img src="img/pavesas-diagrama.jpg" alt="Diagrama: las casas no se queman por un muro de fuego — pavesas y radiación térmica atacan antes" class="img-real" style="aspect-ratio:16/9;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="img-ph" style="aspect-ratio:16/9;display:none;">Diagrama: Pavesas y Radiación Térmica atacan la casa antes que el frente de fuego</div>
+    <p class="img-cap">El fuego no necesita tocar tu casa para destruirla — las pavesas y la radiación actúan kilómetros antes</p>
 
     <div class="pavesa-grid">
       <div class="pcard">
-        <div class="ctag">Mecanismo de ignicion</div>
-        <h3>Radiacion y calor convectivo</h3>
-        <p>El calor radiante eleva progresivamente la temperatura de los materiales combustibles de la vivienda hasta alcanzar el punto de ignicion, incluso sin contacto directo con llama.</p>
+        <div class="ctag">Mecanismo 1</div>
+        <h3>Radiación y calor convectivo</h3>
+        <p>El calor radiante eleva progresivamente la temperatura de los materiales combustibles hasta alcanzar el punto de ignición, incluso sin contacto directo con la llama.</p>
       </div>
       <div class="pcard hl">
-        <div class="ctag">Causa principal de perdida</div>
-        <h3>Pavesas que llegan antes</h3>
-        <p>Las brasas voladoras se filtran por el alero, los canalones y las ventilaciones. Una sola pavesa puede iniciar la combustion del techo mientras el frente de fuego esta a kilometros.</p>
+        <div class="ctag">Causa principal de pérdida</div>
+        <h3>Pavesas que llegan primero</h3>
+        <p>Las brasas voladoras se filtran por el alero, los canalones y las ventilaciones. Una sola pavesa puede iniciar la combustión del techo mientras el frente de fuego está a kilómetros.</p>
       </div>
     </div>
 
-    <div class="img-ph" style="aspect-ratio:16/9;margin-top:20px;">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-      IMAGEN: Esquema de casa ardiendo por techo &mdash; agregar
-    </div>
-    <p class="img-cap">La ignicion tipica comienza en techo y alero, no en los muros</p>
+    <!-- Imagen: Enemigo 1 - Pavesas (pág. 6 del PDF) -->
+    <img src="img/pavesas-brasa.jpg" alt="Pavesa encendida acumulada en canaleta — el asesino silencioso que viaja kilómetros" class="img-real" style="aspect-ratio:16/9;margin-top:20px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="img-ph" style="aspect-ratio:16/9;margin-top:20px;display:none;">Enemigo 1: Las Pavesas — brasa encendida acumulada en canaleta con hojas secas</div>
+    <p class="img-cap">Los 5 puntos más vulnerables: canaletas, uniones techo-muro, entretechos, terrazas de madera y acopios de leña</p>
 
     <div class="stat-callout">
       <div class="stat-num-big">60&ndash;90%</div>
-      <p>de las viviendas perdidas en incendios forestales se encienden por pavesas, no por llamas directas. Rango documentado por el <strong style="color:rgba(255,255,255,.85)">IBHS (Insurance Institute for Business &amp; Home Safety)</strong> y el <strong style="color:rgba(255,255,255,.85)">NIST (National Institute of Standards and Technology)</strong>, citado oficialmente por la California State Fire Marshal.</p>
+      <p>de las viviendas perdidas en incendios forestales se encienden por pavesas, no por llamas directas. Rango documentado por el <strong style="color:rgba(255,255,255,.85)">IBHS</strong> y el <strong style="color:rgba(255,255,255,.85)">NIST</strong>, citado por la California State Fire Marshal.</p>
       <p class="stat-source">Fuentes: IBHS Wildfire Research &middot; NIST &middot; California Office of the State Fire Marshal, "Building In The Wildland" 2025</p>
     </div>
   </div>
 </section>
 <div class="divider"></div>
 
+<!-- S3: DESTRUCCIÓN DEL SUSTITUTO — Mito Motobomba -->
 <section class="section section-alt">
   <div class="wrap">
     <p class="eyebrow">Un error frecuente</p>
     <h2 class="title">La motobomba<br><em>no es un plan</em></h2>
-    <p class="lead">Tener equipo es un punto de partida. Pero <strong>el equipo sin diseno hidraulico entrega una falsa sensacion de seguridad</strong>. En el momento critico, ese equipo puede fallar.</p>
+    <p class="lead">Tener equipo es un punto de partida. Pero <strong>el equipo sin diseño hidráulico entrega una falsa sensación de seguridad.</strong> En el momento crítico, ese equipo puede fallar exactamente donde más se necesita.</p>
+
+    <!-- Imagen: El peligroso mito de la motobomba (pág. 2 del PDF) -->
+    <img src="img/motobomba.jpg" alt="El peligroso mito de la motobomba — combate manual con humo denso de incendio forestal" class="img-real" style="aspect-ratio:16/9;margin-bottom:28px;border-radius:14px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="img-ph" style="aspect-ratio:16/9;margin-bottom:28px;display:none;">El peligroso mito de la motobomba — humo denso, combate manual imposible</div>
+
     <div class="mito-block">
       <div class="mito-top">
-        <div class="mito-badge">Situacion frecuente en parcelas</div>
-        <h3>"Tengo motobomba, estanque y manguera. Estoy listo."</h3>
-        <p>El equipo existe, pero la bomba no tiene la presion calculada, los aspersores improvisados no cubren el techo de forma uniforme y el estanque se vacia en minutos. El resultado es cobertura parcial en el peor momento.</p>
+        <div class="mito-badge">La frase más común en parcelas</div>
+        <h3>"Si llega el fuego, yo mismo lo apago."</h3>
+        <p>Es el error más letal en zonas rurales. El combate manual asume que puedes estar presente en el epicentro del peligro. Ignora la física real de un incendio: viento + humo + calor hacen que quedarse sea una amenaza para tu vida y la de tu familia.</p>
       </div>
       <div class="mito-bottom">
-        <div class="danger-title">Ademas: viento + humo + calor convierten quedarse en un riesgo real</div>
+        <div class="danger-title">Por qué el equipo sin diseño falla</div>
         <ul class="danger-list">
-          <li>Combatir el fuego manualmente en esas condiciones pone en riesgo tu vida y la de tu familia</li>
-          <li>La visibilidad puede caer a metros y la desorientacion puede ser fatal</li>
-          <li>El sistema autonomo actua sin que nadie tenga que permanecer en el lugar</li>
-          <li>El objetivo es activar, proteger &mdash; y retirarse con seguridad</li>
+          <li>Sin cálculo hidráulico, la presión se pierde en los primeros tramos — el tercer aspersor ya no gira</li>
+          <li>La visibilidad puede caer a metros y la desorientación puede ser fatal</li>
+          <li>El estanque se vacía en minutos sin un protocolo de autonomía calculado</li>
+          <li>El objetivo es activar, proteger — y retirarse con seguridad</li>
         </ul>
       </div>
     </div>
@@ -272,148 +357,162 @@ footer a{color:rgba(255,255,255,.35);}footer a:hover{color:var(--orange-lt);}
 </section>
 <div class="divider"></div>
 
+<!-- S4: DEMOSTRACIÓN DE CONTRASTE -->
 <section class="section">
   <div class="wrap">
-    <p class="eyebrow">La diferencia que hace el diseno</p>
+    <p class="eyebrow">La diferencia que hace el diseño</p>
     <h2 class="title">Con sistema<br><em>vs. sin sistema</em></h2>
-    <p class="lead">El mismo evento puede tener resultados completamente distintos dependiendo de si la vivienda cuenta con <strong>proteccion activa disenada</strong> o no.</p>
+    <p class="lead">El mismo evento puede tener resultados completamente distintos dependiendo de si la vivienda cuenta con <strong>protección activa diseñada</strong> o no.</p>
     <div class="compare-grid">
       <div class="compare-card">
-        <div class="img-ph" style="aspect-ratio:4/3;border-radius:14px 14px 0 0;">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-          IMAGEN: Casa ardiendo sin proteccion
-        </div>
+        <img src="img/casa-ardiendo.jpg" alt="Casa ardiendo sin sistema de protección activa" class="compare-img" style="border-radius:14px 14px 0 0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="compare-img-ph" style="border-radius:14px 14px 0 0;display:none;">Sin sistema — casa perdida</div>
         <div class="compare-foot" style="background:rgba(232,76,34,.08);border:1px solid rgba(232,76,34,.2);border-top:none;border-radius:0 0 14px 14px;">
           <span class="clabel clsin">Sin sistema</span>
-          <h4>Sin proteccion activa</h4>
-          <p>Las pavesas prenden el techo antes que el frente llegue. Sin humidificacion, la casa es combustible.</p>
+          <h4>Sin protección activa</h4>
+          <p>Las pavesas prenden el techo antes que el frente llegue. Sin humidificación, la casa es combustible.</p>
         </div>
       </div>
       <div class="compare-card">
-        <div class="img-ph" style="aspect-ratio:4/3;border-radius:14px 14px 0 0;">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="9" cy="14" r="1.5" fill="currentColor"/><circle cx="15" cy="11" r="1.5" fill="currentColor"/></svg>
-          IMAGEN: Casa con aspersores activos
-        </div>
+        <img src="img/casa-protegida.jpg" alt="Casa con aspersores activos — sistema de protección funcionando" class="compare-img" style="border-radius:14px 14px 0 0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="compare-img-ph" style="border-radius:14px 14px 0 0;display:none;">Con sistema — aspersores activos</div>
         <div class="compare-foot" style="background:rgba(91,184,245,.06);border:1px solid rgba(91,184,245,.2);border-top:none;border-radius:0 0 14px 14px;">
           <span class="clabel clcon">Con sistema</span>
-          <h4>Con proteccion activa</h4>
-          <p>Techo y muro humedos. Las pavesas se apagan al contacto. El retardante reduce el riesgo de ignicion.</p>
+          <h4>Con protección activa</h4>
+          <p>Techo y muro húmedos. Las pavesas se apagan al contacto. El retardante reduce el riesgo de ignición.</p>
         </div>
       </div>
     </div>
     <div style="margin-top:48px;text-align:center;">
-      <a href="REEMPLAZAR_CON_LINK_HOTMART" class="btn btn-lg" target="_blank">Quiero el Kit de Defensa Forestal &rarr;</a>
+      <a href="https://go.hotmart.com/L104936662L?dp=1" class="btn btn-lg" target="_blank">Quiero el Kit de Defensa Forestal &rarr;</a>
     </div>
   </div>
 </section>
 <div class="divider"></div>
 
+<!-- S5: PROCESO — 4 Pasos -->
 <section class="section section-alt" id="proceso">
   <div class="wrap">
-    <p class="eyebrow">El proceso de proteccion</p>
+    <p class="eyebrow">El proceso de protección</p>
     <h2 class="title">Protege tu casa<br><em>en 4 pasos</em></h2>
-    <p class="lead">El kit te guia por el proceso completo de diseno, el mismo flujo que usamos en los proyectos de ingenieria que ejecutamos profesionalmente.</p>
+    <p class="lead">El kit te guía por el proceso completo: <strong>el mismo flujo que usamos en los proyectos de ingeniería que ejecutamos profesionalmente.</strong> No es una caja de piezas — es un sistema con lógica.</p>
     <div class="pasos">
       <div class="paso">
         <div class="paso-line"><div class="paso-num">1</div><div class="paso-conn"></div></div>
         <div class="paso-body">
           <div class="paso-tag">Paso 1</div>
-          <div class="paso-title">Planificacion de puntos de humidificacion</div>
-          <p class="paso-desc">Se define la ubicacion de cada aspersor de techo y muro sobre la planta de la vivienda, garantizando cobertura completa con un <strong>20% de solapamiento entre radios de accion</strong>.</p>
-          <div class="img-ph" style="aspect-ratio:16/9;border-radius:10px;margin-bottom:14px;">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="2"/><circle cx="16" cy="8" r="2"/><circle cx="8" cy="16" r="2"/><circle cx="16" cy="16" r="2"/></svg>
-            IMAGEN: Vista de planta con aspersores ubicados<br>(captura calculadora AQUADEFENSA &mdash; agregar)
-          </div>
-          <p class="paso-desc">La calculadora web del kit permite ubicar cada aspersor de forma interactiva, visualizar su radio de cobertura en tiempo real y ajustar la distribucion hasta que toda la superficie este protegida.</p>
+          <div class="paso-title">Planificación de puntos de humidificación</div>
+          <p class="paso-desc">Se define la ubicación de cada aspersor de techo y muro sobre la planta de la vivienda, garantizando cobertura completa con un <strong>20% de solapamiento entre radios de acción</strong>.</p>
+          <img src="img/calculadora-planta.jpg" alt="Vista de planta con aspersores ubicados — calculadora AQUADEFENSA" class="img-real" style="aspect-ratio:16/9;border-radius:10px;margin-bottom:14px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="img-ph" style="aspect-ratio:16/9;border-radius:10px;margin-bottom:14px;display:none;">Vista de planta con aspersores ubicados y radios de cobertura — Calculadora AQUADEFENSA</div>
+          <p class="paso-desc">La calculadora web del kit permite ubicar cada aspersor de forma interactiva, visualizar su radio de cobertura en tiempo real y ajustar la distribución hasta que toda la superficie esté protegida.</p>
         </div>
       </div>
       <div class="paso">
         <div class="paso-line"><div class="paso-num">2</div><div class="paso-conn"></div></div>
         <div class="paso-body">
           <div class="paso-tag">Paso 2</div>
-          <div class="paso-title">Calculo de tuberias: presion y caudal</div>
-          <p class="paso-desc">Este es el paso que mas se omite &mdash; y donde el sistema falla.</p>
-          <div class="paso-note"><strong>El problema del sistema mal dimensionado:</strong> sin el calculo de perdida de carga por tramo, la presion se pierde a lo largo de la tuberia. Los primeros aspersores funcionan bien; el tercero ya no gira. La cobertura falla exactamente donde mas se necesita.</div>
-          <div class="img-ph" style="aspect-ratio:16/9;border-radius:10px;margin-bottom:14px;">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            IMAGEN: Diagrama de red de tuberias con diametros calculados &mdash; agregar
-          </div>
-          <p class="paso-desc">La calculadora aplica Hazen-Williams (C=120) automaticamente para cada tramo, entregando el diametro exacto de tuberia segun caudal y velocidad maxima de 2.5 m/s.</p>
+          <div class="paso-title">Cálculo de tuberías: presión y caudal</div>
+          <p class="paso-desc">Este es el paso que más se omite — y donde el sistema falla.</p>
+          <div class="paso-note"><strong>El problema del sistema mal dimensionado:</strong> sin el cálculo de pérdida de carga por tramo, la presión se pierde a lo largo de la tubería. Los primeros aspersores funcionan bien; el tercero ya no gira. La cobertura falla exactamente donde más se necesita.</div>
+          <img src="img/calculadora-tuberias.jpg" alt="Diagrama de red de tuberías con diámetros calculados — Hazen-Williams" class="img-real" style="aspect-ratio:16/9;border-radius:10px;margin-bottom:14px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="img-ph" style="aspect-ratio:16/9;border-radius:10px;margin-bottom:14px;display:none;">Diagrama de red de tuberías con diámetros calculados — Hazen-Williams</div>
+          <p class="paso-desc">La calculadora aplica Hazen-Williams (C=120) automáticamente para cada tramo, entregando el diámetro exacto de tubería según caudal y velocidad máxima de 2.5 m/s.</p>
         </div>
       </div>
       <div class="paso">
         <div class="paso-line"><div class="paso-num">3</div><div class="paso-conn"></div></div>
         <div class="paso-body">
           <div class="paso-tag">Paso 3</div>
-          <div class="paso-title">Equilibrio: bomba, estanque y autonomia</div>
-          <p class="paso-desc">Con la red definida, se calcula la <strong>potencia minima de bomba</strong> considerando el desnivel real del terreno, y el <strong>volumen de estanque</strong> para cubrir la ventana critica completa.</p>
-          <div class="img-ph" style="aspect-ratio:16/9;border-radius:10px;margin-bottom:14px;">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-            IMAGEN: Dashboard de resultados<br>(potencia bomba / volumen estanque &mdash; agregar)
-          </div>
-          <p class="paso-desc">El sistema opera en <strong>dos circuitos fisicamente separados</strong>: Fase 1 (humidificacion continua) y Fase 2 (descarga unica de retardante de 20 minutos). Separarlos garantiza que el retardante se aplique sobre superficies secas, condicion necesaria para que adhiera.</p>
+          <div class="paso-title">Equilibrio: bomba, estanque y autonomía</div>
+          <p class="paso-desc">Con la red definida, se calcula la <strong>potencia mínima de bomba</strong> considerando el desnivel real del terreno, y el <strong>volumen de estanque</strong> para cubrir la ventana crítica completa.</p>
+          <img src="img/calculadora-resultados.jpg" alt="Dashboard de resultados — potencia de bomba y volumen de estanque calculados" class="img-real" style="aspect-ratio:16/9;border-radius:10px;margin-bottom:14px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="img-ph" style="aspect-ratio:16/9;border-radius:10px;margin-bottom:14px;display:none;">Dashboard de resultados: potencia de bomba y volumen de estanque recomendados</div>
+          <p class="paso-desc">El sistema opera en <strong>dos circuitos físicamente separados</strong>: Fase 1 (humidificación continua) y Fase 2 (descarga única de retardante de 20 minutos). Separarlos garantiza que el retardante se aplique sobre superficies secas, condición necesaria para que adhiera.</p>
         </div>
       </div>
       <div class="paso">
         <div class="paso-line"><div class="paso-num">4</div></div>
         <div class="paso-body">
           <div class="paso-tag">Paso 4</div>
-          <div class="paso-title">Protocolo: Alerta &rarr; Activa &rarr; Retirate</div>
-          <p class="paso-desc">El sistema no sirve si no existe un protocolo claro de activacion. El kit incluye los tres pasos de emergencia y el <strong>cronograma de mantencion anual</strong> para que el sistema este operativo cuando lo necesites.</p>
-          <p class="paso-desc">El objetivo es poder activar y retirarse con seguridad, no quedarse combatiendo el fuego.</p>
+          <div class="paso-title">Protocolo: Alerta → Activa → Retírate</div>
+          <p class="paso-desc">El sistema no sirve si no existe un protocolo claro de activación. El kit incluye los tres pasos de emergencia y el <strong>cronograma de mantención anual</strong> para que el sistema esté operativo cuando lo necesites.</p>
+          <p class="paso-desc">El objetivo es poder activar y retirarse con seguridad. No quedarse combatiendo el fuego.</p>
         </div>
       </div>
     </div>
     <div style="margin-top:16px;padding:28px;background:var(--slate2);border-radius:14px;text-align:center;">
-      <p style="font-size:17px;line-height:1.65;color:rgba(255,255,255,.7);margin-bottom:24px;"><strong style="color:var(--white);">Nosotros ya hicimos todo el trabajo duro.</strong> El kit incluye el ebook con cada paso explicado en detalle y la calculadora web interactiva para aplicarlos en tu propiedad.</p>
-      <a href="REEMPLAZAR_CON_LINK_HOTMART" class="btn" target="_blank">Quiero el Kit de Defensa Forestal &rarr;</a>
+      <p style="font-size:17px;line-height:1.65;color:rgba(255,255,255,.7);margin-bottom:24px;"><strong style="color:var(--white);">Ya hicimos todo el trabajo duro.</strong> El kit incluye el ebook con cada paso explicado en detalle y la calculadora web interactiva para aplicarlos en tu propiedad.</p>
+      <a href="https://go.hotmart.com/L104936662L?dp=1" class="btn" target="_blank">Quiero el Kit de Defensa Forestal &rarr;</a>
     </div>
   </div>
 </section>
 <div class="divider"></div>
 
+<!-- S6: CONTENIDO DEL KIT + VALUE STACK -->
 <section class="section">
   <div class="wrap">
-    <p class="eyebrow">Que incluye</p>
+    <p class="eyebrow">Qué incluye</p>
     <h2 class="title">El Kit de<br><em>Defensa Forestal</em></h2>
-    <p class="lead">Todo lo necesario para disenar e instalar tu sistema de proteccion, sin depender de un proyecto de ingenieria completo.</p>
+    <p class="lead">Todo lo necesario para diseñar e instalar tu sistema de protección, sin depender de un proyecto de ingeniería completo.</p>
     <div class="kit-grid">
-      <div class="kit-card"><div class="kit-card-n">01</div><div class="chip">Ebook tecnico</div><h4>La fisica del incendio y el diseno del sistema</h4><p>Pavesas, radiacion, conveccion, diseno de dos fases y protocolo de activacion.</p></div>
-      <div class="kit-card"><div class="kit-card-n">02</div><div class="chip">Calculadora web</div><h4>Herramienta de diseno interactiva</h4><p>Vista de planta 2D para ubicar aspersores, visualizar cobertura y obtener resultados hidraulicos.</p></div>
-      <div class="kit-card"><div class="kit-card-n">03</div><div class="chip">Planos tipo</div><h4>Laminas A3 para 100&ndash;200 m&sup2;</h4><p>Disposicion de aspersores, trazado de tuberias y detalles de conexion. Adaptables a tu parcela.</p></div>
-      <div class="kit-card"><div class="kit-card-n">04</div><div class="chip">Lista de materiales</div><h4>Referencias reales para Chile y Argentina</h4><p>Aspersores, bombas, tuberias y accesorios disponibles en ferreterias.</p></div>
-      <div class="kit-card"><div class="kit-card-n">05</div><div class="chip">Protocolo</div><h4>Activacion y mantencion</h4><p>Los tres pasos del protocolo de emergencia y el cronograma de mantencion anual.</p></div>
-      <div class="kit-card"><div class="kit-card-n">06</div><div class="chip">Acceso preferencial</div><h4>Revision profesional AQUADEFENSA</h4><p>Revision formal a precio preferencial como comprador del kit.</p></div>
+      <div class="kit-card"><div class="kit-card-n">01</div><div class="chip">Ebook técnico</div><h4>La física del incendio y el diseño del sistema</h4><p>Pavesas, radiación, convección, diseño de dos fases y protocolo de activación. Todo el marco técnico, explicado paso a paso.</p></div>
+      <div class="kit-card"><div class="kit-card-n">02</div><div class="chip">Calculadora web</div><h4>Herramienta de diseño interactiva</h4><p>Vista de planta 2D para ubicar aspersores, visualizar cobertura y obtener resultados hidráulicos en tiempo real.</p></div>
+      <div class="kit-card"><div class="kit-card-n">03</div><div class="chip">Planos tipo</div><h4>Láminas A3 para 100&ndash;200 m&sup2;</h4><p>Disposición de aspersores, trazado de tuberías y detalles de conexión. Adaptables a tu parcela.</p></div>
+      <div class="kit-card"><div class="kit-card-n">04</div><div class="chip">Lista de materiales</div><h4>Referencias reales para Chile y Argentina</h4><p>Aspersores, bombas, tuberías y accesorios disponibles en ferreterías locales.</p></div>
+      <div class="kit-card"><div class="kit-card-n">05</div><div class="chip">Protocolo</div><h4>Activación y mantención anual</h4><p>Los tres pasos del protocolo de emergencia y el cronograma de mantención para que el sistema esté listo cuando lo necesites.</p></div>
+      <div class="kit-card"><div class="kit-card-n">06</div><div class="chip">Acceso preferencial</div><h4>Revisión profesional AQUADEFENSA</h4><p>Revisión formal a precio preferencial exclusivo para compradores del kit.</p></div>
     </div>
-    <div style="margin-top:36px;padding:32px 28px;background:var(--slate2);border-radius:14px;text-align:center;">
-      <p style="font-size:16px;color:rgba(255,255,255,.65);margin-bottom:24px;line-height:1.6;"><strong style="color:var(--white);">Acceso inmediato</strong> por Hotmart &middot; Descarga el mismo dia &middot; Chile y Argentina</p>
-      <a href="REEMPLAZAR_CON_LINK_HOTMART" class="btn btn-block btn-lg" target="_blank">Obtener el Kit ahora &rarr;</a>
+
+    <!-- VALUE STACK (Russell Brunson framework) -->
+    <div class="value-stack">
+      <div class="vs-header">Valor individual de cada componente</div>
+      <div class="vs-row"><span class="vs-label">Ebook técnico — La física del incendio</span><span class="vs-price">USD $15</span></div>
+      <div class="vs-row"><span class="vs-label">Calculadora web interactiva</span><span class="vs-price">USD $40</span></div>
+      <div class="vs-row"><span class="vs-label">Planos tipo A3 adaptables</span><span class="vs-price">USD $30</span></div>
+      <div class="vs-row"><span class="vs-label">Lista de materiales + proveedores</span><span class="vs-price">USD $10</span></div>
+      <div class="vs-row"><span class="vs-label">Protocolo de activación y mantención</span><span class="vs-price">USD $10</span></div>
+      <div class="vs-total">
+        <span class="vs-total-label">Valor total real</span>
+        <span class="vs-total-price">USD $105</span>
+      </div>
+      <div class="vs-kit-price">
+        <div class="vs-kit-label">Precio del Kit durante abril 2026</div>
+        <div class="vs-kit-num"><sup>USD</sup>$19</div>
+        <div class="vs-savings">Ahorras USD $86 — 82% de descuento</div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;padding:32px 28px;background:var(--slate2);border-radius:14px;text-align:center;">
+      <p style="font-size:16px;color:rgba(255,255,255,.65);margin-bottom:24px;line-height:1.6;"><strong style="color:var(--white);">Acceso inmediato</strong> por Hotmart &middot; Descarga el mismo día &middot; Chile y Argentina</p>
+      <a href="https://go.hotmart.com/L104936662L?dp=1" class="btn btn-block btn-lg" target="_blank">Obtener el Kit ahora &rarr;</a>
     </div>
   </div>
 </section>
 <div class="divider"></div>
 
+<!-- S7: PARA QUIÉN ES -->
 <section class="section section-alt">
   <div class="wrap">
-    <p class="eyebrow">Es para mi?</p>
+    <p class="eyebrow">¿Es para mí?</p>
     <h2 class="title">Para quien<br><em>es este kit</em></h2>
     <div class="pq-grid">
       <div class="pq-col pq-si">
         <div class="pq-col-title">Es para ti si&hellip;</div>
         <ul class="pq-list">
           <li>Tienes casa en parcela, campo o zona semi-rural</li>
-          <li>Hay vegetacion o bosque cerca de tu propiedad</li>
-          <li>Quieres entender el sistema antes de contratar instalacion</li>
+          <li>Hay vegetación o bosque cerca de tu propiedad</li>
+          <li>Quieres entender el sistema antes de contratar la instalación</li>
           <li>No puedes o no quieres pagar un proyecto completo ahora</li>
-          <li>Estas en Chile, Argentina o zona rural de Sudamerica</li>
+          <li>Estás en Chile, Argentina o zona rural de Sudamérica</li>
         </ul>
       </div>
       <div class="pq-col pq-no">
         <div class="pq-col-title">No es para ti si&hellip;</div>
         <ul class="pq-list">
-          <li>Tu propiedad esta en zona urbana sin riesgo forestal</li>
-          <li>Necesitas un proyecto firmado para tramite municipal</li>
-          <li>Buscas que alguien instale todo &mdash; para eso tenemos el servicio completo</li>
+          <li>Tu propiedad está en zona urbana sin riesgo forestal</li>
+          <li>Necesitas un proyecto firmado para trámite municipal</li>
+          <li>Buscas que alguien instale todo — para eso tenemos el servicio completo</li>
         </ul>
       </div>
     </div>
@@ -421,22 +520,26 @@ footer a{color:rgba(255,255,255,.35);}footer a:hover{color:var(--orange-lt);}
 </section>
 <div class="divider"></div>
 
+<!-- S8: AUTORIDAD — Felipe Tobosque -->
 <section class="section">
   <div class="wrap">
-    <p class="eyebrow">Quien lo diseno</p>
+    <p class="eyebrow">Quién lo diseñó</p>
     <h2 class="title">Felipe<br><em>Tobosque</em></h2>
     <div class="autor-block">
-      <div class="autor-avatar">&#128119;</div>
+      <img src="img/felipe-foto.jpg" alt="Felipe Tobosque — Ingeniero Civil, Fundador AQUADEFENSA" class="autor-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="autor-avatar-ph" style="display:none;">👷</div>
       <div>
         <div class="autor-name">Felipe Tobosque</div>
         <div class="autor-role">Ingeniero Civil &middot; Fundador AQUADEFENSA</div>
       </div>
-      <p class="autor-bio">Vivo en una parcela en Concepcion. Soy ingeniero civil y vi de cerca como el incendio de 2024 arraso con casas de <strong>vecinos que tenian equipo, pero no tenian un sistema disenado</strong>. Eso me llevo a crear AQUADEFENSA: ingenieria aplicada a la proteccion residencial contra incendios forestales. Este kit es lo que yo mismo hubiese necesitado cuando empece a pensar en proteger mi propia casa.</p>
+      <p class="autor-bio">Vivo en una parcela en Concepción. Soy ingeniero civil y vi de cerca cómo el incendio de 2024 arrasó con casas de <strong>vecinos que tenían equipo, pero no tenían un sistema diseñado</strong>. Eso me llevó a crear AQUADEFENSA: ingeniería aplicada a la protección residencial contra incendios forestales.</p>
+      <blockquote class="autor-quote">"Este kit es lo que yo mismo hubiese necesitado cuando empecé a pensar en proteger mi propia casa. No es teoría — es el proceso exacto que aplicamos en los proyectos que ejecutamos."</blockquote>
     </div>
   </div>
 </section>
 <div class="divider"></div>
 
+<!-- PRECIO -->
 <section class="section section-alt">
   <div class="wrap">
     <p class="eyebrow">Precio de lanzamiento</p>
@@ -447,46 +550,58 @@ footer a{color:rgba(255,255,255,.35);}footer a:hover{color:var(--orange-lt);}
       <div class="price-old">Precio normal: USD $29</div>
       <div class="price-note">&#9201; El precio sube el 1 de mayo de 2026</div>
       <div class="countdown" id="countdown">
-        <div class="cd-unit"><div class="cd-num" id="days">--</div><div class="cd-lbl">Dias</div></div>
+        <div class="cd-unit"><div class="cd-num" id="days">--</div><div class="cd-lbl">Días</div></div>
         <div class="cd-unit"><div class="cd-num" id="hours">--</div><div class="cd-lbl">Horas</div></div>
         <div class="cd-unit"><div class="cd-num" id="mins">--</div><div class="cd-lbl">Min</div></div>
         <div class="cd-unit"><div class="cd-num" id="secs">--</div><div class="cd-lbl">Seg</div></div>
       </div>
-      <a href="REEMPLAZAR_CON_LINK_HOTMART" class="btn btn-block btn-lg" target="_blank" style="margin-bottom:14px;">Quiero el Kit de Defensa Forestal &rarr;</a>
+      <a href="https://go.hotmart.com/L104936662L?dp=1" class="btn btn-block btn-lg" target="_blank" style="margin-bottom:14px;">Quiero el Kit de Defensa Forestal &rarr;</a>
       <div class="trust-row">
-        <span class="trust-item">&#128274; Pago seguro</span>
+        <span class="trust-item">&#128274; Pago seguro Hotmart</span>
         <span class="trust-item">&#9889; Acceso inmediato</span>
         <span class="trust-item">&#128172; Soporte WhatsApp</span>
         <span class="trust-item">&#127758; Chile y Argentina</span>
       </div>
     </div>
-  </div>
-</section>
-<div class="divider"></div>
 
-<section class="section">
-  <div class="wrap">
-    <p class="eyebrow">Preguntas frecuentes</p>
-    <h2 class="title">Lo que mas<br><em>nos preguntan</em></h2>
-    <div class="faq-list">
-      <div class="faq-item"><button class="faq-btn" onclick="tFaq(this)">Necesito conocimientos de ingenieria para usar el kit?<span class="faq-icon">+</span></button><div class="faq-body"><p>No. La calculadora esta disenada para que cualquier propietario pueda usarla ingresando los datos basicos de su terreno. El ebook explica cada concepto paso a paso.</p></div></div>
-      <div class="faq-item"><button class="faq-btn" onclick="tFaq(this)">Funciona para propiedades en Argentina?<span class="faq-icon">+</span></button><div class="faq-body"><p>Si. Los principios hidraulicos son universales. Las referencias de materiales incluyen opciones disponibles en Chile y Argentina. El precio esta en USD para facilitar el acceso desde ambos paises.</p></div></div>
-      <div class="faq-item"><button class="faq-btn" onclick="tFaq(this)">Puedo instalar el sistema yo mismo?<span class="faq-icon">+</span></button><div class="faq-body"><p>El kit te da el diseno completo. La instalacion depende de tu experiencia. Algunas personas la ejecutan ellas mismas; otras contratan un instalador local con el proyecto en mano. El kit fue disenado para que esa conversacion sea precisa.</p></div></div>
-      <div class="faq-item"><button class="faq-btn" onclick="tFaq(this)">Que pasa si tengo dudas al usar la calculadora?<span class="faq-icon">+</span></button><div class="faq-body"><p>Puedes escribirnos por WhatsApp. Si necesitas revision formal del diseno, ofrecemos ese servicio a precio preferencial para compradores del kit.</p></div></div>
-      <div class="faq-item"><button class="faq-btn" onclick="tFaq(this)">Cuando sube el precio?<span class="faq-icon">+</span></button><div class="faq-body"><p>El precio de lanzamiento de USD $19 esta disponible durante abril de 2026. El 1 de mayo sube a USD $29. No hay codigo de descuento: el precio de abril es el precio de lanzamiento.</p></div></div>
+    <!-- GARANTÍA -->
+    <div class="garantia">
+      <div class="garantia-icon">🛡️</div>
+      <div>
+        <h4>Garantía de 7 días</h4>
+        <p>Si descargaste el kit y sientes que no es lo que necesitas, escríbenos dentro de los 7 días y te devolvemos el pago. Sin preguntas. La garantía existe porque confiamos en el producto — y porque queremos que la decisión sea tuya sin presión.</p>
+      </div>
     </div>
   </div>
 </section>
 <div class="divider"></div>
 
+<!-- FAQ -->
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">Preguntas frecuentes</p>
+    <h2 class="title">Lo que más<br><em>nos preguntan</em></h2>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-btn" onclick="tFaq(this)">¿Necesito conocimientos de ingeniería para usar el kit?<span class="faq-icon">+</span></button><div class="faq-body"><p>No. La calculadora está diseñada para que cualquier propietario pueda usarla ingresando los datos básicos de su terreno. El ebook explica cada concepto paso a paso, desde la física del fuego hasta los criterios de selección de materiales.</p></div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="tFaq(this)">¿Funciona para propiedades en Argentina?<span class="faq-icon">+</span></button><div class="faq-body"><p>Sí. Los principios hidráulicos son universales. Las referencias de materiales incluyen opciones disponibles en Chile y Argentina. El precio está en USD para facilitar el acceso desde ambos países.</p></div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="tFaq(this)">¿Puedo instalar el sistema yo mismo?<span class="faq-icon">+</span></button><div class="faq-body"><p>El kit te da el diseño completo. La instalación depende de tu experiencia: algunas personas la ejecutan ellas mismas; otras contratan un instalador local con el proyecto en mano. El kit fue diseñado para que esa conversación sea precisa — tienes los planos, la lista de materiales y los criterios técnicos.</p></div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="tFaq(this)">¿Qué pasa si tengo dudas al usar la calculadora?<span class="faq-icon">+</span></button><div class="faq-body"><p>Puedes escribirnos por WhatsApp. Si necesitas revisión formal del diseño, ofrecemos ese servicio a precio preferencial para compradores del kit.</p></div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="tFaq(this)">¿Cuándo sube el precio?<span class="faq-icon">+</span></button><div class="faq-body"><p>El precio de lanzamiento de USD $19 está disponible durante abril de 2026. El 1 de mayo sube a USD $29. No hay código de descuento: el precio de abril es el precio de lanzamiento.</p></div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="tFaq(this)">¿Tiene garantía de devolución?<span class="faq-icon">+</span></button><div class="faq-body"><p>Sí. Tienes 7 días desde la compra para solicitar la devolución si el kit no es lo que esperabas. Solo escríbenos por WhatsApp o email y procesamos el reembolso sin preguntas. Queremos que la decisión sea sin presión.</p></div></div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- FINAL CTA -->
 <section class="section final-cta">
   <div class="wrap">
-    <h2>Diseña el sistema hoy<br><em>Te protege mañana.</em></h2>
-    <p class="final-sub">El kit te da todo para dimensionar tu defensa en horas. Despues decides como y cuando instalarlo, pero el diseno tiene que existir antes.</p>
+    <h2>Diseña el sistema hoy.<br><em>Te protege mañana.</em></h2>
+    <p class="final-sub">El kit te da todo para dimensionar tu defensa en horas. Después decides cómo y cuándo instalarlo — pero el diseño tiene que existir antes de que el fuego llegue.</p>
     <div class="final-price"><sup>USD</sup>$19</div>
-    <div class="final-old">Precio normal: $29</div>
-    <div class="final-note">&#9201; Solo durante abril 2026 &middot; Acceso inmediato por Hotmart</div>
-    <a href="REEMPLAZAR_CON_LINK_HOTMART" class="btn btn-lg" target="_blank" style="display:inline-block;min-width:300px;">Quiero el Kit ahora &rarr;</a>
+    <div class="final-old">Precio normal: $29 &mdash; solo durante abril 2026</div>
+    <div class="final-note">&#9201; Acceso inmediato por Hotmart &middot; Garantía 7 días</div>
+    <a href="https://go.hotmart.com/L104936662L?dp=1" class="btn btn-lg" target="_blank" style="display:inline-block;min-width:300px;">Quiero el Kit ahora &rarr;</a>
     <div class="trust-row" style="margin-top:20px;">
       <span class="trust-item">&#128274; Hotmart &middot; Pago seguro</span>
       <span class="trust-item">&#9889; Descarga inmediata</span>
@@ -496,18 +611,55 @@ footer a{color:rgba(255,255,255,.35);}footer a:hover{color:var(--orange-lt);}
 </section>
 
 <footer>
-  <p>AQUADEFENSA Ingenieria e Inspeccion &middot; Concepcion, Chile</p>
+  <p>AQUADEFENSA Ingeniería e Inspección &middot; Concepción, Chile</p>
   <p><a href="mailto:aquadefensa.ingenieria@gmail.com">aquadefensa.ingenieria@gmail.com</a> &middot; <a href="https://wa.me/56984932915">+569 84932915</a> &middot; @aquadefensa &middot; aquadefensa.cl</p>
-  <p style="margin-top:16px;color:rgba(255,255,255,.18);font-size:12px;">Este kit es un producto de divulgacion tecnica e ingenieria aplicada. No reemplaza un proyecto de ingenieria firmado cuando la normativa local lo requiera.</p>
+  <p style="margin-top:16px;color:rgba(255,255,255,.18);font-size:12px;">Este kit es un producto de divulgación técnica e ingeniería aplicada. No reemplaza un proyecto de ingeniería firmado cuando la normativa local lo requiera.</p>
 </footer>
 
 <script>
-(function(){const c=document.getElementById('embers'),cl=['#E84C22','#FF6635','#FFB347','#FF8000'];for(let i=0;i<20;i++){const e=document.createElement('div');e.className='ember';const s=1.5+Math.random()*4,l=5+Math.random()*90,d=4+Math.random()*7,dl=Math.random()*10,dx=(Math.random()-.5)*100,op=.25+Math.random()*.45;e.style.cssText=`width:${s}px;height:${s}px;left:${l}%;bottom:-4px;background:${cl[~~(Math.random()*cl.length)]};--dur:${d}s;--delay:${dl}s;--dx:${dx}px;--op:${op};`;c.appendChild(e);}})();
+// Embers
+(function(){
+  const c=document.getElementById('embers'),cl=['#E84C22','#FF6635','#FFB347','#FF8000'];
+  for(let i=0;i<22;i++){
+    const e=document.createElement('div');e.className='ember';
+    const s=1.5+Math.random()*4,l=5+Math.random()*90,d=4+Math.random()*7,dl=Math.random()*10,dx=(Math.random()-.5)*100,op=.25+Math.random()*.45;
+    e.style.cssText=`width:${s}px;height:${s}px;left:${l}%;bottom:-4px;background:${cl[~~(Math.random()*cl.length)]};--dur:${d}s;--delay:${dl}s;--dx:${dx}px;--op:${op};`;
+    c.appendChild(e);
+  }
+})();
+
+// Sticky bar
 const bar=document.getElementById('stickyBar'),hero=document.getElementById('hero');
 new IntersectionObserver(([e])=>bar.classList.toggle('show',!e.isIntersecting),{threshold:.1}).observe(hero);
-function tFaq(b){const i=b.parentElement,o=i.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(el=>el.classList.remove('open'));if(!o)i.classList.add('open');}
-function tick(){const d=new Date('2026-05-01T00:00:00-04:00')-new Date();if(d<=0){document.getElementById('countdown').innerHTML='<p style="color:var(--orange);font-family:\'Barlow Condensed\',sans-serif;font-weight:700;text-align:center;">El precio de lanzamiento ha finalizado</p>';return;}document.getElementById('days').textContent=String(Math.floor(d/86400000)).padStart(2,'0');document.getElementById('hours').textContent=String(Math.floor(d%86400000/3600000)).padStart(2,'0');document.getElementById('mins').textContent=String(Math.floor(d%3600000/60000)).padStart(2,'0');document.getElementById('secs').textContent=String(Math.floor(d%60000/1000)).padStart(2,'0');}
+
+// FAQ accordion
+function tFaq(b){
+  const i=b.parentElement,o=i.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el=>el.classList.remove('open'));
+  if(!o)i.classList.add('open');
+}
+
+// Countdown
+function tick(){
+  const d=new Date('2026-05-01T00:00:00-04:00')-new Date();
+  if(d<=0){
+    document.getElementById('countdown').innerHTML='<p style="color:var(--orange);font-family:\'Barlow Condensed\',sans-serif;font-weight:700;text-align:center;width:100%;">El precio de lanzamiento ha finalizado</p>';
+    return;
+  }
+  document.getElementById('days').textContent=String(Math.floor(d/86400000)).padStart(2,'0');
+  document.getElementById('hours').textContent=String(Math.floor(d%86400000/3600000)).padStart(2,'0');
+  document.getElementById('mins').textContent=String(Math.floor(d%3600000/60000)).padStart(2,'0');
+  document.getElementById('secs').textContent=String(Math.floor(d%60000/1000)).padStart(2,'0');
+}
 tick();setInterval(tick,1000);
+
+// Hero image fallback: show gradient if img doesn't load
+const heroImg=document.querySelector('.hero-img');
+if(heroImg){
+  const testImg=new Image();
+  testImg.src='img/hero-split.jpg';
+  testImg.onerror=()=>heroImg.style.display='none';
+}
 </script>
 </body>
 </html>
