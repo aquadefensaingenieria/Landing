@@ -109,6 +109,8 @@
     .country-opt label { display: flex; align-items: center; gap: 8px; padding: 11px 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; cursor: pointer; font-size: 0.86rem; font-weight: 600; color: rgba(255,255,255,0.45); transition: all 0.2s; text-transform: none; letter-spacing: 0; background: rgba(255,255,255,0.03); }
     .country-opt label .flag { font-size: 1.15rem; }
     .country-opt input:checked + label { border-color: var(--red-bright); background: rgba(232,76,34,0.12); color: var(--white); }
+    .optional-tag { font-size: 0.72rem; font-weight: 400; color: rgba(255,255,255,0.25); text-transform: none; letter-spacing: 0; margin-left: 4px; font-style: italic; }
+
     .field-hint { display: block; font-size: 0.8rem; color: var(--red-bright); margin-top: 6px; opacity: 0.9; }
 
     .dynamic-msg { font-size: 0.92rem; color: var(--red-bright); font-weight: 500; margin-bottom: 14px; min-height: 16px; opacity: 0.85; }
@@ -172,6 +174,8 @@
       footer { padding: 20px 24px; }
     }
   </style>
+  <!-- HubSpot Tracking -->
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/51195038.js"></script>
 </head>
 <body>
 
@@ -259,12 +263,12 @@
   <div class="form-layout">
     <div class="form-copy">
       <div class="section-label" data-i18n="form-label">Acceso inmediato</div>
-      <h2 class="section-title" data-i18n="form-title">30 segundos.<br>Datos reales.<br>Respuesta directa.</h2>
-      <p data-i18n="form-desc">Completa el formulario y te enviamos la guía de inmediato por WhatsApp. Si quieres la cotización aproximada, solo necesitamos los m² de tu propiedad y una foto cuando nos contactes.</p>
+      <h2 class="section-title" data-i18n="form-title">Lo que necesitas saber<br>antes de que llegue el fuego.</h2>
+      <p data-i18n="form-desc">Llena el formulario y la guía llega a tu correo de inmediato. Sin esperas, sin llamadas.</p>
       <div class="steps">
-        <div class="step"><div class="step-num">1</div><div class="step-text" data-i18n="step1"><strong>Completa el formulario.</strong> Nombre, WhatsApp, ubicación y datos básicos de tu propiedad.</div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-text" data-i18n="step2"><strong>Recibe la guía.</strong> Te la enviamos por WhatsApp en menos de 24 horas hábiles.</div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-text" data-i18n="step3"><strong>Pide tu cotización.</strong> Envíanos una foto de tu terreno y te respondemos con un rango de inversión.</div></div>
+        <div class="step"><div class="step-num">1</div><div class="step-text" data-i18n="step1"><strong>Completa el formulario.</strong> Solo toma un minuto.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-text" data-i18n="step2"><strong>Recibe la guía en tu correo.</strong> Te llega de inmediato, sin esperas.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-text" data-i18n="step3"><strong>¿Quieres una cotización?</strong> Respóndenos el correo o escríbenos por WhatsApp.</div></div>
       </div>
     </div>
 
@@ -303,11 +307,11 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="ubicacion" id="ubicacion-label" data-i18n="label-location">Comuna</label>
+            <label for="ubicacion" id="ubicacion-label" data-i18n="label-location">Comuna <span class="optional-tag" data-i18n="optional">opcional</span></label>
             <input type="text" id="ubicacion" name="ubicacion" data-i18n-placeholder="placeholder-location" placeholder="Ej: San Pedro de la Paz" />
           </div>
           <div class="form-group">
-            <label for="metros" data-i18n="label-sqm">M² aproximados</label>
+            <label for="metros" data-i18n="label-sqm">M² aproximados <span class="optional-tag" data-i18n="optional">opcional</span></label>
             <input type="number" id="metros" name="metros" placeholder="Ej: 5000" min="0" />
           </div>
         </div>
@@ -400,15 +404,16 @@ const i18n = {
     "card2-li3": "Recibe un rango de inversión estimado en 24 horas",
     "card2-li4": "Sin visita previa · Sin compromiso de contratación",
     "form-label": "Acceso inmediato",
-    "form-title": "30 segundos.<br>Datos reales.<br>Respuesta directa.",
-    "form-desc": "Completa el formulario y te enviamos la guía de inmediato por WhatsApp. Si quieres la cotización aproximada, solo necesitamos los m² de tu propiedad y una foto cuando nos contactes.",
-    "step1": "<strong>Completa el formulario.</strong> Nombre, WhatsApp, ubicación y datos básicos de tu propiedad.",
-    "step2": "<strong>Recibe la guía al instante.</strong> Te la enviamos directo a tu correo electrónico.",
-    "step3": "<strong>Pide tu cotización.</strong> Envíanos una foto de tu terreno y te respondemos con un rango de inversión.",
+    "form-title": "Lo que necesitas saber<br>antes de que llegue el fuego.",
+    "form-desc": "Llena el formulario y la guía llega a tu correo de inmediato. Sin esperas, sin llamadas.",
+    "step1": "<strong>Completa el formulario.</strong> Solo toma un minuto.",
+    "step2": "<strong>Recibe la guía en tu correo.</strong> Te llega de inmediato, sin esperas.",
+    "step3": "<strong>¿Quieres una cotización?</strong> Respóndenos el correo o escríbenos por WhatsApp.",
     "form-card-title": "Solicita la guía gratuita",
     "country-label": "¿Dónde está tu propiedad?",
     "country-other": "Otro país",
     "label-name": "Nombre",
+    "optional": "opcional",
     "label-email": "Correo electrónico",
     "placeholder-email": "tucorreo@email.com",
     "email-hint": "📩 La guía gratuita llegará a este correo al instante.",
@@ -469,15 +474,16 @@ const i18n = {
     "card2-li3": "Receive an estimated investment range within 24 hours",
     "card2-li4": "No site visit · No commitment to hire",
     "form-label": "Instant access",
-    "form-title": "30 seconds.<br>Real data.<br>Direct answer.",
-    "form-desc": "Fill out the form and we'll send you the guide immediately via WhatsApp. If you want an approximate quote, we just need your property's square footage and a photo when we connect.",
-    "step1": "<strong>Fill out the form.</strong> Name, WhatsApp, location, and basic property details.",
-    "step2": "<strong>Get the guide instantly.</strong> We'll send it directly to your email.",
-    "step3": "<strong>Request your quote.</strong> Send us a photo of your land and we'll reply with an investment range.",
+    "form-title": "What you need to know<br>before the fire arrives.",
+    "form-desc": "Fill out the form and the guide lands in your inbox immediately. No waiting, no calls.",
+    "step1": "<strong>Fill out the form.</strong> It only takes a minute.",
+    "step2": "<strong>Get the guide in your inbox.</strong> It arrives immediately, no waiting.",
+    "step3": "<strong>Want a quote?</strong> Reply to the email or message us on WhatsApp.",
     "form-card-title": "Request the free guide",
     "country-label": "Where is your property?",
     "country-other": "Other country",
     "label-name": "Name",
+    "optional": "optional",
     "label-email": "Email address",
     "placeholder-email": "your@email.com",
     "email-hint": "📩 The free guide will be sent to this email instantly.",
@@ -600,7 +606,7 @@ document.getElementById('lead-form').addEventListener('submit', function(e) {
   const metros    = document.getElementById('metros').value.trim();
   
   const pais      = document.querySelector('input[name="pais"]:checked').value;
-  if (!nombre || !email || !whatsapp || !ubicacion || !metros) {
+  if (!nombre || !email || !whatsapp) {
     alert(t('alert-required'));
     return;
   }
