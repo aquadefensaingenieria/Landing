@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Preguntas frecuentes — AQUADEFENSA</title>
+<meta name="description" content="Respuestas a las preguntas más comunes sobre los sistemas de protección contra incendios forestales AQUADEFENSA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  /* --- FAQ más claro y con mejor gráfica --- */
+  .faq-list{ max-width:860px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+  .faq-item{
+    background:linear-gradient(168deg, rgba(255,255,255,.075), rgba(255,255,255,.028));
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:16px; overflow:hidden;
+    transition:border-color .2s ease, background .25s ease, box-shadow .25s ease;
+  }
+  .faq-item:hover{ border-color:rgba(95,180,229,.45); background:linear-gradient(168deg, rgba(255,255,255,.10), rgba(255,255,255,.04)); }
+  .faq-item.open{
+    border-color:rgba(231,110,46,.55);
+    background:linear-gradient(168deg, rgba(231,110,46,.12), rgba(255,255,255,.045));
+    box-shadow:0 22px 50px -34px rgba(0,0,0,.85);
+  }
+  .faq-q{
+    width:100%; display:flex; align-items:center; justify-content:space-between; gap:18px;
+    background:none; border:0; cursor:pointer; text-align:left;
+    padding:20px clamp(18px,2.4vw,26px);
+    font-family:'Montserrat',sans-serif; font-weight:600;
+    font-size:clamp(1rem,1.5vw,1.1rem); line-height:1.35; color:#F6F4F0;
+  }
+  .faq-q:hover{ color:#FFFFFF; }
+  .faq-q .fq-icon{
+    flex:none; width:32px; height:32px; border-radius:50%;
+    border:1.5px solid rgba(255,255,255,.28); position:relative;
+    transition:all .25s ease;
+  }
+  .faq-q .fq-icon::before, .faq-q .fq-icon::after{
+    content:''; position:absolute; left:50%; top:50%; background:#F6F4F0;
+    transform:translate(-50%,-50%); transition:all .25s ease; border-radius:2px;
+  }
+  .faq-q .fq-icon::before{ width:13px; height:2px; }
+  .faq-q .fq-icon::after{ width:2px; height:13px; }
+  .faq-item.open .faq-q .fq-icon{ background:var(--ember,#E76E2E); border-color:var(--ember,#E76E2E); transform:rotate(180deg); }
+  .faq-item.open .faq-q .fq-icon::after{ height:0; }
+  .faq-a{ padding:0 clamp(18px,2.4vw,26px); }
+  .faq-a p{
+    margin:0 0 22px; color:#DAD6CE; font-size:1rem; line-height:1.68;
+    border-top:1px solid rgba(255,255,255,.12); padding-top:16px;
+  }
+  .page-hero h1{ letter-spacing:-.02em; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="flameClip" clipPathUnits="userSpaceOnUse">
+      <path d="M24 3C24 3 12 17 12 28.5C12 36.5 17.4 42 24 42C30.6 42 36 36.5 36 28.5C36 17 24 3 24 3Z"/>
+    </clipPath>
+    <symbol id="logo-mark-symbol" viewBox="0 0 48 48">
+      <g clip-path="url(#flameClip)">
+        <circle cx="6" cy="3" r="1.05" fill="#E76E2E"/>
+      <circle cx="8.6" cy="3" r="1.05" fill="#E5742B"/>
+      <circle cx="11.2" cy="3" r="1.05" fill="#E27A28"/>
+      <circle cx="13.8" cy="3" r="1.05" fill="#E08026"/>
+      <circle cx="16.4" cy="3" r="1.05" fill="#DE8623"/>
+      <circle cx="19.0" cy="3" r="1.05" fill="#DC8C20"/>
+      <circle cx="21.6" cy="3" r="1.05" fill="#D9921D"/>
+      <circle cx="24.2" cy="3" r="1.05" fill="#D7981B"/>
+      <circle cx="26.8" cy="3" r="1.05" fill="#D59E18"/>
+      <circle cx="29.4" cy="3" r="1.05" fill="#CAA01E"/>
+      <circle cx="32.0" cy="3" r="1.05" fill="#BCA027"/>
+      <circle cx="34.6" cy="3" r="1.05" fill="#AEA031"/>
+      <circle cx="37.2" cy="3" r="1.05" fill="#9FA13A"/>
+      <circle cx="39.8" cy="3" r="1.05" fill="#91A143"/>
+      <circle cx="7.3" cy="5.26" r="1.05" fill="#E4762A"/>
+      <circle cx="9.9" cy="5.26" r="1.05" fill="#E27C27"/>
+      <circle cx="12.5" cy="5.26" r="1.05" fill="#DF8225"/>
+      <circle cx="15.1" cy="5.26" r="1.05" fill="#DD8822"/>
+      <circle cx="17.7" cy="5.26" r="1.05" fill="#DB8E1F"/>
+      <circle cx="20.3" cy="5.26" r="1.05" fill="#D8941C"/>
+      <circle cx="22.9" cy="5.26" r="1.05" fill="#D69A1A"/>
+      <circle cx="25.5" cy="5.26" r="1.05" fill="#D3A018"/>
+      <circle cx="28.1" cy="5.26" r="1.05" fill="#C5A021"/>
+      <circle cx="30.7" cy="5.26" r="1.05" fill="#B6A02B"/>
+      <circle cx="33.3" cy="5.26" r="1.05" fill="#A8A034"/>
+      <circle cx="35.9" cy="5.26" r="1.05" fill="#9AA13D"/>
+      <circle cx="38.5" cy="5.26" r="1.05" fill="#8CA147"/>
+      <circle cx="41.1" cy="5.26" r="1.05" fill="#7EA150"/>
+      <circle cx="6" cy="7.52" r="1.05" fill="#E37829"/>
+      <circle cx="8.6" cy="7.52" r="1.05" fill="#E17F26"/>
+      <circle cx="11.2" cy="7.52" r="1.05" fill="#DE8524"/>
+      <circle cx="13.8" cy="7.52" r="1.05" fill="#DC8B21"/>
+      <circle cx="16.4" cy="7.52" r="1.05" fill="#DA911E"/>
+      <circle cx="19.0" cy="7.52" r="1.05" fill="#D8971B"/>
+      <circle cx="21.6" cy="7.52" r="1.05" fill="#D59D19"/>
+      <circle cx="24.2" cy="7.52" r="1.05" fill="#CEA01B"/>
+      <circle cx="26.8" cy="7.52" r="1.05" fill="#BFA025"/>
+      <circle cx="29.4" cy="7.52" r="1.05" fill="#B1A02E"/>
+      <circle cx="32.0" cy="7.52" r="1.05" fill="#A3A037"/>
+      <circle cx="34.6" cy="7.52" r="1.05" fill="#95A141"/>
+      <circle cx="37.2" cy="7.52" r="1.05" fill="#87A14A"/>
+      <circle cx="39.8" cy="7.52" r="1.05" fill="#78A154"/>
+      <circle cx="7.3" cy="9.79" r="1.05" fill="#E08125"/>
+      <circle cx="9.9" cy="9.79" r="1.05" fill="#DE8723"/>
+      <circle cx="12.5" cy="9.79" r="1.05" fill="#DB8D20"/>
+      <circle cx="15.1" cy="9.79" r="1.05" fill="#D9931D"/>
+      <circle cx="17.7" cy="9.79" r="1.05" fill="#D7991A"/>
+      <circle cx="20.3" cy="9.79" r="1.05" fill="#D49F18"/>
+      <circle cx="22.9" cy="9.79" r="1.05" fill="#C8A01F"/>
+      <circle cx="25.5" cy="9.79" r="1.05" fill="#BAA028"/>
+      <circle cx="28.1" cy="9.79" r="1.05" fill="#ACA032"/>
+      <circle cx="30.7" cy="9.79" r="1.05" fill="#9EA13B"/>
+      <circle cx="33.3" cy="9.79" r="1.05" fill="#90A144"/>
+      <circle cx="35.9" cy="9.79" r="1.05" fill="#81A14E"/>
+      <circle cx="38.5" cy="9.79" r="1.05" fill="#73A157"/>
+      <circle cx="41.1" cy="9.79" r="1.05" fill="#6AA263"/>
+      <circle cx="6" cy="12.05" r="1.05" fill="#DF8324"/>
+      <circle cx="8.6" cy="12.05" r="1.05" fill="#DD8922"/>
+      <circle cx="11.2" cy="12.05" r="1.05" fill="#DA8F1F"/>
+      <circle cx="13.8" cy="12.05" r="1.05" fill="#D8951C"/>
+      <circle cx="16.4" cy="12.05" r="1.05" fill="#D69B19"/>
+      <circle cx="19.0" cy="12.05" r="1.05" fill="#D1A019"/>
+      <circle cx="21.6" cy="12.05" r="1.05" fill="#C3A022"/>
+      <circle cx="24.2" cy="12.05" r="1.05" fill="#B5A02C"/>
+      <circle cx="26.8" cy="12.05" r="1.05" fill="#A7A035"/>
+      <circle cx="29.4" cy="12.05" r="1.05" fill="#98A13E"/>
+      <circle cx="32.0" cy="12.05" r="1.05" fill="#8AA148"/>
+      <circle cx="34.6" cy="12.05" r="1.05" fill="#7CA151"/>
+      <circle cx="37.2" cy="12.05" r="1.05" fill="#6EA15B"/>
+      <circle cx="39.8" cy="12.05" r="1.05" fill="#68A268"/>
+      <circle cx="7.3" cy="14.31" r="1.05" fill="#DC8B21"/>
+      <circle cx="9.9" cy="14.31" r="1.05" fill="#DA911E"/>
+      <circle cx="12.5" cy="14.31" r="1.05" fill="#D7971B"/>
+      <circle cx="15.1" cy="14.31" r="1.05" fill="#D59D18"/>
+      <circle cx="17.7" cy="14.31" r="1.05" fill="#CCA01C"/>
+      <circle cx="20.3" cy="14.31" r="1.05" fill="#BEA026"/>
+      <circle cx="22.9" cy="14.31" r="1.05" fill="#B0A02F"/>
+      <circle cx="25.5" cy="14.31" r="1.05" fill="#A1A139"/>
+      <circle cx="28.1" cy="14.31" r="1.05" fill="#93A142"/>
+      <circle cx="30.7" cy="14.31" r="1.05" fill="#85A14B"/>
+      <circle cx="33.3" cy="14.31" r="1.05" fill="#77A155"/>
+      <circle cx="35.9" cy="14.31" r="1.05" fill="#6CA160"/>
+      <circle cx="38.5" cy="14.31" r="1.05" fill="#65A26D"/>
+      <circle cx="41.1" cy="14.31" r="1.05" fill="#5EA37A"/>
+      <circle cx="6" cy="16.57" r="1.05" fill="#DB8D20"/>
+      <circle cx="8.6" cy="16.57" r="1.05" fill="#D9941D"/>
+      <circle cx="11.2" cy="16.57" r="1.05" fill="#D69A1A"/>
+      <circle cx="13.8" cy="16.57" r="1.05" fill="#D4A017"/>
+      <circle cx="16.4" cy="16.57" r="1.05" fill="#C7A020"/>
+      <circle cx="19.0" cy="16.57" r="1.05" fill="#B9A029"/>
+      <circle cx="21.6" cy="16.57" r="1.05" fill="#AAA033"/>
+      <circle cx="24.2" cy="16.57" r="1.05" fill="#9CA13C"/>
+      <circle cx="26.8" cy="16.57" r="1.05" fill="#8EA145"/>
+      <circle cx="29.4" cy="16.57" r="1.05" fill="#80A14F"/>
+      <circle cx="32.0" cy="16.57" r="1.05" fill="#72A158"/>
+      <circle cx="34.6" cy="16.57" r="1.05" fill="#69A265"/>
+      <circle cx="37.2" cy="16.57" r="1.05" fill="#63A372"/>
+      <circle cx="39.8" cy="16.57" r="1.05" fill="#5CA37F"/>
+      <circle cx="7.3" cy="18.83" r="1.05" fill="#D8961C"/>
+      <circle cx="9.9" cy="18.83" r="1.05" fill="#D69C19"/>
+      <circle cx="12.5" cy="18.83" r="1.05" fill="#D0A01A"/>
+      <circle cx="15.1" cy="18.83" r="1.05" fill="#C2A023"/>
+      <circle cx="17.7" cy="18.83" r="1.05" fill="#B3A02D"/>
+      <circle cx="20.3" cy="18.83" r="1.05" fill="#A5A036"/>
+      <circle cx="22.9" cy="18.83" r="1.05" fill="#97A140"/>
+      <circle cx="25.5" cy="18.83" r="1.05" fill="#89A149"/>
+      <circle cx="28.1" cy="18.83" r="1.05" fill="#7BA152"/>
+      <circle cx="30.7" cy="18.83" r="1.05" fill="#6EA15C"/>
+      <circle cx="33.3" cy="18.83" r="1.05" fill="#67A26A"/>
+      <circle cx="35.9" cy="18.83" r="1.05" fill="#60A377"/>
+      <circle cx="38.5" cy="18.83" r="1.05" fill="#59A484"/>
+      <circle cx="41.1" cy="18.83" r="1.05" fill="#53A591"/>
+      <circle cx="6" cy="21.1" r="1.05" fill="#D7981B"/>
+      <circle cx="8.6" cy="21.1" r="1.05" fill="#D59E18"/>
+      <circle cx="11.2" cy="21.1" r="1.05" fill="#CBA01D"/>
+      <circle cx="13.8" cy="21.1" r="1.05" fill="#BCA027"/>
+      <circle cx="16.4" cy="21.1" r="1.05" fill="#AEA030"/>
+      <circle cx="19.0" cy="21.1" r="1.05" fill="#A0A13A"/>
+      <circle cx="21.6" cy="21.1" r="1.05" fill="#92A143"/>
+      <circle cx="24.2" cy="21.1" r="1.05" fill="#83A14C"/>
+      <circle cx="26.8" cy="21.1" r="1.05" fill="#75A156"/>
+      <circle cx="29.4" cy="21.1" r="1.05" fill="#6BA161"/>
+      <circle cx="32.0" cy="21.1" r="1.05" fill="#64A26E"/>
+      <circle cx="34.6" cy="21.1" r="1.05" fill="#5EA37B"/>
+      <circle cx="37.2" cy="21.1" r="1.05" fill="#57A489"/>
+      <circle cx="39.8" cy="21.1" r="1.05" fill="#50A596"/>
+      <circle cx="7.3" cy="23.36" r="1.05" fill="#D3A017"/>
+      <circle cx="9.9" cy="23.36" r="1.05" fill="#C5A021"/>
+      <circle cx="12.5" cy="23.36" r="1.05" fill="#B7A02A"/>
+      <circle cx="15.1" cy="23.36" r="1.05" fill="#A9A034"/>
+      <circle cx="17.7" cy="23.36" r="1.05" fill="#9BA13D"/>
+      <circle cx="20.3" cy="23.36" r="1.05" fill="#8CA146"/>
+      <circle cx="22.9" cy="23.36" r="1.05" fill="#7EA150"/>
+      <circle cx="25.5" cy="23.36" r="1.05" fill="#70A159"/>
+      <circle cx="28.1" cy="23.36" r="1.05" fill="#69A266"/>
+      <circle cx="30.7" cy="23.36" r="1.05" fill="#62A373"/>
+      <circle cx="33.3" cy="23.36" r="1.05" fill="#5BA380"/>
+      <circle cx="35.9" cy="23.36" r="1.05" fill="#54A48D"/>
+      <circle cx="38.5" cy="23.36" r="1.05" fill="#4EA59B"/>
+      <circle cx="41.1" cy="23.36" r="1.05" fill="#47A6A8"/>
+      <circle cx="6" cy="25.62" r="1.05" fill="#CEA01B"/>
+      <circle cx="8.6" cy="25.62" r="1.05" fill="#C0A024"/>
+      <circle cx="11.2" cy="25.62" r="1.05" fill="#B2A02E"/>
+      <circle cx="13.8" cy="25.62" r="1.05" fill="#A4A037"/>
+      <circle cx="16.4" cy="25.62" r="1.05" fill="#95A141"/>
+      <circle cx="19.0" cy="25.62" r="1.05" fill="#87A14A"/>
+      <circle cx="21.6" cy="25.62" r="1.05" fill="#79A153"/>
+      <circle cx="24.2" cy="25.62" r="1.05" fill="#6DA15E"/>
+      <circle cx="26.8" cy="25.62" r="1.05" fill="#66A26B"/>
+      <circle cx="29.4" cy="25.62" r="1.05" fill="#5FA378"/>
+      <circle cx="32.0" cy="25.62" r="1.05" fill="#59A485"/>
+      <circle cx="34.6" cy="25.62" r="1.05" fill="#52A592"/>
+      <circle cx="37.2" cy="25.62" r="1.05" fill="#4BA59F"/>
+      <circle cx="39.8" cy="25.62" r="1.05" fill="#44A6AC"/>
+      <circle cx="7.3" cy="27.88" r="1.05" fill="#BBA028"/>
+      <circle cx="9.9" cy="27.88" r="1.05" fill="#ADA031"/>
+      <circle cx="12.5" cy="27.88" r="1.05" fill="#9EA13B"/>
+      <circle cx="15.1" cy="27.88" r="1.05" fill="#90A144"/>
+      <circle cx="17.7" cy="27.88" r="1.05" fill="#82A14D"/>
+      <circle cx="20.3" cy="27.88" r="1.05" fill="#74A157"/>
+      <circle cx="22.9" cy="27.88" r="1.05" fill="#6AA263"/>
+      <circle cx="25.5" cy="27.88" r="1.05" fill="#64A270"/>
+      <circle cx="28.1" cy="27.88" r="1.05" fill="#5DA37D"/>
+      <circle cx="30.7" cy="27.88" r="1.05" fill="#56A48A"/>
+      <circle cx="33.3" cy="27.88" r="1.05" fill="#4FA597"/>
+      <circle cx="35.9" cy="27.88" r="1.05" fill="#49A6A4"/>
+      <circle cx="38.5" cy="27.88" r="1.05" fill="#42A7B1"/>
+      <circle cx="41.1" cy="27.88" r="1.05" fill="#3DA2B6"/>
+      <circle cx="6" cy="30.14" r="1.05" fill="#B5A02B"/>
+      <circle cx="8.6" cy="30.14" r="1.05" fill="#A7A035"/>
+      <circle cx="11.2" cy="30.14" r="1.05" fill="#99A13E"/>
+      <circle cx="13.8" cy="30.14" r="1.05" fill="#8BA148"/>
+      <circle cx="16.4" cy="30.14" r="1.05" fill="#7DA151"/>
+      <circle cx="19.0" cy="30.14" r="1.05" fill="#6FA15B"/>
+      <circle cx="21.6" cy="30.14" r="1.05" fill="#68A268"/>
+      <circle cx="24.2" cy="30.14" r="1.05" fill="#61A375"/>
+      <circle cx="26.8" cy="30.14" r="1.05" fill="#5AA482"/>
+      <circle cx="29.4" cy="30.14" r="1.05" fill="#54A48F"/>
+      <circle cx="32.0" cy="30.14" r="1.05" fill="#4DA59C"/>
+      <circle cx="34.6" cy="30.14" r="1.05" fill="#46A6A9"/>
+      <circle cx="37.2" cy="30.14" r="1.05" fill="#3FA7B6"/>
+      <circle cx="39.8" cy="30.14" r="1.05" fill="#3C9FB5"/>
+      <circle cx="7.3" cy="32.41" r="1.05" fill="#A2A038"/>
+      <circle cx="9.9" cy="32.41" r="1.05" fill="#94A142"/>
+      <circle cx="12.5" cy="32.41" r="1.05" fill="#86A14B"/>
+      <circle cx="15.1" cy="32.41" r="1.05" fill="#77A154"/>
+      <circle cx="17.7" cy="32.41" r="1.05" fill="#6CA15F"/>
+      <circle cx="20.3" cy="32.41" r="1.05" fill="#65A26C"/>
+      <circle cx="22.9" cy="32.41" r="1.05" fill="#5FA37A"/>
+      <circle cx="25.5" cy="32.41" r="1.05" fill="#58A487"/>
+      <circle cx="28.1" cy="32.41" r="1.05" fill="#51A594"/>
+      <circle cx="30.7" cy="32.41" r="1.05" fill="#4AA6A1"/>
+      <circle cx="33.3" cy="32.41" r="1.05" fill="#44A6AE"/>
+      <circle cx="35.9" cy="32.41" r="1.05" fill="#3EA4B6"/>
+      <circle cx="38.5" cy="32.41" r="1.05" fill="#3A9BB4"/>
+      <circle cx="41.1" cy="32.41" r="1.05" fill="#3792B2"/>
+      <circle cx="6" cy="34.67" r="1.05" fill="#9DA13C"/>
+      <circle cx="8.6" cy="34.67" r="1.05" fill="#8FA145"/>
+      <circle cx="11.2" cy="34.67" r="1.05" fill="#80A14E"/>
+      <circle cx="13.8" cy="34.67" r="1.05" fill="#72A158"/>
+      <circle cx="16.4" cy="34.67" r="1.05" fill="#6AA264"/>
+      <circle cx="19.0" cy="34.67" r="1.05" fill="#63A371"/>
+      <circle cx="21.6" cy="34.67" r="1.05" fill="#5CA37E"/>
+      <circle cx="24.2" cy="34.67" r="1.05" fill="#55A48B"/>
+      <circle cx="26.8" cy="34.67" r="1.05" fill="#4FA599"/>
+      <circle cx="29.4" cy="34.67" r="1.05" fill="#48A6A6"/>
+      <circle cx="32.0" cy="34.67" r="1.05" fill="#41A7B3"/>
+      <circle cx="34.6" cy="34.67" r="1.05" fill="#3DA1B6"/>
+      <circle cx="37.2" cy="34.67" r="1.05" fill="#3998B3"/>
+      <circle cx="39.8" cy="34.67" r="1.05" fill="#368FB1"/>
+      <circle cx="7.3" cy="36.93" r="1.05" fill="#89A149"/>
+      <circle cx="9.9" cy="36.93" r="1.05" fill="#7BA152"/>
+      <circle cx="12.5" cy="36.93" r="1.05" fill="#6EA15C"/>
+      <circle cx="15.1" cy="36.93" r="1.05" fill="#67A269"/>
+      <circle cx="17.7" cy="36.93" r="1.05" fill="#60A376"/>
+      <circle cx="20.3" cy="36.93" r="1.05" fill="#5AA483"/>
+      <circle cx="22.9" cy="36.93" r="1.05" fill="#53A590"/>
+      <circle cx="25.5" cy="36.93" r="1.05" fill="#4CA59D"/>
+      <circle cx="28.1" cy="36.93" r="1.05" fill="#45A6AA"/>
+      <circle cx="30.7" cy="36.93" r="1.05" fill="#3FA7B7"/>
+      <circle cx="33.3" cy="36.93" r="1.05" fill="#3B9EB5"/>
+      <circle cx="35.9" cy="36.93" r="1.05" fill="#3895B3"/>
+      <circle cx="38.5" cy="36.93" r="1.05" fill="#348CB1"/>
+      <circle cx="41.1" cy="36.93" r="1.05" fill="#3183AE"/>
+      <circle cx="6" cy="39.19" r="1.05" fill="#84A14C"/>
+      <circle cx="8.6" cy="39.19" r="1.05" fill="#76A155"/>
+      <circle cx="11.2" cy="39.19" r="1.05" fill="#6BA161"/>
+      <circle cx="13.8" cy="39.19" r="1.05" fill="#65A26E"/>
+      <circle cx="16.4" cy="39.19" r="1.05" fill="#5EA37B"/>
+      <circle cx="19.0" cy="39.19" r="1.05" fill="#57A488"/>
+      <circle cx="21.6" cy="39.19" r="1.05" fill="#50A595"/>
+      <circle cx="24.2" cy="39.19" r="1.05" fill="#4AA6A2"/>
+      <circle cx="26.8" cy="39.19" r="1.05" fill="#43A7AF"/>
+      <circle cx="29.4" cy="39.19" r="1.05" fill="#3EA3B6"/>
+      <circle cx="32.0" cy="39.19" r="1.05" fill="#3A9AB4"/>
+      <circle cx="34.6" cy="39.19" r="1.05" fill="#3791B2"/>
+      <circle cx="37.2" cy="39.19" r="1.05" fill="#3388B0"/>
+      <circle cx="39.8" cy="39.19" r="1.05" fill="#2F7FAE"/>
+      <circle cx="7.3" cy="41.45" r="1.05" fill="#71A159"/>
+      <circle cx="9.9" cy="41.45" r="1.05" fill="#69A266"/>
+      <circle cx="12.5" cy="41.45" r="1.05" fill="#62A373"/>
+      <circle cx="15.1" cy="41.45" r="1.05" fill="#5BA380"/>
+      <circle cx="17.7" cy="41.45" r="1.05" fill="#55A48D"/>
+      <circle cx="20.3" cy="41.45" r="1.05" fill="#4EA59A"/>
+      <circle cx="22.9" cy="41.45" r="1.05" fill="#47A6A7"/>
+      <circle cx="25.5" cy="41.45" r="1.05" fill="#40A7B4"/>
+      <circle cx="28.1" cy="41.45" r="1.05" fill="#3CA0B5"/>
+      <circle cx="30.7" cy="41.45" r="1.05" fill="#3997B3"/>
+      <circle cx="33.3" cy="41.45" r="1.05" fill="#358EB1"/>
+      <circle cx="35.9" cy="41.45" r="1.05" fill="#3285AF"/>
+      <circle cx="38.5" cy="41.45" r="1.05" fill="#2E7CAD"/>
+      <circle cx="41.1" cy="41.45" r="1.05" fill="#2B73AB"/>
+      <circle cx="6" cy="43.72" r="1.05" fill="#6DA15D"/>
+      <circle cx="8.6" cy="43.72" r="1.05" fill="#66A26A"/>
+      <circle cx="11.2" cy="43.72" r="1.05" fill="#60A378"/>
+      <circle cx="13.8" cy="43.72" r="1.05" fill="#59A485"/>
+      <circle cx="16.4" cy="43.72" r="1.05" fill="#52A592"/>
+      <circle cx="19.0" cy="43.72" r="1.05" fill="#4BA59F"/>
+      <circle cx="21.6" cy="43.72" r="1.05" fill="#45A6AC"/>
+      <circle cx="24.2" cy="43.72" r="1.05" fill="#3EA6B7"/>
+      <circle cx="26.8" cy="43.72" r="1.05" fill="#3B9DB5"/>
+      <circle cx="29.4" cy="43.72" r="1.05" fill="#3794B2"/>
+      <circle cx="32.0" cy="43.72" r="1.05" fill="#348BB0"/>
+      <circle cx="34.6" cy="43.72" r="1.05" fill="#3082AE"/>
+      <circle cx="37.2" cy="43.72" r="1.05" fill="#2D79AC"/>
+      <circle cx="39.8" cy="43.72" r="1.05" fill="#2970AA"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site-header" id="siteHeader">
+  <a href="index.html" class="logo" aria-label="AQUADEFENSA — Inicio">
+    <svg class="logo-mark" viewBox="0 0 48 48"><use href="#logo-mark-symbol"/></svg>
+    <span class="logo-text">AQUA<span class="tail">DEFENSA</span></span>
+  </a>
+
+  <nav class="nav-links">
+    <a href="index.html">Inicio</a>
+    <a href="el-problema.html">El problema</a>
+    <a href="como-funciona.html">Cómo funciona</a>
+    <a href="cotizador.html">Cotizador</a>
+    <a href="preguntas.html" class="active">Preguntas</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
+
+  <div class="nav-cta">
+    <a href="contacto.html" class="btn btn-ghost">Contacto</a>
+    <a href="cotizador.html" class="btn btn-primary">Cotizar</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">Inicio</a>
+    <a href="el-problema.html">El problema</a>
+    <a href="como-funciona.html">Cómo funciona</a>
+    <a href="cotizador.html">Cotizador</a>
+    <a href="preguntas.html" class="active">Preguntas</a>
+    <a href="contacto.html">Contacto</a>
+  <a href="cotizador.html" class="btn btn-primary">Cotizar mi propiedad</a>
+</nav>
+
+<a class="wa-float" id="waFloat" href="https://wa.me/56988154096?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20AQUADEFENSA" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <span class="wa-pulse" aria-hidden="true"></span>
+  <span class="wa-tooltip">Escríbenos por WhatsApp</span>
+  <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+    <path d="M16 4C9.4 4 4 9.3 4 15.8c0 2.4.7 4.6 1.9 6.5L4 28l6-1.8c1.8 1 3.9 1.6 6 1.6 6.6 0 12-5.3 12-11.9C28 9.3 22.6 4 16 4z" fill="#fff"/>
+    <path d="M12.3 10.9c-.3-.7-.6-.7-.9-.7h-.7c-.3 0-.7.1-1 .5-.3.4-1.3 1.2-1.3 3s1.3 3.5 1.5 3.7c.2.3 2.5 4 6.2 5.5 3 1.2 3.7 1 4.3.9.7-.1 2.1-.9 2.4-1.7.3-.8.3-1.5.2-1.7-.1-.2-.4-.3-.7-.5-.3-.2-2.1-1-2.4-1.2-.3-.1-.6-.2-.8.2-.3.4-.9 1.1-1.1 1.4-.2.2-.4.3-.8.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.7-2-1.9-2.4-.2-.4 0-.5.1-.7.2-.2.4-.4.6-.6.2-.2.2-.4.3-.6.1-.2 0-.5 0-.7-.1-.2-.8-2-1.1-2.7z" fill="var(--ember)"/>
+  </svg>
+</a>
+
+<main id="top">
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow centered reveal">Preguntas</div>
+    <h1 class="reveal">Antes de escribirnos, probablemente te preguntas esto.</h1>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="faq-list reveal">
+      <div class="faq-item elevated">
+        <button class="faq-q"><span>¿El sistema garantiza que mi casa no se va a quemar?</span><span class="fq-icon"></span></button>
+        <div class="faq-a"><p>No. Ningún sistema garantiza protección total ante un incendio forestal. Lo que hace es reducir de forma significativa la probabilidad de ignición por pavesas y radiación térmica durante el momento crítico. No reemplaza la evacuación, el manejo de vegetación ni el trabajo de bomberos.</p></div>
+      </div>
+      <div class="faq-item elevated">
+        <button class="faq-q"><span>¿Tengo que estar en casa para activarlo?</span><span class="fq-icon"></span></button>
+        <div class="faq-a"><p>No. El sistema está diseñado para operar de forma autónoma: lo activas y puedes evacuar con tu familia mientras sigue funcionando. Existen niveles de activación manual, remota (GSM/4G) y autónoma por detección térmica, según el proyecto.</p></div>
+      </div>
+      <div class="faq-item elevated">
+        <button class="faq-q"><span>¿Funciona si se corta la luz o no hay electricidad de red?</span><span class="fq-icon"></span></button>
+        <div class="faq-a"><p>Sí. El sistema opera con motobomba de combustión o con bomba eléctrica respaldada por un generador dedicado. En ningún caso depende de la red eléctrica para funcionar durante una emergencia.</p></div>
+      </div>
+      <div class="faq-item elevated">
+        <button class="faq-q"><span>¿Cuánto se demora en formar la protección completa?</span><span class="fq-icon"></span></button>
+        <div class="faq-a"><p>El proceso completo — desde la activación hasta que el escudo de agua cubre techo, muros y entorno inmediato — toma menos de 3 minutos, dependiendo del tamaño de la propiedad y la distancia entre el estanque y la vivienda.</p></div>
+      </div>
+      <div class="faq-item elevated">
+        <button class="faq-q"><span>¿Puedo agregar retardante o un gabinete contra incendio?</span><span class="fq-icon"></span></button>
+        <div class="faq-a"><p>Sí, ambos están disponibles como upgrades opcionales en el cotizador. El retardante Clase A se agrega como mejora sobre el precio final del sistema base, y el gabinete contra incendio (tipo manguera de bomberos) es útil para actuar sobre un foco específico cerca o dentro de la casa.</p></div>
+      </div>
+      <div class="faq-item elevated">
+        <button class="faq-q"><span>¿Cuánto cuesta un sistema?</span><span class="fq-icon"></span></button>
+        <div class="faq-a"><p>Varía según los m² a proteger, la zona, el tipo de propiedad y la fuente de agua disponible. Por eso no publicamos un precio genérico: te pedimos esos datos en el cotizador para conversar un rango real por WhatsApp, sin compromiso.</p></div>
+      </div>
+      <div class="faq-item elevated">
+        <button class="faq-q"><span>¿Trabajan en todo Chile?</span><span class="fq-icon"></span></button>
+        <div class="faq-a"><p>Sí. Diseñamos e instalamos en todo el país. Para proyectos fuera de nuestra zona de cobertura directa, coordinamos instalación con equipos locales acompañados por nuestra ingeniería, o entregamos asesoría remota completa: planos, dimensionamiento y especificaciones técnicas.</p></div>
+      </div>
+      <div class="faq-item elevated">
+        <button class="faq-q"><span>¿Trabajan fuera de Chile?</span><span class="fq-icon"></span></button>
+        <div class="faq-a"><p>Para propiedades en el extranjero, ofrecemos asesoría remota de diseño: planos, dimensionamiento y especificaciones técnicas completas para que contrates la instalación local.</p></div>
+      </div>
+    </div>
+    <div class="center reveal reveal-d1" style="margin-top:48px;">
+    <a href="contacto.html" class="btn btn-primary">Hablar por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="logo">
+      <svg class="logo-mark" viewBox="0 0 48 48"><use href="#logo-mark-symbol"/></svg>
+      <span class="logo-text">AQUA<span class="tail">DEFENSA</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="el-problema.html">El problema</a>
+      <a href="como-funciona.html">Cómo funciona</a>
+      <a href="cotizador.html">Cotizador</a>
+      <a href="preguntas.html">Preguntas</a>
+    <a href="contacto.html">Contacto</a>
+    </div>
+  </div>
+  <div class="wrap footer-copy">© 2026 AQUADEFENSA — Ingeniería contra incendios forestales · Chile</div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

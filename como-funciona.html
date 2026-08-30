@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Cómo funciona — AQUADEFENSA</title>
+<meta name="description" content="De la activación al escudo de agua completo alrededor de tu propiedad, en menos de 3 minutos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.si-embed{
+  --negro:#0A0A0A; --panel:#131313; --panel2:#181818; --borde:#262626;
+  --naranja:#E84C22; --naranja-suave:rgba(232,76,34,.14);
+  --blanco:#FFFFFF; --gris:#A8A8A8; --acero:#9AA3AB; --acero-osc:#5E666D;
+  --agua:#5FB4E5; --agua-suave:rgba(95,180,229,.16);
+  --si-display:'Montserrat',system-ui,sans-serif;
+  --si-body:'Open Sans',system-ui,sans-serif;
+  --si-mono:'Open Sans',system-ui,sans-serif;
+  background:var(--negro);
+  color:var(--blanco);
+  font-family:var(--si-body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  border-radius:24px;
+  border:1px solid var(--borde);
+  padding:clamp(24px,3.4vw,44px) clamp(18px,3vw,34px) clamp(34px,4vw,50px);
+}
+.si-embed *,.si-embed *::before,.si-embed *::after{ margin:0; padding:0; box-sizing:border-box; }
+.si-embed :focus-visible{ outline:2px solid var(--naranja); outline-offset:3px; border-radius:4px; }
+
+.si-embed .si-main{ max-width:1240px; margin:0 auto; }
+#view-planta{ margin-top:56px; padding-top:48px; border-top:1px solid var(--borde); }
+
+.si-embed .hero{
+  padding:0 0 26px; max-width:840px;
+  display:block; position:static; min-height:0; overflow:visible;
+  text-align:left; background:none;
+}
+.si-embed .eyebrow{ font-family:var(--si-mono); font-size:.72rem; letter-spacing:.22em; color:var(--naranja); text-transform:uppercase; margin-bottom:14px; display:block; }
+.si-embed .eyebrow::before{ content:none; display:none; }
+.si-embed h1{ font-family:var(--si-display); font-weight:700; font-size:clamp(1.8rem,4.5vw,3rem); line-height:1.12; letter-spacing:-.01em; color:var(--blanco); margin:0; }
+.si-embed h1 em{ font-style:normal; color:var(--naranja); }
+.si-embed .hero p{ color:var(--gris); margin-top:16px; font-size:1.05rem; max-width:660px; line-height:1.6; }
+
+.si-embed .scene-top{ display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:14px; }
+.si-embed .instruccion{ display:flex; align-items:center; gap:10px; font-family:var(--si-mono); font-size:.74rem; letter-spacing:.1em; color:var(--gris); text-transform:uppercase; transition:opacity .4s; }
+.si-embed .instruccion.oculta{ opacity:.35; }
+.si-embed .instruccion .mano{ width:26px;height:26px;border-radius:50%;background:var(--naranja-suave);border:1px solid var(--naranja);display:grid;place-items:center;font-size:.8rem;animation:siTap 2.4s ease-in-out infinite; }
+@keyframes siTap{ 0%,100%{transform:translateY(0)} 12%{transform:translateY(-4px)} 24%{transform:translateY(0)} }
+.si-embed .btn-demo{ background:var(--naranja);border:none;color:#fff;font-family:var(--si-display);font-weight:600;font-size:.85rem;letter-spacing:.04em;padding:11px 22px;border-radius:999px;cursor:pointer;transition:transform .15s, box-shadow .15s, background .2s; }
+.si-embed .btn-demo:hover{ transform:translateY(-1px); box-shadow:0 6px 20px rgba(232,76,34,.35); }
+.si-embed .btn-demo.on{ background:#1E1E1E;border:1px solid var(--naranja);color:var(--naranja); }
+
+.si-embed .sistema-grid{ display:grid; grid-template-columns:1fr 380px; gap:20px; align-items:start; }
+.si-embed .scene-wrap{ background:var(--panel);border:1px solid var(--borde);border-radius:16px;padding:16px;position:relative; }
+.si-embed .scene-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.si-embed .scene-scroll svg{ width:100%; height:auto; display:block; min-width:640px; }
+
+.si-embed .comp{ cursor:pointer; }
+.si-embed .comp .hit{ fill:transparent; stroke:none; }
+.si-embed .comp .marco{ fill:none; stroke:var(--naranja); stroke-width:1.5; opacity:0; transition:opacity .25s; }
+.si-embed .comp:hover .marco{ opacity:.55; }
+.si-embed .comp.sel .marco{ opacity:1; stroke-width:2; }
+.si-embed .comp .dot{ fill:var(--naranja); transition:fill .4s; }
+.si-embed .comp .halo{ fill:none; stroke:var(--naranja); stroke-width:1.5; opacity:0; transform-box:fill-box; transform-origin:center; }
+.si-embed .comp .dot,.si-embed .comp .halo{ transform-box:fill-box; transform-origin:center; }
+.si-embed .comp.invita .halo{ animation:siPulso 1.8s ease-out 2; }
+@keyframes siPulso{ 0%{transform:scale(.6);opacity:.95} 70%{transform:scale(1.7);opacity:0} 100%{opacity:0} }
+.si-embed .comp.sel .halo{ opacity:.9; animation:siPulso 2.2s ease-out infinite; }
+.si-embed .comp:hover .cuerpo{ filter:brightness(1.35); }
+
+.si-embed .escena.enfoque .comp:not(.sel){ filter:saturate(.18) brightness(.62); opacity:.72; }
+
+.si-embed .escena.enfoque .comp:not(.sel):hover{ filter:saturate(.7) brightness(.95); opacity:1; }
+.si-embed .escena .comp,.si-embed .escena .pasivo{ transition:filter .4s ease, opacity .4s ease; }
+.si-embed .escena.enfoque .pasivo{ filter:saturate(.15) brightness(.6); opacity:.6; }
+
+.si-embed .guia{ stroke:var(--naranja); stroke-width:1.5; stroke-dasharray:4 5; opacity:0; transition:opacity .35s; }
+.si-embed .guia.on{ opacity:.75; }
+
+.si-embed .spray{ opacity:0; transition:opacity .35s; }
+.si-embed .spray.on{ opacity:1; }
+.si-embed .arc{ fill:none; stroke:url(#gSpray); stroke-width:3.2; stroke-linecap:round; stroke-dasharray:5 7; animation:siFlow .5s linear infinite; }
+@keyframes siFlow{ to{stroke-dashoffset:-12} }
+.si-embed .drop{ fill:#2E90D4; transform-box:fill-box; animation:siDrop 1s linear infinite; }
+@keyframes siDrop{ 0%{transform:translateY(0);opacity:0} 15%{opacity:.9} 100%{transform:translateY(46px);opacity:0} }
+.si-embed .mist{ fill:url(#gMist); }
+.si-embed .wet{ fill:#2E90D4; opacity:0; transition:opacity .8s; }
+.si-embed .wet.on{ opacity:.3; }
+.si-embed .flow-line{ stroke:var(--agua); stroke-width:3; fill:none; stroke-dasharray:6 10; opacity:0; transition:opacity .3s; }
+.si-embed .flow-line.on{ opacity:.9; animation:siFlow .4s linear infinite; }
+.si-embed .pump-body.on{ animation:siVibra .12s linear infinite; }
+@keyframes siVibra{ 0%{transform:translate(0,0)} 25%{transform:translate(.6px,-.4px)} 50%{transform:translate(-.5px,.4px)} 75%{transform:translate(.4px,.5px)} 100%{transform:translate(0,0)} }
+.si-embed .signal{ opacity:0; }
+.si-embed .signal.on{ opacity:1; animation:siSig 1.6s ease-out infinite; }
+@keyframes siSig{ 0%{opacity:0} 30%{opacity:1} 100%{opacity:0} }
+
+.si-embed .svg-label{ font-family:var(--si-mono); font-size:11px; fill:var(--gris); letter-spacing:.08em; }
+.si-embed .svg-label-strong{ font-family:var(--si-display); font-size:12.5px; font-weight:600; fill:var(--blanco); letter-spacing:.04em; }
+
+.si-embed .tooltip{ position:absolute; pointer-events:none; background:#1C1C1C; border:1px solid var(--naranja); color:var(--blanco); font-family:var(--si-mono); font-size:.7rem; letter-spacing:.08em; padding:7px 11px; border-radius:8px; white-space:nowrap; opacity:0; transform:translate(-50%,-140%); transition:opacity .15s; z-index:20; }
+.si-embed .tooltip.on{ opacity:1; }
+.si-embed .tooltip b{ color:var(--naranja); font-weight:500; }
+
+.si-embed .progreso{ display:flex; align-items:center; gap:12px; margin-top:14px; flex-wrap:wrap; }
+.si-embed .progreso .txt{ font-family:var(--si-mono); font-size:.7rem; letter-spacing:.12em; color:var(--gris); text-transform:uppercase; }
+.si-embed .puntos{ display:flex; gap:6px; }
+.si-embed .puntos i{ width:9px;height:9px;border-radius:50%;background:#2E2E2E;transition:background .3s, transform .3s; display:block; }
+.si-embed .puntos i.done{ background:var(--naranja); transform:scale(1.15); }
+
+.si-embed .info-panel{ background:var(--panel); border:1px solid var(--borde); border-radius:16px; padding:26px; position:sticky; top:100px; min-height:400px; display:flex; flex-direction:column; transition:border-color .5s; }
+.si-embed .info-panel.flash{ border-color:var(--naranja); }
+.si-embed .info-inner{ animation:siPanelIn .4s ease; }
+@keyframes siPanelIn{ from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+.si-embed .etapa-num{ font-family:var(--si-mono); font-size:.68rem; letter-spacing:.2em; color:var(--naranja); text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+.si-embed .etapa-num .n{ background:var(--naranja); color:#fff; width:20px; height:20px; border-radius:5px; display:grid; place-items:center; font-size:.68rem; }
+.si-embed .info-panel h3{ font-family:var(--si-display); font-weight:700; font-size:1.32rem; margin-bottom:12px; line-height:1.2; color:var(--blanco); }
+.si-embed .info-panel p{ color:var(--gris); font-size:.93rem; margin-bottom:12px; line-height:1.55; }
+.si-embed .info-list{ list-style:none; margin:4px 0 10px; }
+.si-embed .info-list li{ position:relative; padding-left:18px; color:#D6D6D6; font-size:.9rem; margin-bottom:8px; }
+.si-embed .info-list li::before{ content:""; position:absolute; left:0; top:9px; width:7px; height:7px; background:var(--naranja); border-radius:2px; }
+.si-embed .nota-visual{ font-size:.82rem; color:#7FB8D8; margin-top:2px; }
+
+.si-embed .planta-toggle{ display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
+.si-embed .toggle-btn{ background:var(--panel); border:1px solid var(--borde); color:var(--gris); font-family:var(--si-display); font-weight:600; font-size:.9rem; padding:12px 22px; border-radius:12px; cursor:pointer; transition:all .2s; display:flex; align-items:center; gap:10px; }
+.si-embed .toggle-btn .sw{ width:12px; height:12px; border-radius:50%; background:var(--acero-osc); transition:background .2s; }
+.si-embed .toggle-btn.active{ border-color:var(--naranja); color:#fff; background:var(--naranja); box-shadow:0 8px 22px rgba(232,76,34,.32); }
+.si-embed .toggle-btn.active .sw{ background:#fff; }
+.si-embed .planta-grid{ display:grid; grid-template-columns:1fr 316px; gap:18px; align-items:stretch; }
+.si-embed .planta-grid > *{ min-width:0; }
+.si-embed .planta-info{ display:flex; flex-direction:column; }
+.si-embed .planta-info .dual-note{ margin-top:auto; }
+.si-embed .planta-scene{ background:#FFFFFF; border:1px solid rgba(20,15,5,.14); border-radius:16px; padding:10px; display:flex; align-items:center; }
+.si-embed .planta-scene svg{ width:100%; height:auto; display:block; min-width:520px; }
+.si-embed .cov{ transform-box:fill-box; transform-origin:center; transition:opacity .5s, transform .6s; }
+.si-embed .cov.hide{ opacity:0; transform:scale(.4); }
+.si-embed .cov.show{ opacity:1; transform:scale(1); }
+.si-embed .planta-info{ background:var(--panel); border:1px solid var(--borde); border-radius:16px; padding:24px; }
+.si-embed .planta-info h3{ font-family:var(--si-display); font-size:1.2rem; margin-bottom:10px; color:var(--blanco); }
+.si-embed .planta-info p{ color:var(--gris); font-size:.9rem; margin-bottom:16px; line-height:1.6; }
+.si-embed .rasgo{ display:flex; justify-content:space-between; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--borde); }
+.si-embed .rasgo .k{ font-family:var(--si-mono); font-size:.68rem; letter-spacing:.12em; color:var(--gris); text-transform:uppercase; }
+.si-embed .rasgo .v{ font-family:var(--si-display); font-weight:600; font-size:.86rem; color:var(--blanco); text-align:right; }
+.si-embed .dual-note{ margin-top:18px; font-size:.85rem; color:#D6D6D6; line-height:1.55; }
+.si-embed .dual-note strong{ color:var(--naranja); }
+
+@media(max-width:980px){
+  .si-embed .sistema-grid,.si-embed .planta-grid{ grid-template-columns:1fr; }
+  .si-embed .info-panel{ position:static; min-height:0; }
+}
+@media(max-width:640px){
+  .si-embed .hero{ padding:0 0 20px; }
+  .si-embed{ padding:20px 16px 28px; border-radius:18px; }
+}
+/* --- alineación de columnas y diagrama en fondo blanco --- */
+.si-embed .sistema-grid{ align-items:start; }
+.si-embed .sistema-grid > *{ min-width:0; }
+.si-embed .scene-wrap{ background:#FFFFFF; border-color:rgba(20,15,5,.14); }
+.si-embed .scene-scroll svg{ background:#FFFFFF; }
+
+/* etiquetas sobre blanco */
+.si-embed .svg-label{ fill:#6A655B; }
+.si-embed .svg-label-strong{ fill:#17170F; }
+.si-embed .escena .lbl-agua{ fill:#134A6E; transition:fill .5s ease; }
+.si-embed .escena.flujo .lbl-agua{ fill:#F2FAFF; }
+.si-embed .lbl-plan{ fill:#1D5C86; font-size:12px; letter-spacing:.1em; }
+
+/* agua y tuberías: inactivo -> operación */
+.si-embed .agua{ fill:#C8DCE9; transition:fill .5s ease; }
+.si-embed .escena.flujo .agua{ fill:url(#gWater); }
+.si-embed .tubo{ stroke:url(#gMetal); transition:stroke .5s ease; }
+.si-embed .escena.flujo .tubo{ stroke:#8FB9D4; }
+.si-embed .flow-line{ stroke:#2E90D4; stroke-width:3.4; }
+
+/* puntos interactivos: reposo con pulso, activado sólido */
+.si-embed .comp .dot{ fill:var(--naranja); stroke:#fff; stroke-width:2; animation:siReposo 2.4s ease-in-out infinite; }
+@keyframes siReposo{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.22); } }
+.si-embed .comp .halo{ stroke:var(--naranja); opacity:.35; animation:siPulso 2.6s ease-out infinite; }
+.si-embed .comp.sel .dot{ fill:#fff; stroke:var(--naranja); stroke-width:4; animation:none; transform:scale(1.5); }
+.si-embed .comp.sel .halo{ opacity:1; }
+.si-embed .escena.enfoque .comp:not(.sel) .dot{ fill:#B5BAC0; stroke:#fff; }
+.si-embed .comp .marco{ stroke:var(--naranja); }
+
+/* invitación "toca aquí" */
+.si-embed .tap-hint{ pointer-events:none; transition:opacity .5s ease; animation:siHint 2.2s ease-in-out infinite; transform-box:fill-box; transform-origin:center bottom; }
+.si-embed .tap-hint rect{ fill:var(--naranja); }
+.si-embed .tap-hint text{ fill:#fff; font-family:var(--si-display); font-size:11px; font-weight:700; letter-spacing:.1em; }
+.si-embed .tap-hint polygon{ fill:var(--naranja); }
+@keyframes siHint{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-5px); } }
+.si-embed .escena.explorado .tap-hint{ opacity:0; }
+
+/* barra de instrucción + botón demo con más presencia */
+.si-embed .instruccion{
+  background:var(--naranja-suave); border:1px solid var(--naranja);
+  border-radius:999px; padding:8px 16px 8px 8px; color:#F4C4B2;
+  font-size:.78rem; letter-spacing:.06em;
+}
+.si-embed .instruccion .mano{ width:30px; height:30px; font-size:1rem; background:var(--naranja); border-color:var(--naranja); color:#fff; }
+.si-embed .btn-demo{
+  position:relative; font-size:.95rem; padding:14px 28px;
+  box-shadow:0 8px 26px rgba(232,76,34,.34);
+}
+.si-embed .btn-demo::after{
+  content:''; position:absolute; inset:-4px; border-radius:999px;
+  border:1.5px solid var(--naranja); opacity:0; animation:siBtnRing 2.6s ease-out infinite;
+}
+.si-embed .btn-demo.on::after{ animation:none; opacity:0; }
+@keyframes siBtnRing{ 0%{ transform:scale(.96); opacity:.7; } 70%{ transform:scale(1.1); opacity:0; } 100%{ opacity:0; } }
+.si-embed .tooltip{ z-index:30; }
+</style>
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="flameClip" clipPathUnits="userSpaceOnUse">
+      <path d="M24 3C24 3 12 17 12 28.5C12 36.5 17.4 42 24 42C30.6 42 36 36.5 36 28.5C36 17 24 3 24 3Z"/>
+    </clipPath>
+    <symbol id="logo-mark-symbol" viewBox="0 0 48 48">
+      <g clip-path="url(#flameClip)">
+        <circle cx="6" cy="3" r="1.05" fill="#E76E2E"/>
+      <circle cx="8.6" cy="3" r="1.05" fill="#E5742B"/>
+      <circle cx="11.2" cy="3" r="1.05" fill="#E27A28"/>
+      <circle cx="13.8" cy="3" r="1.05" fill="#E08026"/>
+      <circle cx="16.4" cy="3" r="1.05" fill="#DE8623"/>
+      <circle cx="19.0" cy="3" r="1.05" fill="#DC8C20"/>
+      <circle cx="21.6" cy="3" r="1.05" fill="#D9921D"/>
+      <circle cx="24.2" cy="3" r="1.05" fill="#D7981B"/>
+      <circle cx="26.8" cy="3" r="1.05" fill="#D59E18"/>
+      <circle cx="29.4" cy="3" r="1.05" fill="#CAA01E"/>
+      <circle cx="32.0" cy="3" r="1.05" fill="#BCA027"/>
+      <circle cx="34.6" cy="3" r="1.05" fill="#AEA031"/>
+      <circle cx="37.2" cy="3" r="1.05" fill="#9FA13A"/>
+      <circle cx="39.8" cy="3" r="1.05" fill="#91A143"/>
+      <circle cx="7.3" cy="5.26" r="1.05" fill="#E4762A"/>
+      <circle cx="9.9" cy="5.26" r="1.05" fill="#E27C27"/>
+      <circle cx="12.5" cy="5.26" r="1.05" fill="#DF8225"/>
+      <circle cx="15.1" cy="5.26" r="1.05" fill="#DD8822"/>
+      <circle cx="17.7" cy="5.26" r="1.05" fill="#DB8E1F"/>
+      <circle cx="20.3" cy="5.26" r="1.05" fill="#D8941C"/>
+      <circle cx="22.9" cy="5.26" r="1.05" fill="#D69A1A"/>
+      <circle cx="25.5" cy="5.26" r="1.05" fill="#D3A018"/>
+      <circle cx="28.1" cy="5.26" r="1.05" fill="#C5A021"/>
+      <circle cx="30.7" cy="5.26" r="1.05" fill="#B6A02B"/>
+      <circle cx="33.3" cy="5.26" r="1.05" fill="#A8A034"/>
+      <circle cx="35.9" cy="5.26" r="1.05" fill="#9AA13D"/>
+      <circle cx="38.5" cy="5.26" r="1.05" fill="#8CA147"/>
+      <circle cx="41.1" cy="5.26" r="1.05" fill="#7EA150"/>
+      <circle cx="6" cy="7.52" r="1.05" fill="#E37829"/>
+      <circle cx="8.6" cy="7.52" r="1.05" fill="#E17F26"/>
+      <circle cx="11.2" cy="7.52" r="1.05" fill="#DE8524"/>
+      <circle cx="13.8" cy="7.52" r="1.05" fill="#DC8B21"/>
+      <circle cx="16.4" cy="7.52" r="1.05" fill="#DA911E"/>
+      <circle cx="19.0" cy="7.52" r="1.05" fill="#D8971B"/>
+      <circle cx="21.6" cy="7.52" r="1.05" fill="#D59D19"/>
+      <circle cx="24.2" cy="7.52" r="1.05" fill="#CEA01B"/>
+      <circle cx="26.8" cy="7.52" r="1.05" fill="#BFA025"/>
+      <circle cx="29.4" cy="7.52" r="1.05" fill="#B1A02E"/>
+      <circle cx="32.0" cy="7.52" r="1.05" fill="#A3A037"/>
+      <circle cx="34.6" cy="7.52" r="1.05" fill="#95A141"/>
+      <circle cx="37.2" cy="7.52" r="1.05" fill="#87A14A"/>
+      <circle cx="39.8" cy="7.52" r="1.05" fill="#78A154"/>
+      <circle cx="7.3" cy="9.79" r="1.05" fill="#E08125"/>
+      <circle cx="9.9" cy="9.79" r="1.05" fill="#DE8723"/>
+      <circle cx="12.5" cy="9.79" r="1.05" fill="#DB8D20"/>
+      <circle cx="15.1" cy="9.79" r="1.05" fill="#D9931D"/>
+      <circle cx="17.7" cy="9.79" r="1.05" fill="#D7991A"/>
+      <circle cx="20.3" cy="9.79" r="1.05" fill="#D49F18"/>
+      <circle cx="22.9" cy="9.79" r="1.05" fill="#C8A01F"/>
+      <circle cx="25.5" cy="9.79" r="1.05" fill="#BAA028"/>
+      <circle cx="28.1" cy="9.79" r="1.05" fill="#ACA032"/>
+      <circle cx="30.7" cy="9.79" r="1.05" fill="#9EA13B"/>
+      <circle cx="33.3" cy="9.79" r="1.05" fill="#90A144"/>
+      <circle cx="35.9" cy="9.79" r="1.05" fill="#81A14E"/>
+      <circle cx="38.5" cy="9.79" r="1.05" fill="#73A157"/>
+      <circle cx="41.1" cy="9.79" r="1.05" fill="#6AA263"/>
+      <circle cx="6" cy="12.05" r="1.05" fill="#DF8324"/>
+      <circle cx="8.6" cy="12.05" r="1.05" fill="#DD8922"/>
+      <circle cx="11.2" cy="12.05" r="1.05" fill="#DA8F1F"/>
+      <circle cx="13.8" cy="12.05" r="1.05" fill="#D8951C"/>
+      <circle cx="16.4" cy="12.05" r="1.05" fill="#D69B19"/>
+      <circle cx="19.0" cy="12.05" r="1.05" fill="#D1A019"/>
+      <circle cx="21.6" cy="12.05" r="1.05" fill="#C3A022"/>
+      <circle cx="24.2" cy="12.05" r="1.05" fill="#B5A02C"/>
+      <circle cx="26.8" cy="12.05" r="1.05" fill="#A7A035"/>
+      <circle cx="29.4" cy="12.05" r="1.05" fill="#98A13E"/>
+      <circle cx="32.0" cy="12.05" r="1.05" fill="#8AA148"/>
+      <circle cx="34.6" cy="12.05" r="1.05" fill="#7CA151"/>
+      <circle cx="37.2" cy="12.05" r="1.05" fill="#6EA15B"/>
+      <circle cx="39.8" cy="12.05" r="1.05" fill="#68A268"/>
+      <circle cx="7.3" cy="14.31" r="1.05" fill="#DC8B21"/>
+      <circle cx="9.9" cy="14.31" r="1.05" fill="#DA911E"/>
+      <circle cx="12.5" cy="14.31" r="1.05" fill="#D7971B"/>
+      <circle cx="15.1" cy="14.31" r="1.05" fill="#D59D18"/>
+      <circle cx="17.7" cy="14.31" r="1.05" fill="#CCA01C"/>
+      <circle cx="20.3" cy="14.31" r="1.05" fill="#BEA026"/>
+      <circle cx="22.9" cy="14.31" r="1.05" fill="#B0A02F"/>
+      <circle cx="25.5" cy="14.31" r="1.05" fill="#A1A139"/>
+      <circle cx="28.1" cy="14.31" r="1.05" fill="#93A142"/>
+      <circle cx="30.7" cy="14.31" r="1.05" fill="#85A14B"/>
+      <circle cx="33.3" cy="14.31" r="1.05" fill="#77A155"/>
+      <circle cx="35.9" cy="14.31" r="1.05" fill="#6CA160"/>
+      <circle cx="38.5" cy="14.31" r="1.05" fill="#65A26D"/>
+      <circle cx="41.1" cy="14.31" r="1.05" fill="#5EA37A"/>
+      <circle cx="6" cy="16.57" r="1.05" fill="#DB8D20"/>
+      <circle cx="8.6" cy="16.57" r="1.05" fill="#D9941D"/>
+      <circle cx="11.2" cy="16.57" r="1.05" fill="#D69A1A"/>
+      <circle cx="13.8" cy="16.57" r="1.05" fill="#D4A017"/>
+      <circle cx="16.4" cy="16.57" r="1.05" fill="#C7A020"/>
+      <circle cx="19.0" cy="16.57" r="1.05" fill="#B9A029"/>
+      <circle cx="21.6" cy="16.57" r="1.05" fill="#AAA033"/>
+      <circle cx="24.2" cy="16.57" r="1.05" fill="#9CA13C"/>
+      <circle cx="26.8" cy="16.57" r="1.05" fill="#8EA145"/>
+      <circle cx="29.4" cy="16.57" r="1.05" fill="#80A14F"/>
+      <circle cx="32.0" cy="16.57" r="1.05" fill="#72A158"/>
+      <circle cx="34.6" cy="16.57" r="1.05" fill="#69A265"/>
+      <circle cx="37.2" cy="16.57" r="1.05" fill="#63A372"/>
+      <circle cx="39.8" cy="16.57" r="1.05" fill="#5CA37F"/>
+      <circle cx="7.3" cy="18.83" r="1.05" fill="#D8961C"/>
+      <circle cx="9.9" cy="18.83" r="1.05" fill="#D69C19"/>
+      <circle cx="12.5" cy="18.83" r="1.05" fill="#D0A01A"/>
+      <circle cx="15.1" cy="18.83" r="1.05" fill="#C2A023"/>
+      <circle cx="17.7" cy="18.83" r="1.05" fill="#B3A02D"/>
+      <circle cx="20.3" cy="18.83" r="1.05" fill="#A5A036"/>
+      <circle cx="22.9" cy="18.83" r="1.05" fill="#97A140"/>
+      <circle cx="25.5" cy="18.83" r="1.05" fill="#89A149"/>
+      <circle cx="28.1" cy="18.83" r="1.05" fill="#7BA152"/>
+      <circle cx="30.7" cy="18.83" r="1.05" fill="#6EA15C"/>
+      <circle cx="33.3" cy="18.83" r="1.05" fill="#67A26A"/>
+      <circle cx="35.9" cy="18.83" r="1.05" fill="#60A377"/>
+      <circle cx="38.5" cy="18.83" r="1.05" fill="#59A484"/>
+      <circle cx="41.1" cy="18.83" r="1.05" fill="#53A591"/>
+      <circle cx="6" cy="21.1" r="1.05" fill="#D7981B"/>
+      <circle cx="8.6" cy="21.1" r="1.05" fill="#D59E18"/>
+      <circle cx="11.2" cy="21.1" r="1.05" fill="#CBA01D"/>
+      <circle cx="13.8" cy="21.1" r="1.05" fill="#BCA027"/>
+      <circle cx="16.4" cy="21.1" r="1.05" fill="#AEA030"/>
+      <circle cx="19.0" cy="21.1" r="1.05" fill="#A0A13A"/>
+      <circle cx="21.6" cy="21.1" r="1.05" fill="#92A143"/>
+      <circle cx="24.2" cy="21.1" r="1.05" fill="#83A14C"/>
+      <circle cx="26.8" cy="21.1" r="1.05" fill="#75A156"/>
+      <circle cx="29.4" cy="21.1" r="1.05" fill="#6BA161"/>
+      <circle cx="32.0" cy="21.1" r="1.05" fill="#64A26E"/>
+      <circle cx="34.6" cy="21.1" r="1.05" fill="#5EA37B"/>
+      <circle cx="37.2" cy="21.1" r="1.05" fill="#57A489"/>
+      <circle cx="39.8" cy="21.1" r="1.05" fill="#50A596"/>
+      <circle cx="7.3" cy="23.36" r="1.05" fill="#D3A017"/>
+      <circle cx="9.9" cy="23.36" r="1.05" fill="#C5A021"/>
+      <circle cx="12.5" cy="23.36" r="1.05" fill="#B7A02A"/>
+      <circle cx="15.1" cy="23.36" r="1.05" fill="#A9A034"/>
+      <circle cx="17.7" cy="23.36" r="1.05" fill="#9BA13D"/>
+      <circle cx="20.3" cy="23.36" r="1.05" fill="#8CA146"/>
+      <circle cx="22.9" cy="23.36" r="1.05" fill="#7EA150"/>
+      <circle cx="25.5" cy="23.36" r="1.05" fill="#70A159"/>
+      <circle cx="28.1" cy="23.36" r="1.05" fill="#69A266"/>
+      <circle cx="30.7" cy="23.36" r="1.05" fill="#62A373"/>
+      <circle cx="33.3" cy="23.36" r="1.05" fill="#5BA380"/>
+      <circle cx="35.9" cy="23.36" r="1.05" fill="#54A48D"/>
+      <circle cx="38.5" cy="23.36" r="1.05" fill="#4EA59B"/>
+      <circle cx="41.1" cy="23.36" r="1.05" fill="#47A6A8"/>
+      <circle cx="6" cy="25.62" r="1.05" fill="#CEA01B"/>
+      <circle cx="8.6" cy="25.62" r="1.05" fill="#C0A024"/>
+      <circle cx="11.2" cy="25.62" r="1.05" fill="#B2A02E"/>
+      <circle cx="13.8" cy="25.62" r="1.05" fill="#A4A037"/>
+      <circle cx="16.4" cy="25.62" r="1.05" fill="#95A141"/>
+      <circle cx="19.0" cy="25.62" r="1.05" fill="#87A14A"/>
+      <circle cx="21.6" cy="25.62" r="1.05" fill="#79A153"/>
+      <circle cx="24.2" cy="25.62" r="1.05" fill="#6DA15E"/>
+      <circle cx="26.8" cy="25.62" r="1.05" fill="#66A26B"/>
+      <circle cx="29.4" cy="25.62" r="1.05" fill="#5FA378"/>
+      <circle cx="32.0" cy="25.62" r="1.05" fill="#59A485"/>
+      <circle cx="34.6" cy="25.62" r="1.05" fill="#52A592"/>
+      <circle cx="37.2" cy="25.62" r="1.05" fill="#4BA59F"/>
+      <circle cx="39.8" cy="25.62" r="1.05" fill="#44A6AC"/>
+      <circle cx="7.3" cy="27.88" r="1.05" fill="#BBA028"/>
+      <circle cx="9.9" cy="27.88" r="1.05" fill="#ADA031"/>
+      <circle cx="12.5" cy="27.88" r="1.05" fill="#9EA13B"/>
+      <circle cx="15.1" cy="27.88" r="1.05" fill="#90A144"/>
+      <circle cx="17.7" cy="27.88" r="1.05" fill="#82A14D"/>
+      <circle cx="20.3" cy="27.88" r="1.05" fill="#74A157"/>
+      <circle cx="22.9" cy="27.88" r="1.05" fill="#6AA263"/>
+      <circle cx="25.5" cy="27.88" r="1.05" fill="#64A270"/>
+      <circle cx="28.1" cy="27.88" r="1.05" fill="#5DA37D"/>
+      <circle cx="30.7" cy="27.88" r="1.05" fill="#56A48A"/>
+      <circle cx="33.3" cy="27.88" r="1.05" fill="#4FA597"/>
+      <circle cx="35.9" cy="27.88" r="1.05" fill="#49A6A4"/>
+      <circle cx="38.5" cy="27.88" r="1.05" fill="#42A7B1"/>
+      <circle cx="41.1" cy="27.88" r="1.05" fill="#3DA2B6"/>
+      <circle cx="6" cy="30.14" r="1.05" fill="#B5A02B"/>
+      <circle cx="8.6" cy="30.14" r="1.05" fill="#A7A035"/>
+      <circle cx="11.2" cy="30.14" r="1.05" fill="#99A13E"/>
+      <circle cx="13.8" cy="30.14" r="1.05" fill="#8BA148"/>
+      <circle cx="16.4" cy="30.14" r="1.05" fill="#7DA151"/>
+      <circle cx="19.0" cy="30.14" r="1.05" fill="#6FA15B"/>
+      <circle cx="21.6" cy="30.14" r="1.05" fill="#68A268"/>
+      <circle cx="24.2" cy="30.14" r="1.05" fill="#61A375"/>
+      <circle cx="26.8" cy="30.14" r="1.05" fill="#5AA482"/>
+      <circle cx="29.4" cy="30.14" r="1.05" fill="#54A48F"/>
+      <circle cx="32.0" cy="30.14" r="1.05" fill="#4DA59C"/>
+      <circle cx="34.6" cy="30.14" r="1.05" fill="#46A6A9"/>
+      <circle cx="37.2" cy="30.14" r="1.05" fill="#3FA7B6"/>
+      <circle cx="39.8" cy="30.14" r="1.05" fill="#3C9FB5"/>
+      <circle cx="7.3" cy="32.41" r="1.05" fill="#A2A038"/>
+      <circle cx="9.9" cy="32.41" r="1.05" fill="#94A142"/>
+      <circle cx="12.5" cy="32.41" r="1.05" fill="#86A14B"/>
+      <circle cx="15.1" cy="32.41" r="1.05" fill="#77A154"/>
+      <circle cx="17.7" cy="32.41" r="1.05" fill="#6CA15F"/>
+      <circle cx="20.3" cy="32.41" r="1.05" fill="#65A26C"/>
+      <circle cx="22.9" cy="32.41" r="1.05" fill="#5FA37A"/>
+      <circle cx="25.5" cy="32.41" r="1.05" fill="#58A487"/>
+      <circle cx="28.1" cy="32.41" r="1.05" fill="#51A594"/>
+      <circle cx="30.7" cy="32.41" r="1.05" fill="#4AA6A1"/>
+      <circle cx="33.3" cy="32.41" r="1.05" fill="#44A6AE"/>
+      <circle cx="35.9" cy="32.41" r="1.05" fill="#3EA4B6"/>
+      <circle cx="38.5" cy="32.41" r="1.05" fill="#3A9BB4"/>
+      <circle cx="41.1" cy="32.41" r="1.05" fill="#3792B2"/>
+      <circle cx="6" cy="34.67" r="1.05" fill="#9DA13C"/>
+      <circle cx="8.6" cy="34.67" r="1.05" fill="#8FA145"/>
+      <circle cx="11.2" cy="34.67" r="1.05" fill="#80A14E"/>
+      <circle cx="13.8" cy="34.67" r="1.05" fill="#72A158"/>
+      <circle cx="16.4" cy="34.67" r="1.05" fill="#6AA264"/>
+      <circle cx="19.0" cy="34.67" r="1.05" fill="#63A371"/>
+      <circle cx="21.6" cy="34.67" r="1.05" fill="#5CA37E"/>
+      <circle cx="24.2" cy="34.67" r="1.05" fill="#55A48B"/>
+      <circle cx="26.8" cy="34.67" r="1.05" fill="#4FA599"/>
+      <circle cx="29.4" cy="34.67" r="1.05" fill="#48A6A6"/>
+      <circle cx="32.0" cy="34.67" r="1.05" fill="#41A7B3"/>
+      <circle cx="34.6" cy="34.67" r="1.05" fill="#3DA1B6"/>
+      <circle cx="37.2" cy="34.67" r="1.05" fill="#3998B3"/>
+      <circle cx="39.8" cy="34.67" r="1.05" fill="#368FB1"/>
+      <circle cx="7.3" cy="36.93" r="1.05" fill="#89A149"/>
+      <circle cx="9.9" cy="36.93" r="1.05" fill="#7BA152"/>
+      <circle cx="12.5" cy="36.93" r="1.05" fill="#6EA15C"/>
+      <circle cx="15.1" cy="36.93" r="1.05" fill="#67A269"/>
+      <circle cx="17.7" cy="36.93" r="1.05" fill="#60A376"/>
+      <circle cx="20.3" cy="36.93" r="1.05" fill="#5AA483"/>
+      <circle cx="22.9" cy="36.93" r="1.05" fill="#53A590"/>
+      <circle cx="25.5" cy="36.93" r="1.05" fill="#4CA59D"/>
+      <circle cx="28.1" cy="36.93" r="1.05" fill="#45A6AA"/>
+      <circle cx="30.7" cy="36.93" r="1.05" fill="#3FA7B7"/>
+      <circle cx="33.3" cy="36.93" r="1.05" fill="#3B9EB5"/>
+      <circle cx="35.9" cy="36.93" r="1.05" fill="#3895B3"/>
+      <circle cx="38.5" cy="36.93" r="1.05" fill="#348CB1"/>
+      <circle cx="41.1" cy="36.93" r="1.05" fill="#3183AE"/>
+      <circle cx="6" cy="39.19" r="1.05" fill="#84A14C"/>
+      <circle cx="8.6" cy="39.19" r="1.05" fill="#76A155"/>
+      <circle cx="11.2" cy="39.19" r="1.05" fill="#6BA161"/>
+      <circle cx="13.8" cy="39.19" r="1.05" fill="#65A26E"/>
+      <circle cx="16.4" cy="39.19" r="1.05" fill="#5EA37B"/>
+      <circle cx="19.0" cy="39.19" r="1.05" fill="#57A488"/>
+      <circle cx="21.6" cy="39.19" r="1.05" fill="#50A595"/>
+      <circle cx="24.2" cy="39.19" r="1.05" fill="#4AA6A2"/>
+      <circle cx="26.8" cy="39.19" r="1.05" fill="#43A7AF"/>
+      <circle cx="29.4" cy="39.19" r="1.05" fill="#3EA3B6"/>
+      <circle cx="32.0" cy="39.19" r="1.05" fill="#3A9AB4"/>
+      <circle cx="34.6" cy="39.19" r="1.05" fill="#3791B2"/>
+      <circle cx="37.2" cy="39.19" r="1.05" fill="#3388B0"/>
+      <circle cx="39.8" cy="39.19" r="1.05" fill="#2F7FAE"/>
+      <circle cx="7.3" cy="41.45" r="1.05" fill="#71A159"/>
+      <circle cx="9.9" cy="41.45" r="1.05" fill="#69A266"/>
+      <circle cx="12.5" cy="41.45" r="1.05" fill="#62A373"/>
+      <circle cx="15.1" cy="41.45" r="1.05" fill="#5BA380"/>
+      <circle cx="17.7" cy="41.45" r="1.05" fill="#55A48D"/>
+      <circle cx="20.3" cy="41.45" r="1.05" fill="#4EA59A"/>
+      <circle cx="22.9" cy="41.45" r="1.05" fill="#47A6A7"/>
+      <circle cx="25.5" cy="41.45" r="1.05" fill="#40A7B4"/>
+      <circle cx="28.1" cy="41.45" r="1.05" fill="#3CA0B5"/>
+      <circle cx="30.7" cy="41.45" r="1.05" fill="#3997B3"/>
+      <circle cx="33.3" cy="41.45" r="1.05" fill="#358EB1"/>
+      <circle cx="35.9" cy="41.45" r="1.05" fill="#3285AF"/>
+      <circle cx="38.5" cy="41.45" r="1.05" fill="#2E7CAD"/>
+      <circle cx="41.1" cy="41.45" r="1.05" fill="#2B73AB"/>
+      <circle cx="6" cy="43.72" r="1.05" fill="#6DA15D"/>
+      <circle cx="8.6" cy="43.72" r="1.05" fill="#66A26A"/>
+      <circle cx="11.2" cy="43.72" r="1.05" fill="#60A378"/>
+      <circle cx="13.8" cy="43.72" r="1.05" fill="#59A485"/>
+      <circle cx="16.4" cy="43.72" r="1.05" fill="#52A592"/>
+      <circle cx="19.0" cy="43.72" r="1.05" fill="#4BA59F"/>
+      <circle cx="21.6" cy="43.72" r="1.05" fill="#45A6AC"/>
+      <circle cx="24.2" cy="43.72" r="1.05" fill="#3EA6B7"/>
+      <circle cx="26.8" cy="43.72" r="1.05" fill="#3B9DB5"/>
+      <circle cx="29.4" cy="43.72" r="1.05" fill="#3794B2"/>
+      <circle cx="32.0" cy="43.72" r="1.05" fill="#348BB0"/>
+      <circle cx="34.6" cy="43.72" r="1.05" fill="#3082AE"/>
+      <circle cx="37.2" cy="43.72" r="1.05" fill="#2D79AC"/>
+      <circle cx="39.8" cy="43.72" r="1.05" fill="#2970AA"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site-header" id="siteHeader">
+  <a href="index.html" class="logo" aria-label="AQUADEFENSA — Inicio">
+    <svg class="logo-mark" viewBox="0 0 48 48"><use href="#logo-mark-symbol"/></svg>
+    <span class="logo-text">AQUA<span class="tail">DEFENSA</span></span>
+  </a>
+
+  <nav class="nav-links">
+    <a href="index.html">Inicio</a>
+    <a href="el-problema.html">El problema</a>
+    <a href="como-funciona.html" class="active">Cómo funciona</a>
+    <a href="cotizador.html">Cotizador</a>
+    <a href="preguntas.html">Preguntas</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
+
+  <div class="nav-cta">
+    <a href="contacto.html" class="btn btn-ghost">Contacto</a>
+    <a href="cotizador.html" class="btn btn-primary">Cotizar</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">Inicio</a>
+    <a href="el-problema.html">El problema</a>
+    <a href="como-funciona.html" class="active">Cómo funciona</a>
+    <a href="cotizador.html">Cotizador</a>
+    <a href="preguntas.html">Preguntas</a>
+    <a href="contacto.html">Contacto</a>
+  <a href="cotizador.html" class="btn btn-primary">Cotizar mi propiedad</a>
+</nav>
+
+<a class="wa-float" id="waFloat" href="https://wa.me/56988154096?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20AQUADEFENSA" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <span class="wa-pulse" aria-hidden="true"></span>
+  <span class="wa-tooltip">Escríbenos por WhatsApp</span>
+  <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+    <path d="M16 4C9.4 4 4 9.3 4 15.8c0 2.4.7 4.6 1.9 6.5L4 28l6-1.8c1.8 1 3.9 1.6 6 1.6 6.6 0 12-5.3 12-11.9C28 9.3 22.6 4 16 4z" fill="#fff"/>
+    <path d="M12.3 10.9c-.3-.7-.6-.7-.9-.7h-.7c-.3 0-.7.1-1 .5-.3.4-1.3 1.2-1.3 3s1.3 3.5 1.5 3.7c.2.3 2.5 4 6.2 5.5 3 1.2 3.7 1 4.3.9.7-.1 2.1-.9 2.4-1.7.3-.8.3-1.5.2-1.7-.1-.2-.4-.3-.7-.5-.3-.2-2.1-1-2.4-1.2-.3-.1-.6-.2-.8.2-.3.4-.9 1.1-1.1 1.4-.2.2-.4.3-.8.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.7-2-1.9-2.4-.2-.4 0-.5.1-.7.2-.2.4-.4.6-.6.2-.2.2-.4.3-.6.1-.2 0-.5 0-.7-.1-.2-.8-2-1.1-2.7z" fill="var(--ember)"/>
+  </svg>
+</a>
+
+<main id="top">
+
+<section class="page-hero media-section">
+  <div class="hero-bg media-bg" aria-hidden="true">
+    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+      <source src="uploads/revisa_este_video_haz_una_cop (1).mp4" type="video/mp4">
+    </video>
+    
+    <div class="media-overlay"></div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow centered reveal">Cómo funciona</div>
+    <h1 class="reveal">De la alerta al escudo de agua, en menos de 3 minutos.</h1>
+    <p class="sub reveal reveal-d1">Un sistema autónomo de aspersión perimetral: se activa, moviliza agua desde tu estanque y forma una burbuja de protección alrededor de toda la propiedad — techo, muros y entorno inmediato — sin que nadie tenga que quedarse a operarlo.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="si-embed reveal">
+      <div class="si-main">
+
+      <section id="view-sistema">
+        <div class="scene-top">
+          <div class="instruccion" id="instruccion"><span class="mano">☝</span><span id="instruccion-txt">Toque cualquier componente del esquema</span></div>
+          <button class="btn-demo" id="btn-demo">▶ &nbsp;Ver el sistema en operación</button>
+        </div>
+
+        <div class="sistema-grid">
+          <div>
+            <div class="scene-wrap">
+              <div class="tooltip" id="tooltip"></div>
+              <div class="scene-scroll">
+              <svg id="escena" class="escena" viewBox="0 0 1000 580" role="img" aria-label="Esquema interactivo del sistema contra incendio con estanque, sistema de impulsión, activación, red de conducción y aspersores de muro y de techo">
+                <defs>
+                  <linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#F4F6F8"/><stop offset="45%" stop-color="#C9CFD5"/><stop offset="100%" stop-color="#9AA3AB"/>
+                  </linearGradient>
+                  <linearGradient id="gTank" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#FFFFFF"/><stop offset="55%" stop-color="#E7EAEE"/><stop offset="100%" stop-color="#C3CAD1"/>
+                  </linearGradient>
+                  <linearGradient id="gWater" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#7FC6EC"/><stop offset="100%" stop-color="#2472A8"/>
+                  </linearGradient>
+                  <linearGradient id="gRoof" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#F3EFE6"/><stop offset="100%" stop-color="#D2CABB"/>
+                  </linearGradient>
+                  <linearGradient id="gWall" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#EBE6DC"/>
+                  </linearGradient>
+                  <linearGradient id="gGround" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#EFEBE2"/><stop offset="100%" stop-color="#E2DCD0"/>
+                  </linearGradient>
+                  <linearGradient id="gSpray" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#2E90D4" stop-opacity=".95"/><stop offset="100%" stop-color="#7FC6EC" stop-opacity=".15"/>
+                  </linearGradient>
+                  <linearGradient id="gMist" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#5FB4E5" stop-opacity=".34"/><stop offset="100%" stop-color="#5FB4E5" stop-opacity="0"/>
+                  </linearGradient>
+                  <pattern id="pWall" width="26" height="14" patternUnits="userSpaceOnUse">
+                    <rect width="26" height="14" fill="none"/>
+                    <path d="M0 14 H26 M13 0 V14" stroke="#D8D1C4" stroke-width="1"/>
+                  </pattern>
+                  <filter id="fSoft" x="-30%" y="-30%" width="160%" height="180%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#20201A" flood-opacity=".16"/>
+                  </filter>
+                  <filter id="fTight" x="-40%" y="-40%" width="180%" height="200%">
+                    <feDropShadow dx="0" dy="2" stdDeviation="2.4" flood-color="#20201A" flood-opacity=".22"/>
+                  </filter>
+                </defs>
+
+                <rect x="0" y="500" width="1000" height="80" fill="url(#gGround)"/>
+                <line x1="20" y1="500" x2="980" y2="500" stroke="#CFC8B9" stroke-width="2"/>
+
+                <g class="pasivo">
+                  <ellipse cx="760" cy="504" rx="200" ry="12" fill="#20201A" opacity=".08"/>
+                  <rect x="600" y="330" width="320" height="170" fill="url(#gWall)" stroke="#37352E" stroke-width="1.6"/>
+                  <rect x="600" y="330" width="320" height="170" fill="url(#pWall)" opacity=".8"/>
+                  <polygon points="585,330 760,212 935,330" fill="url(#gRoof)" stroke="#37352E" stroke-width="2" filter="url(#fSoft)"/>
+                  <polygon points="760,212 935,330 760,330" fill="#20201A" opacity=".10"/>
+                  <rect x="600" y="330" width="320" height="16" fill="#20201A" opacity=".09"/>
+                  <rect x="700" y="380" width="60" height="52" fill="#DCE6EC" stroke="#37352E" stroke-width="1.4"/>
+                  <path d="M700 380 L760 432" stroke="#FFFFFF" stroke-width="10" opacity=".5"/>
+                  <rect x="820" y="400" width="46" height="100" fill="#C7BEAD" stroke="#37352E" stroke-width="1.4"/>
+                  <circle cx="828" cy="452" r="2.4" fill="#37352E"/>
+                  <text x="760" y="472" text-anchor="middle" class="svg-label">EDIFICACIÓN PROTEGIDA</text>
+                </g>
+                <polygon id="wet-techo" class="wet" points="592,328 760,216 928,328"/>
+                <rect id="wet-muro" class="wet" x="600" y="332" width="14" height="166"/>
+
+                <line class="guia" id="guia" x1="0" y1="0" x2="0" y2="0"/>
+
+                <g id="c-estanque" class="comp" tabindex="0" role="button" aria-label="Estanque, etapa 1 reserva">
+                  <rect class="hit" x="52" y="272" width="176" height="240"/>
+                  <g class="cuerpo">
+                    <ellipse cx="140" cy="504" rx="86" ry="10" fill="#20201A" opacity=".10"/>
+                    <rect x="66" y="306" width="148" height="194" rx="12" fill="url(#gTank)" stroke="#5E666D" stroke-width="2" filter="url(#fSoft)"/>
+                    <path class="agua" d="M74 356 h132 v136 a8 8 0 0 1 -8 8 h-116 a8 8 0 0 1 -8 -8 Z"/>
+                    <path d="M74 356 q33 -8 66 0 q33 8 66 0" fill="none" stroke="#FFFFFF" stroke-width="2" opacity=".75"/>
+                    <rect x="80" y="318" width="14" height="176" rx="7" fill="#FFFFFF" opacity=".5"/>
+                    <rect x="66" y="306" width="148" height="26" rx="12" fill="#FFFFFF" opacity=".45"/>
+                    <line x1="196" y1="372" x2="206" y2="372" stroke="#5E666D" stroke-width="1.4"/>
+                    <line x1="196" y1="412" x2="206" y2="412" stroke="#5E666D" stroke-width="1.4"/>
+                    <line x1="196" y1="452" x2="206" y2="452" stroke="#5E666D" stroke-width="1.4"/>
+                    <text x="140" y="298" text-anchor="middle" class="svg-label-strong">ESTANQUE</text>
+                    <text x="140" y="432" text-anchor="middle" class="svg-label lbl-agua">RESERVA DEDICADA</text>
+                  </g>
+                  <rect class="marco" x="52" y="272" width="176" height="240" rx="12"/>
+                  <circle class="halo" cx="140" cy="392" r="14"/>
+                  <circle class="dot" cx="140" cy="392" r="6"/>
+                </g>
+
+                <g class="tap-hint" id="hint-estanque">
+                  <rect x="92" y="236" width="96" height="26" rx="13" filter="url(#fTight)"/>
+                  <polygon points="134,262 146,262 140,270"/>
+                  <text x="140" y="253" text-anchor="middle">TOCA AQUÍ</text>
+                </g>
+
+                <path class="pasivo tubo" d="M214 470 H255" stroke-width="9" fill="none"/>
+
+                <g id="c-impulsion" class="comp" tabindex="0" role="button" aria-label="Sistema de impulsión, etapa 2">
+                  <rect class="hit" x="244" y="414" width="120" height="104"/>
+                  <g class="cuerpo">
+                    <ellipse cx="303" cy="503" rx="56" ry="8" fill="#20201A" opacity=".10"/>
+                    <g class="pump-body" id="pump-body">
+                      <rect x="255" y="432" width="96" height="68" rx="8" fill="url(#gMetal)" stroke="#5E666D" stroke-width="2" filter="url(#fSoft)"/>
+                      <rect x="255" y="432" width="96" height="16" rx="8" fill="#FFFFFF" opacity=".5"/>
+                      <circle cx="283" cy="466" r="16" fill="#EDF0F3" stroke="#6E767E" stroke-width="2"/>
+                      <circle cx="283" cy="466" r="10" fill="#C7CED5"/>
+                      <circle cx="283" cy="466" r="4.5" fill="#5E666D"/>
+                      <rect x="308" y="446" width="34" height="40" rx="4" fill="#EDF0F3" stroke="#6E767E" stroke-width="1.5"/>
+                      <line x1="313" y1="456" x2="337" y2="456" stroke="#A9B0B7"/>
+                      <line x1="313" y1="466" x2="337" y2="466" stroke="#A9B0B7"/>
+                      <line x1="313" y1="476" x2="337" y2="476" stroke="#A9B0B7"/>
+                    </g>
+                    <text x="303" y="516" text-anchor="middle" class="svg-label-strong">IMPULSIÓN</text>
+                  </g>
+                  <rect class="marco" x="244" y="414" width="120" height="104" rx="10"/>
+                  <circle class="halo" cx="303" cy="424" r="13"/>
+                  <circle class="dot" cx="303" cy="424" r="5.5"/>
+                </g>
+
+                <g id="c-activacion" class="comp" tabindex="0" role="button" aria-label="Sistema de activación">
+                  <rect class="hit" x="372" y="356" width="82" height="128"/>
+                  <g class="cuerpo">
+                    <line x1="410" y1="500" x2="410" y2="418" stroke="#B2B8BE" stroke-width="5"/>
+                    <rect x="388" y="392" width="44" height="58" rx="6" fill="url(#gMetal)" stroke="#5E666D" stroke-width="2" filter="url(#fTight)"/>
+                    <rect x="388" y="392" width="44" height="14" rx="6" fill="#FFFFFF" opacity=".5"/>
+                    <circle cx="410" cy="408" r="4.5" fill="#E84C22"/>
+                    <rect x="398" y="422" width="24" height="6" rx="2" fill="#AEB5BB"/>
+                    <rect x="398" y="432" width="24" height="6" rx="2" fill="#AEB5BB"/>
+                    <line x1="410" y1="392" x2="410" y2="372" stroke="#8E969D" stroke-width="2"/>
+                    <path class="signal" id="sig1" d="M420 368 q10 6 0 14" stroke="#E84C22" stroke-width="2" fill="none"/>
+                    <path class="signal" id="sig2" style="animation-delay:.4s" d="M428 362 q16 10 0 26" stroke="#E84C22" stroke-width="2" fill="none"/>
+                    <text x="410" y="474" text-anchor="middle" class="svg-label-strong">ACTIVACIÓN</text>
+                  </g>
+                  <rect class="marco" x="372" y="356" width="82" height="128" rx="10"/>
+                  <circle class="halo" cx="410" cy="384" r="12"/>
+                  <circle class="dot" cx="452" cy="392" r="5.5"/>
+                </g>
+
+                <g id="c-conduccion" class="comp" tabindex="0" role="button" aria-label="Red de conducción, etapa 3">
+                  <rect class="hit" x="356" y="216" width="252" height="52"/>
+                  <rect class="hit" x="460" y="440" width="150" height="52"/>
+                  <g class="cuerpo">
+                    <path class="tubo" d="M351 466 H594 V238 M594 360 H600" stroke-width="9" fill="none" stroke-linejoin="round"/>
+                    <path d="M351 462 H594" stroke="#FFFFFF" stroke-width="2" opacity=".55" fill="none"/>
+                    <rect x="468" y="457" width="18" height="18" rx="3" fill="url(#gMetal)" stroke="#6E767E" stroke-width="1.2"/>
+                    <rect x="585" y="378" width="18" height="18" rx="3" fill="url(#gMetal)" stroke="#6E767E" stroke-width="1.2"/>
+                    <rect x="585" y="298" width="18" height="18" rx="3" fill="url(#gMetal)" stroke="#6E767E" stroke-width="1.2"/>
+                    <text x="540" y="492" text-anchor="middle" class="svg-label">RED DE CONDUCCIÓN</text>
+                  </g>
+                  <path id="flow-main" class="flow-line" d="M351 466 H594 V238"/>
+                  <rect class="marco" x="460" y="440" width="150" height="52" rx="10"/>
+                  <circle class="halo" cx="535" cy="466" r="12"/>
+                  <circle class="dot" cx="535" cy="466" r="5.5"/>
+                </g>
+
+                <g class="pasivo">
+                  <path class="tubo" d="M594 238 H700 L760 200" stroke-width="6" fill="none" stroke-linejoin="round"/>
+                </g>
+                <path id="flow-techo" class="flow-line" d="M594 238 H700 L760 200" style="stroke-width:2.6"/>
+
+                <g id="c-muro" class="comp" tabindex="0" role="button" aria-label="Aspersor de muro, tocar para ver la humectación">
+                  <rect class="hit" x="516" y="326" width="96" height="66"/>
+                  <g class="cuerpo">
+                    <rect x="578" y="352" width="24" height="14" rx="4" fill="url(#gMetal)" stroke="#6E767E" stroke-width="1.2"/>
+                    <circle cx="576" cy="359" r="5.5" fill="#E84C22" stroke="#fff" stroke-width="1.4"/>
+                    <text x="566" y="342" text-anchor="end" class="svg-label-strong">ASPERSOR DE MURO</text>
+                  </g>
+                  <rect class="marco" x="516" y="326" width="96" height="66" rx="10"/>
+                  <circle class="halo" cx="578" cy="359" r="12"/>
+                  <circle class="dot" cx="578" cy="359" r="4.6"/>
+                </g>
+                <g id="spray-muro" class="spray" aria-hidden="true">
+                  <path class="mist" d="M578 359 Q540 372 520 500 L610 500 Q600 420 590 366 Z"/>
+                  <path class="arc" d="M576 357 Q542 378 528 470"/>
+                  <path class="arc" style="animation-delay:.2s" d="M576 359 Q556 390 550 486"/>
+                  <path class="arc" style="animation-delay:.35s" d="M578 361 Q572 404 572 492"/>
+                  <circle class="drop" cx="540" cy="400" r="2.2"/>
+                  <circle class="drop" style="animation-delay:.3s" cx="556" cy="418" r="2"/>
+                  <circle class="drop" style="animation-delay:.6s" cx="570" cy="392" r="2.2"/>
+                  <circle class="drop" style="animation-delay:.15s" cx="585" cy="410" r="2"/>
+                  <circle class="drop" style="animation-delay:.5s" cx="596" cy="430" r="2"/>
+                </g>
+
+                <g id="c-techo" class="comp" tabindex="0" role="button" aria-label="Aspersores de techo, tocar para ver la descarga">
+                  <rect class="hit" x="640" y="160" width="240" height="120"/>
+                  <g class="cuerpo">
+                    <line x1="760" y1="212" x2="760" y2="192" stroke="#8E969D" stroke-width="4"/>
+                    <circle cx="760" cy="188" r="6.5" fill="#E84C22" stroke="#fff" stroke-width="1.6"/>
+                    <line x1="672" y1="272" x2="672" y2="256" stroke="#8E969D" stroke-width="3.5"/>
+                    <circle cx="672" cy="252" r="5.5" fill="#E84C22" stroke="#fff" stroke-width="1.4"/>
+                    <line x1="848" y1="272" x2="848" y2="256" stroke="#8E969D" stroke-width="3.5"/>
+                    <circle cx="848" cy="252" r="5.5" fill="#E84C22" stroke="#fff" stroke-width="1.4"/>
+                    <text x="760" y="174" text-anchor="middle" class="svg-label-strong">ASPERSORES DE TECHO</text>
+                  </g>
+                  <rect class="marco" x="640" y="160" width="240" height="120" rx="10"/>
+                  <circle class="halo" cx="760" cy="188" r="13"/>
+                </g>
+                <g id="spray-techo" class="spray" aria-hidden="true">
+                  <path class="mist" d="M760 188 Q660 150 596 322 L924 322 Q860 150 760 188 Z"/>
+                  <path class="arc" d="M760 186 Q670 130 606 318"/>
+                  <path class="arc" style="animation-delay:.15s" d="M760 186 Q850 130 914 318"/>
+                  <path class="arc" style="animation-delay:.3s" d="M760 184 Q712 118 636 300"/>
+                  <path class="arc" style="animation-delay:.45s" d="M760 184 Q808 118 884 300"/>
+                  <path class="arc" style="animation-delay:.2s" d="M672 250 Q630 216 604 314"/>
+                  <path class="arc" style="animation-delay:.4s" d="M672 250 Q712 216 736 290"/>
+                  <path class="arc" style="animation-delay:.1s" d="M848 250 Q890 216 916 314"/>
+                  <path class="arc" style="animation-delay:.5s" d="M848 250 Q808 216 784 290"/>
+                  <circle class="drop" cx="660" cy="230" r="2.4"/>
+                  <circle class="drop" style="animation-delay:.25s" cx="720" cy="200" r="2.4"/>
+                  <circle class="drop" style="animation-delay:.5s" cx="800" cy="200" r="2.4"/>
+                  <circle class="drop" style="animation-delay:.35s" cx="864" cy="230" r="2.4"/>
+                  <circle class="drop" style="animation-delay:.15s" cx="760" cy="180" r="2.6"/>
+                </g>
+
+                <g class="tap-hint" id="hint-techo" style="animation-delay:.6s">
+                  <rect x="712" y="104" width="96" height="26" rx="13" filter="url(#fTight)"/>
+                  <polygon points="754,130 766,130 760,138"/>
+                  <text x="760" y="121" text-anchor="middle">TOCA AQUÍ</text>
+                </g>
+                <g class="tap-hint" id="hint-muro" style="animation-delay:1.2s">
+                  <rect x="428" y="352" width="96" height="26" rx="13" filter="url(#fTight)"/>
+                  <polygon points="524,361 524,373 534,365"/>
+                  <text x="476" y="369" text-anchor="middle">TOCA AQUÍ</text>
+                </g>
+
+                <g class="pasivo">
+                  <text x="140" y="548" class="svg-label">1 · RESERVA</text>
+                  <text x="300" y="548" class="svg-label">2 · IMPULSIÓN</text>
+                  <text x="470" y="548" class="svg-label">3 · CONDUCCIÓN</text>
+                  <text x="720" y="548" class="svg-label">4 · DESCARGA</text>
+                </g>
+              </svg>
+              </div>
+            </div>
+
+            <div class="progreso">
+              <div class="puntos" id="puntos"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <span class="txt" id="progreso-txt">0 de 6 componentes explorados</span>
+            </div>
+          </div>
+
+          <aside class="info-panel" id="info-panel" aria-live="polite">
+            <div class="info-inner" id="info-inner">
+              <div class="etapa-num">Recorrido del sistema</div>
+              <h3>Cuatro etapas, una misión</h3>
+              <p>Todo sistema contra incendio autónomo resuelve la misma cadena: <strong style="color:#fff">reserva → impulsión → conducción → descarga</strong>.</p>
+              <p>Cada etapa tiene componentes y alternativas propias. Toque los elementos del esquema para recorrerlas una por una.</p>
+              <ul class="info-list">
+                <li>Estanque: el agua disponible para operar</li>
+                <li>Impulsión: la energía que mueve el agua</li>
+                <li>Conducción: la red que la lleva a destino</li>
+                <li>Descarga: los aspersores de muro y de techo</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="view-planta">
+        <div class="hero">
+          <div class="eyebrow">Vista en planta</div>
+          <h1>Dos alcances, <em>dos objetivos distintos</em></h1>
+          <p>Los aspersores de techo y los de muro no compiten: cumplen misiones diferentes sobre la misma edificación. Alterne entre ambas coberturas.</p>
+        </div>
+
+        <div class="planta-toggle" role="tablist">
+          <button class="toggle-btn active" id="tg-techo" role="tab" aria-selected="true"><span class="sw"></span> Aspersores de techo</button>
+          <button class="toggle-btn" id="tg-muro" role="tab" aria-selected="false"><span class="sw"></span> Aspersores de muro</button>
+        </div>
+
+        <div class="planta-grid">
+          <div class="planta-scene">
+            <svg viewBox="0 0 860 600" role="img" aria-label="Vista en planta de la edificación con la cobertura de aspersores de techo y de muro">
+              <defs>
+                <radialGradient id="pAgua" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#2E90D4" stop-opacity=".42"/>
+                  <stop offset="62%" stop-color="#5FB4E5" stop-opacity=".22"/>
+                  <stop offset="100%" stop-color="#7FC6EC" stop-opacity=".04"/>
+                </radialGradient>
+                <linearGradient id="pRoof" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#EFEAE0"/><stop offset="100%" stop-color="#D5CCBC"/>
+                </linearGradient>
+                <pattern id="pTeja" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M0 20 H20 M10 0 V20" stroke="#C4B9A6" stroke-width="1" opacity=".8"/>
+                </pattern>
+                <filter id="pShadow" x="-25%" y="-25%" width="150%" height="150%">
+                  <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#20201A" flood-opacity=".18"/>
+                </filter>
+              </defs>
+
+              <rect x="0" y="0" width="860" height="600" fill="#FFFFFF"/>
+              <g stroke="#EDE9E1" stroke-width="1">
+                <line x1="0" y1="150" x2="860" y2="150"/><line x1="0" y1="300" x2="860" y2="300"/><line x1="0" y1="450" x2="860" y2="450"/>
+                <line x1="215" y1="0" x2="215" y2="600"/><line x1="430" y1="0" x2="430" y2="600"/><line x1="645" y1="0" x2="645" y2="600"/>
+              </g>
+
+              <g filter="url(#pShadow)">
+                <rect x="230" y="116" width="400" height="340" fill="url(#pRoof)" stroke="#37352E" stroke-width="2.4"/>
+                <rect x="230" y="116" width="400" height="340" fill="url(#pTeja)" opacity=".55"/>
+                <path d="M230 116 L330 216 H530 L630 116 M230 456 L330 356 H530 L630 456 M330 216 V356 M530 216 V356" fill="none" stroke="#8A8073" stroke-width="1.6" opacity=".85"/>
+                <path d="M330 216 H530 M330 356 H530" stroke="#6E655A" stroke-width="2.2" fill="none"/>
+                <rect x="230" y="116" width="400" height="340" fill="none" stroke="#37352E" stroke-width="2.4"/>
+                <rect x="240" y="126" width="380" height="320" fill="none" stroke="#B3A896" stroke-width="1.4" stroke-dasharray="4 5"/>
+              </g>
+              <text x="430" y="290" text-anchor="middle" class="svg-label-strong" style="font-size:15px">TECHUMBRE · VISTA EN PLANTA</text>
+              <text x="430" y="310" text-anchor="middle" class="svg-label" style="font-size:11px">(la edificación vista desde arriba)</text>
+
+              <g id="cov-muro" class="cov hide">
+                <rect x="150" y="66" width="560" height="440" rx="40" fill="url(#pAgua)"/>
+                <rect x="150" y="66" width="560" height="440" rx="40" fill="none" stroke="#2E90D4" stroke-width="1.6" stroke-dasharray="6 7" opacity=".7"/>
+                <g fill="url(#pAgua)">
+                  <path d="M300 116 m-72 0 a72 72 0 0 1 144 0 z"/><path d="M430 116 m-72 0 a72 72 0 0 1 144 0 z"/><path d="M560 116 m-72 0 a72 72 0 0 1 144 0 z"/>
+                  <path d="M300 456 m72 0 a72 72 0 0 1 -144 0 z"/><path d="M430 456 m72 0 a72 72 0 0 1 -144 0 z"/><path d="M560 456 m72 0 a72 72 0 0 1 -144 0 z"/>
+                  <path d="M212 286 m0 -72 a72 72 0 0 0 0 144 z"/><path d="M648 286 m0 72 a72 72 0 0 0 0 -144 z"/>
+                </g>
+                <g fill="#E84C22" stroke="#fff" stroke-width="2">
+                  <circle cx="300" cy="116" r="7"/><circle cx="430" cy="116" r="7"/><circle cx="560" cy="116" r="7"/>
+                  <circle cx="300" cy="456" r="7"/><circle cx="430" cy="456" r="7"/><circle cx="560" cy="456" r="7"/>
+                  <circle cx="212" cy="286" r="7"/><circle cx="648" cy="286" r="7"/>
+                </g>
+                <text x="430" y="524" text-anchor="middle" class="svg-label lbl-plan">BANDA HÚMEDA PERIMETRAL · MUROS Y ENTORNO INMEDIATO</text>
+              </g>
+
+              <g id="cov-techo" class="cov show">
+                <g fill="url(#pAgua)">
+                  <circle cx="288" cy="170" r="178"/><circle cx="572" cy="170" r="178"/>
+                  <circle cx="288" cy="402" r="178"/><circle cx="572" cy="402" r="178"/>
+                </g>
+                <g fill="none" stroke="#2E90D4" stroke-width="1.6" opacity=".65" stroke-dasharray="7 6">
+                  <circle cx="288" cy="170" r="178"/><circle cx="572" cy="170" r="178"/>
+                  <circle cx="288" cy="402" r="178"/><circle cx="572" cy="402" r="178"/>
+                </g>
+                <g fill="#E84C22" stroke="#fff" stroke-width="2.4">
+                  <circle cx="288" cy="170" r="8"/><circle cx="572" cy="170" r="8"/>
+                  <circle cx="288" cy="402" r="8"/><circle cx="572" cy="402" r="8"/>
+                </g>
+                <text x="430" y="524" text-anchor="middle" class="svg-label lbl-plan">COBERTURA CONTINUA SOBRE LA TECHUMBRE</text>
+              </g>
+
+
+
+              <g transform="translate(46,562)">
+                <circle cx="10" cy="-4" r="12" fill="url(#pAgua)" stroke="#2E90D4" stroke-width="1.4"/>
+                <text x="30" y="0" class="svg-label" style="font-size:11px">AGUA ASPERJADA · ALCANCE DE CADA ASPERSOR</text>
+                <circle cx="322" cy="-4" r="6" fill="#E84C22" stroke="#fff" stroke-width="2"/>
+                <text x="342" y="0" class="svg-label" style="font-size:11px">ASPERSOR</text>
+              </g>
+            </svg>
+          </div>
+
+          <aside class="planta-info" aria-live="polite">
+            <div class="etapa-num" id="planta-tag">Aspersores de techo</div>
+            <h3 id="planta-title">Proteger la superficie más expuesta</h3>
+            <p id="planta-desc">El techo recibe la lluvia de pavesas: es donde la mayoría de las viviendas se enciende. Estos aspersores trabajan con más caudal y alcance para cubrir toda la techumbre sin zonas ciegas.</p>
+
+            <div class="rasgo"><span class="k">Alcance</span><span class="v" id="r1">Amplio</span></div>
+            <div class="rasgo"><span class="k">Caudal</span><span class="v" id="r2">Mayor</span></div>
+            <div class="rasgo"><span class="k">Superficie objetivo</span><span class="v" id="r3">Techumbre</span></div>
+            <div class="rasgo"><span class="k">Función</span><span class="v" id="r4">Neutralizar la pavesa</span></div>
+
+            <div class="dual-note">
+              <strong>Trabajan en conjunto:</strong> el muro contiene la ignición en fachada; el techo neutraliza la pavesa donde más daño hace. Un solo tipo de aspersor deja la mitad del problema sin resolver.
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section section-alt light">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow centered reveal">Por qué funciona</div>
+      <h2 class="reveal">Ingeniería simple, pensada para el peor momento.</h2>
+    </div>
+    <div class="fact-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="fact-card static-card elevated reveal">
+        <div class="fact-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4 10 17h6l-2 11 10-14h-6l2-10z"/><path d="M6 6l20 20"/></svg></div>
+        <div class="fact-num" style="font-size:1.3rem;">Sin red eléctrica</div>
+        <p class="fact-txt">Opera con motobomba de combustión o bomba eléctrica respaldada por generador dedicado. Nunca depende de la red eléctrica durante una emergencia.</p>
+      </div>
+      <div class="fact-card static-card elevated reveal reveal-d1">
+        <div class="fact-icon c-amber"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4H7a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h6"/><path d="M13 4h9v24h-9"/><path d="M19 16h9M24 11l5 5-5 5"/></svg></div>
+        <div class="fact-num" style="font-size:1.3rem;">Nadie tiene que quedarse</div>
+        <p class="fact-txt">Se activa y puedes evacuar de inmediato con tu familia — el sistema sigue funcionando solo, sin supervisión.</p>
+      </div>
+      <div class="fact-card static-card elevated reveal reveal-d2">
+        <div class="fact-icon c-teal"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 26 22 10l4 4L10 30z"/><path d="M18 14l4 4M14 18l3 3M22 10l4-4M26 6l3 3-4 4"/></svg></div>
+        <div class="fact-num" style="font-size:1.3rem;">Diseño a medida</div>
+        <p class="fact-txt">Cada sistema se dimensiona según m² de techo, zona de riesgo y fuente de agua disponible — con planos y cálculo hidráulico propio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt media-section">
+  <div class="hero-bg media-bg" aria-hidden="true">
+    <img src="uploads/Gemini_Generated_Image_jhku4zjhku4zjhku.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+    <div class="media-overlay"></div>
+  </div>
+  <div class="wrap">
+    <div class="audience-head">
+      <div class="eyebrow centered reveal">Escalas del sistema</div>
+      <h2 class="reveal" style="margin-top:.6em; font-size:clamp(1.8rem,3.6vw,2.6rem);">El mismo sistema, dimensionado distinto.</h2>
+    </div>
+
+    <div class="audience-grid">
+      <div class="audience-card a-hogar elevated reveal">
+        <div class="a-eyebrow">Viviendas y parcelas</div>
+        <h3>Para tu hogar</h3>
+        <p class="a-desc">Diseñado para casas, parcelas y condominios rurales en la interfaz urbano-forestal, donde la prioridad es simple: proteger lo que tu familia construyó, sin que nadie tenga que quedarse a defenderlo.</p>
+        <ul>
+          <li>Dimensionado según m² de techo y zona de riesgo real</li>
+          <li>Activación manual, remota (GSM/4G) o autónoma por detección térmica</li>
+          <li>Opera con motobomba o bomba eléctrica + generador dedicado</li>
+          <li>Diseño personalizado con planos y especificaciones técnicas</li>
+        </ul>
+      </div>
+      <div class="audience-card a-empresa elevated reveal reveal-d1">
+        <div class="a-eyebrow">Predios agrícolas, forestales y turísticos</div>
+        <h3>Para tu empresa</h3>
+        <p class="a-desc">Escalable a múltiples estructuras, packing, bodegas, viñas, instalaciones turísticas y condominios completos — donde además de la propiedad está en juego la continuidad operacional.</p>
+        <ul>
+          <li>Sistemas multi-estructura con un solo punto de control</li>
+          <li>Protección de inventario, maquinaria e infraestructura crítica</li>
+          <li>Cálculo hidráulico validado (Hazen-Williams / EPANET) con respaldo técnico</li>
+          <li>Acompañamiento de nuestro equipo constructor en terreno</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="center reveal reveal-d2" style="margin-top:48px;">
+      <a href="cotizador.html" class="btn btn-primary">Cotizar mi propiedad</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="logo">
+      <svg class="logo-mark" viewBox="0 0 48 48"><use href="#logo-mark-symbol"/></svg>
+      <span class="logo-text">AQUA<span class="tail">DEFENSA</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="el-problema.html">El problema</a>
+      <a href="como-funciona.html">Cómo funciona</a>
+      <a href="cotizador.html">Cotizador</a>
+      <a href="preguntas.html">Preguntas</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+  </div>
+  <div class="wrap footer-copy">© 2026 AQUADEFENSA — Ingeniería contra incendios forestales · Chile</div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+
+var DATA = {
+  estanque:{
+    n:'1', etapa:'Etapa 1 · Reserva', nombre:'Estanque',
+    title:'El agua disponible para operar',
+    html:'<p>El estanque es la reserva de agua del sistema: define durante cuánto tiempo puede operar sin que nadie intervenga.</p>'
+      + '<ul class="info-list">'
+      + '<li>Reserva dedicada, o un volumen asegurado dentro de un estanque de uso mixto</li>'
+      + '<li>Ubicado de modo que la impulsión pueda tomar agua de forma estable</li>'
+      + '<li>Su capacidad se define junto con el resto del sistema, no por separado</li>'
+      + '</ul>'
+  },
+  impulsion:{
+    n:'2', etapa:'Etapa 2 · Impulsión', nombre:'Sistema de impulsión',
+    title:'La energía que mueve el agua',
+    html:'<p>La impulsión toma el agua del estanque y la entrega a los aspersores en condiciones de operación. Cuenta con energía propia, porque en un incendio el corte de suministro eléctrico es lo primero que ocurre.</p>'
+      + '<ul class="info-list">'
+      + '<li><strong style="color:#fff">Motobomba</strong> — independiente de la red eléctrica, con activación en la propiedad</li>'
+      + '<li><strong style="color:#fff">Bomba de impulsión con generador</strong> — permite activar el sistema a distancia</li>'
+      + '</ul>'
+      + '<p>La alternativa se selecciona según las condiciones de cada proyecto.</p>'
+  },
+  activacion:{
+    n:'·', etapa:'Control · Activación', nombre:'Activación',
+    title:'Activar y evacuar',
+    html:'<p>Cómo se enciende el sistema es una decisión de proyecto, y va unida al equipo de impulsión que se seleccione.</p>'
+      + '<ul class="info-list">'
+      + '<li><strong style="color:#fff">Activación en la propiedad</strong> — directa y rápida, sin depender de señal</li>'
+      + '<li><strong style="color:#fff">Activación a distancia</strong> — sin estar presente, sujeta a disponibilidad de señal</li>'
+      + '</ul>'
+      + '<p>En ambos casos el principio es el mismo: la persona activa y evacúa. El sistema sigue operando solo.</p>'
+  },
+  conduccion:{
+    n:'3', etapa:'Etapa 3 · Conducción', nombre:'Red de conducción',
+    title:'La red que lleva el agua a destino',
+    html:'<p>La red conduce el agua desde la impulsión hasta cada punto de descarga, y debe sostener la operación simultánea de todos los aspersores.</p>'
+      + '<ul class="info-list">'
+      + '<li>Trazado definido según la edificación y la ubicación de los equipos</li>'
+      + '<li>Materiales especificados según exposición a la intemperie</li>'
+      + '<li>Soportería firme: viento y vibración no deben afectar la instalación</li>'
+      + '</ul>'
+  },
+  muro:{
+    n:'4', etapa:'Etapa 4 · Descarga', nombre:'Aspersor de muro',
+    title:'Una cortina de agua sobre la fachada',
+    html:'<p>El aspersor de muro genera una <strong style="color:#fff">lluvia dirigida sobre la fachada y el perímetro inmediato</strong>: muro húmedo, temperatura contenida, ignición frenada a nivel de fachada.</p>'
+      + '<ul class="info-list">'
+      + '<li>Menor caudal y menor alcance que el de techo — ese es su rol</li>'
+      + '<li>Objetivo: mantener húmedas las superficies verticales expuestas</li>'
+      + '<li>Relevante frente a vegetación cercana y calor radiado</li>'
+      + '</ul>'
+      + '<p class="nota-visual">▲ Observe la cortina de humectación activa en el esquema.</p>'
+  },
+  techo:{
+    n:'4', etapa:'Etapa 4 · Descarga', nombre:'Aspersores de techo',
+    title:'Mayor caudal, mayor alcance',
+    html:'<p>El techo es la superficie que recibe la lluvia de pavesas y donde comienza la mayoría de las igniciones. Los aspersores de techo trabajan con <strong style="color:#fff">más litros por minuto y más alcance</strong> que los de muro.</p>'
+      + '<ul class="info-list">'
+      + '<li>Distribución que entrega cobertura continua sobre la techumbre</li>'
+      + '<li>Montaje rígido: el viento no debe alterar la cobertura</li>'
+      + '<li>Es la primera línea de defensa de la edificación</li>'
+      + '</ul>'
+      + '<p class="nota-visual">▲ Observe la descarga de techo activa en el esquema.</p>'
+  }
+};
+
+var ANCLA = {
+  estanque:{x:228,y:392}, impulsion:{x:364,y:424}, activacion:{x:454,y:392},
+  conduccion:{x:610,y:466}, muro:{x:612,y:359}, techo:{x:880,y:220}
+};
+var ORDEN = ['estanque','impulsion','activacion','conduccion','muro','techo'];
+
+var escena = document.getElementById('escena');
+var panel = document.getElementById('info-panel');
+
+if(escena && panel){
+  var tooltip = document.getElementById('tooltip');
+  var guia = document.getElementById('guia');
+  var instruccion = document.getElementById('instruccion');
+  var puntos = document.getElementById('puntos');
+  var progresoTxt = document.getElementById('progreso-txt');
+  var btnDemo = document.getElementById('btn-demo');
+
+  var sprayTecho = document.getElementById('spray-techo');
+  var sprayMuro = document.getElementById('spray-muro');
+  var wetTecho = document.getElementById('wet-techo');
+  var wetMuro = document.getElementById('wet-muro');
+  var flowMain = document.getElementById('flow-main');
+  var flowTecho = document.getElementById('flow-techo');
+  var pumpBody = document.getElementById('pump-body');
+  var sig1 = document.getElementById('sig1');
+  var sig2 = document.getElementById('sig2');
+
+  var visitados = new Set();
+  var demoOn = false;
+  var sel = null;
+
+  var apagarTodo = function(){
+    [sprayTecho,sprayMuro,wetTecho,wetMuro,flowMain,flowTecho,pumpBody,sig1,sig2]
+      .forEach(function(el){ el.classList.remove('on'); });
+    escena.classList.remove('flujo');
+  };
+  var marcarProgreso = function(key){
+    visitados.add(key);
+    ORDEN.forEach(function(k,i){ if(visitados.has(k)) puntos.children[i].classList.add('done'); });
+    progresoTxt.textContent = visitados.size + ' de 6 componentes explorados';
+    if(visitados.size===6) progresoTxt.textContent = 'Recorrido completo · 6 de 6 componentes';
+  };
+  var dibujarGuia = function(key){
+    var a = ANCLA[key];
+    guia.setAttribute('x1', a.x); guia.setAttribute('y1', a.y);
+    guia.setAttribute('x2', 985); guia.setAttribute('y2', a.y);
+    guia.classList.add('on');
+  };
+  var efectos = function(key){
+    apagarTodo();
+    if(key!=='estanque' && key!=='activacion'){ escena.classList.add('flujo'); }
+    if(key==='impulsion' || key==='conduccion'){ pumpBody.classList.add('on'); flowMain.classList.add('on'); }
+    if(key==='activacion'){ sig1.classList.add('on'); sig2.classList.add('on'); }
+    if(key==='muro'){ pumpBody.classList.add('on'); flowMain.classList.add('on'); sprayMuro.classList.add('on'); wetMuro.classList.add('on'); }
+    if(key==='techo'){ pumpBody.classList.add('on'); flowMain.classList.add('on'); flowTecho.classList.add('on'); sprayTecho.classList.add('on'); wetTecho.classList.add('on'); }
+  };
+  var pintarPanel = function(etapa,num,titulo,cuerpo){
+    var numHtml = num ? '<span class="n">'+num+'</span>' : '';
+    var nuevo = document.createElement('div');
+    nuevo.className = 'info-inner';
+    nuevo.id = 'info-inner';
+    nuevo.innerHTML = '<div class="etapa-num">'+numHtml+etapa+'</div><h3>'+titulo+'</h3>'+cuerpo;
+    var actual = document.getElementById('info-inner');
+    actual.parentNode.replaceChild(nuevo, actual);
+    panel.classList.add('flash');
+    setTimeout(function(){ panel.classList.remove('flash'); }, 700);
+    if(window.innerWidth <= 980){
+      panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+  };
+  var apagarDemo = function(){
+    demoOn = false;
+    btnDemo.classList.remove('on');
+    btnDemo.innerHTML = '▶ &nbsp;Ver el sistema en operación';
+  };
+  var seleccionar = function(key){
+    if(demoOn) apagarDemo();
+    sel = key;
+    var d = DATA[key];
+    escena.classList.add('enfoque','explorado');
+    document.querySelectorAll('.si-embed .comp').forEach(function(c){ c.classList.remove('sel','invita'); });
+    document.getElementById('c-'+key).classList.add('sel');
+    dibujarGuia(key);
+    efectos(key);
+    pintarPanel(d.etapa, d.n === '·' ? '' : d.n, d.title, d.html);
+    marcarProgreso(key);
+    instruccion.classList.add('oculta');
+    document.getElementById('instruccion-txt').textContent = 'Toque otro componente para continuar';
+  };
+
+  document.querySelectorAll('.si-embed .comp').forEach(function(c){
+    var key = c.id.replace('c-','');
+    c.addEventListener('click', function(){ seleccionar(key); });
+    c.addEventListener('keydown', function(e){
+      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); seleccionar(key); }
+    });
+    c.addEventListener('mousemove', function(e){
+      var r = c.closest('.scene-wrap').getBoundingClientRect();
+      tooltip.style.left = (e.clientX - r.left) + 'px';
+      tooltip.style.top = (e.clientY - r.top) + 'px';
+      tooltip.innerHTML = DATA[key].nombre + ' <b>· ver</b>';
+      tooltip.classList.add('on');
+    });
+    c.addEventListener('mouseleave', function(){ tooltip.classList.remove('on'); });
+  });
+
+  btnDemo.addEventListener('click', function(){
+    demoOn = !demoOn;
+    if(demoOn){
+      sel = null;
+      escena.classList.remove('enfoque');
+      document.querySelectorAll('.si-embed .comp').forEach(function(c){ c.classList.remove('sel','invita'); });
+      guia.classList.remove('on');
+      [flowMain,flowTecho,pumpBody,sprayTecho,sprayMuro,wetTecho,wetMuro,sig1,sig2]
+        .forEach(function(el){ el.classList.add('on'); });
+      escena.classList.add('flujo','explorado');
+      btnDemo.classList.add('on');
+      btnDemo.innerHTML = '■ &nbsp;Detener';
+      pintarPanel('Sistema en operación','',
+        'Descarga completa activa',
+        '<p>Así opera el sistema durante un evento real, <strong style="color:#fff">sin presencia humana</strong>.</p>'
+         + '<ul class="info-list">'
+         + '<li>La impulsión toma agua del estanque</li>'
+         + '<li>La red conduce hasta cada punto de descarga</li>'
+         + '<li>Los aspersores de muro humectan fachada y perímetro</li>'
+         + '<li>Los aspersores de techo cubren la techumbre</li>'
+         + '</ul>'
+         + '<p class="nota-visual">Toque cualquier componente para ver su detalle.</p>');
+    } else {
+      apagarDemo();
+      apagarTodo();
+      pintarPanel('Recorrido del sistema','','Cuatro etapas, una misión',
+        '<p>La cadena del sistema es siempre la misma: <strong style="color:#fff">reserva → impulsión → conducción → descarga</strong>.</p>'
+         + '<p>Toque los elementos del esquema para recorrerlas una por una.</p>');
+    }
+  });
+
+  window.addEventListener('load', function(){
+    ORDEN.forEach(function(k,i){
+      setTimeout(function(){
+        var el = document.getElementById('c-'+k);
+        el.classList.add('invita');
+        setTimeout(function(){ el.classList.remove('invita'); }, 3800);
+      }, 400 + i*260);
+    });
+  });
+}
+
+var tgTecho = document.getElementById('tg-techo');
+var tgMuro = document.getElementById('tg-muro');
+var covTecho = document.getElementById('cov-techo');
+var covMuro = document.getElementById('cov-muro');
+
+if(tgTecho && tgMuro){
+  var PLANTA = {
+    techo:{
+      tag:'Aspersores de techo',
+      title:'Proteger la superficie más expuesta',
+      desc:'El techo recibe la lluvia de pavesas: es donde la mayoría de las viviendas se enciende. Estos aspersores trabajan con más caudal y alcance para cubrir toda la techumbre sin zonas ciegas.',
+      r:['Amplio','Mayor','Techumbre','Neutralizar la pavesa']
+    },
+    muro:{
+      tag:'Aspersores de muro',
+      title:'Una banda húmeda alrededor de la edificación',
+      desc:'Generan una cortina de humectación sobre fachadas y perímetro. Su alcance es menor por diseño: mantener húmedas las superficies verticales y contener la temperatura.',
+      r:['Focalizado','Menor','Muros y perímetro','Contener la ignición']
+    }
+  };
+  var setPlanta = function(mode){
+    var d = PLANTA[mode];
+    tgTecho.classList.toggle('active', mode==='techo');
+    tgMuro.classList.toggle('active', mode==='muro');
+    tgTecho.setAttribute('aria-selected', mode==='techo');
+    tgMuro.setAttribute('aria-selected', mode==='muro');
+    covTecho.classList.toggle('show', mode==='techo');
+    covTecho.classList.toggle('hide', mode!=='techo');
+    covMuro.classList.toggle('show', mode==='muro');
+    covMuro.classList.toggle('hide', mode!=='muro');
+    document.getElementById('planta-tag').textContent = d.tag;
+    document.getElementById('planta-title').textContent = d.title;
+    document.getElementById('planta-desc').textContent = d.desc;
+    ['r1','r2','r3','r4'].forEach(function(id,i){ document.getElementById(id).textContent = d.r[i]; });
+  };
+  tgTecho.addEventListener('click', function(){ setPlanta('techo'); });
+  tgMuro.addEventListener('click', function(){ setPlanta('muro'); });
+}
+
+})();
+</script>
+
+<script src="main.js"></script>
+</body>
+</html>
