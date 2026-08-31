@@ -818,7 +818,7 @@ const AQD_CONFIG = {
      ----------------------------------------- */
   hubspot: {
     portalId: "51195038",
-    formId: "60aa1d36-6ccd-4722-a5c2-39f99c790aad",            // TODO: pegar el ID del formulario de HubSpot
+    formId: "60aa1d36-6ccd-4722-a5c2-39f99c790aad",
     trackingScript: true
   },
 
@@ -849,12 +849,20 @@ const AQD_CONFIG = {
      - aqd_piscina          (desplegable: Sí / No)
      - aqd_estimacion_manual   (número)
      - aqd_estimacion_autonoma (número)
-   firstname, phone y email ya existen por defecto.
+     - aqd_email_contacto   (texto de una línea) — email OPCIONAL del lead.
+       No usamos la propiedad nativa "email" a propósito: esa propiedad
+       obliga a HubSpot a exigir el dato para crear el contacto. Al usar
+       una propiedad personalizada, el contacto se crea igual sin email
+       (identificado por cookie), solo que no queda habilitado para
+       email marketing/workflows de HubSpot — no es un problema acá,
+       porque el canal real es WhatsApp.
+   firstname y phone ya existen por defecto. NO agregar el campo nativo
+   "email" al formulario de HubSpot — debe estar eliminado del form.
    ----------------------------------------------------------- */
 const HS_FIELD_MAP = {
   firstname: l => l.nombre,
   phone:     l => "+569" + l.telefono,
-  email:     l => l.email,
+  aqd_email_contacto: l => l.email,
   aqd_m2_construidos: l => l.m2,
   aqd_comuna: l => l.comuna,
   aqd_region: l => l.region,
