@@ -97,14 +97,10 @@
   .option-card.selected strong{ color:var(--ember); }
 
   .tel-row{ display:flex; gap:8px; }
-  .tel-prefix{ flex:none; width:98px; background:var(--bg-soft); border:1px solid var(--border-strong); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:14.5px; color:var(--muted); padding:0 6px; }
-  select.tel-prefix{ appearance:none; -webkit-appearance:none; text-align:center; text-align-last:center; }
-  #q-tel-cc-custom{ text-align:center; padding-left:4px; padding-right:4px; }
+  .tel-prefix{ flex:none; width:44px; background:var(--bg-soft); border:1px solid var(--border-strong); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; color:var(--muted); }
   .field.has-error .tel-prefix{ border-color:var(--error); }
 
-  .email-toggle{ background:none; border:none; color:var(--muted); font-size:12.5px; text-decoration:underline; cursor:pointer; font-family:inherit; padding:0; margin-bottom:18px; }
-  .email-field{ display:none; }
-  .email-field.open{ display:block; }
+  .label-opt{ color:var(--muted); font-weight:400; font-size:0.88em; }
 
   .divider{ height:1px; background:var(--border); margin:22px 0; }
   .q-final-note{ font-size:11.5px; color:var(--muted-2); margin:12px 0 0; line-height:1.5; text-align:center; }
@@ -224,7 +220,7 @@
   .option-card{ padding:24px 14px 18px; border-radius:14px; }
   .option-card strong{ font-size:.95rem; }
   .option-card svg{ height:34px; }
-  .tel-prefix{ width:104px; font-size:1rem; }
+  .tel-prefix{ width:48px; font-size:1.05rem; }
 
   .result-head{ margin-bottom:26px; }
   .plan-card{ border-radius:16px; padding:26px 22px; }
@@ -749,27 +745,17 @@
           <div class="field" id="f-tel">
             <label for="q-tel">Tu WhatsApp</label>
             <div class="tel-row">
-              <select id="q-tel-cc" class="tel-prefix" aria-label="Código de país">
-                <option value="56" selected>🇨🇱 +56</option>
-                <option value="54">🇦🇷 +54</option>
-                <option value="51">🇵🇪 +51</option>
-                <option value="57">🇨🇴 +57</option>
-                <option value="52">🇲🇽 +52</option>
-                <option value="34">🇪🇸 +34</option>
-                <option value="1">🇺🇸 +1</option>
-                <option value="385">🇭🇷 +385</option>
-                <option value="otro">🌐 Otro</option>
-              </select>
-              <input type="tel" inputmode="tel" id="q-tel-cc-custom" placeholder="Código" maxlength="4" style="display:none; flex:none; width:64px;">
-              <input type="tel" inputmode="tel" id="q-tel" placeholder="Ej: 9 1234 5678" maxlength="14">
+              <div class="tel-prefix">+</div>
+              <input type="tel" inputmode="tel" id="q-tel" placeholder="56 9 1234 5678" maxlength="20">
             </div>
-            <span class="err">Ingresa un número de WhatsApp válido</span>
+            <div class="field-hint">Incluye el código de tu país. Ej: 56 (Chile) · 34 (España) · 54 (Argentina) · 1 (EE.UU.)</div>
+            <span class="err">Ingresa tu número con código de país (entre 8 y 15 dígitos)</span>
           </div>
 
-          <button type="button" class="email-toggle" id="emailToggle">+ Agregar email (opcional)</button>
-          <div class="field email-field" id="f-email">
-            <label for="q-email">Email</label>
-            <input type="email" id="q-email" placeholder="tu@email.com">
+          <div class="field" id="f-email">
+            <label for="q-email">Email <span class="label-opt">(opcional)</span></label>
+            <input type="email" id="q-email" placeholder="tu@email.com" autocomplete="email">
+            <div class="field-hint">Te enviamos la estimación y la guía técnica por correo.</div>
             <span class="err">Revisa el formato del email</span>
           </div>
 
@@ -874,7 +860,7 @@ const AQD_CONFIG = {
    ----------------------------------------------------------- */
 const HS_FIELD_MAP = {
   firstname: l => l.nombre,
-  phone:     l => "+" + l.telCodigo + l.telefono,
+  phone:     l => "+" + l.telefono,
   aqd_email_contacto: l => l.email,
   aqd_m2_construidos: l => l.m2,
   aqd_comuna: l => l.comuna,
@@ -913,7 +899,7 @@ const SHIELD = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 const DROP = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z"/></svg>`;
 const ALERT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4l9 16H3l9-16z" stroke-linejoin="round"/><path d="M12 10v4M12 17.5v.5" stroke-linecap="round"/></svg>`;
 
-const lead = { m2:null, comuna:"", region:"", piscina:null, nombre:"", telCodigo:"56", telefono:"", email:"",
+const lead = { m2:null, comuna:"", region:"", piscina:null, nombre:"", telefono:"", email:"",
                estimacionManual:null, estimacionAutonoma:null };
 
 /* ---------- analytics ---------- */
@@ -1021,8 +1007,6 @@ const inM2 = document.getElementById('q-m2');
 const inComuna = document.getElementById('q-comuna');
 const inNombre = document.getElementById('q-nombre');
 const inTel = document.getElementById('q-tel');
-const inTelCC = document.getElementById('q-tel-cc');
-const inTelCCCustom = document.getElementById('q-tel-cc-custom');
 const inEmail = document.getElementById('q-email');
 const progressBar = document.getElementById('progressBar');
 
@@ -1035,7 +1019,7 @@ function updateProgress(){
   if(lead.comuna.length > 1) done++;
   if(lead.piscina !== null) done++;
   if(lead.nombre.length >= 2) done++;
-  if(lead.telefono.length >= 6 && lead.telCodigo.length >= 1) done++;
+  if(lead.telefono.length >= 8) done++;
   progressBar.style.width = (done/5*100) + "%";
 }
 function syncChips(){
@@ -1071,34 +1055,16 @@ document.querySelectorAll('[data-group="piscina"] .option-card').forEach(card=>{
   });
 });
 inNombre.addEventListener('input', ()=>{ lead.nombre = inNombre.value.trim(); clearError('f-nombre'); updateProgress(); });
-function updateTelCodigo(){
-  if(inTelCC.value === 'otro'){
-    inTelCCCustom.style.display = '';
-    lead.telCodigo = inTelCCCustom.value.replace(/\D/g,'').slice(0,4);
-  } else {
-    inTelCCCustom.style.display = 'none';
-    lead.telCodigo = inTelCC.value;
-  }
-}
-inTelCC.addEventListener('change', ()=>{ updateTelCodigo(); clearError('f-tel'); updateProgress(); });
-inTelCCCustom.addEventListener('input', ()=>{
-  inTelCCCustom.value = inTelCCCustom.value.replace(/\D/g,'').slice(0,4);
-  updateTelCodigo();
-  clearError('f-tel'); updateProgress();
-});
 inTel.addEventListener('input', ()=>{
-  const raw = inTel.value.replace(/\D/g,'').slice(0,13);
+  // Solo dígitos. El usuario escribe su número completo, con código de país.
+  const raw = inTel.value.replace(/\D/g,'').slice(0,15);
   lead.telefono = raw;
-  inTel.value = raw;
+  inTel.value = raw.replace(/(\d{2})(\d{1,4})?(\d{1,4})?(\d{1,5})?/, (m,a,b,c,d)=>
+    [a,b,c,d].filter(Boolean).join(' ')
+  );
   clearError('f-tel'); updateProgress();
 });
 inEmail.addEventListener('input', ()=>{ lead.email = inEmail.value.trim(); clearError('f-email'); });
-
-document.getElementById('emailToggle').addEventListener('click', function(){
-  document.getElementById('f-email').classList.add('open');
-  this.style.display = 'none';
-  inEmail.focus();
-});
 
 /* ---------- submit ---------- */
 document.getElementById('btnVerEstimacion').addEventListener('click', ()=>{
@@ -1109,7 +1075,7 @@ document.getElementById('btnVerEstimacion').addEventListener('click', ()=>{
   check(lead.comuna.length > 1, 'f-comuna');
   check(lead.piscina !== null, 'f-piscina');
   check(lead.nombre.length >= 2, 'f-nombre');
-  check(lead.telefono.length >= 6 && lead.telefono.length <= 13 && lead.telCodigo.length >= 1, 'f-tel');
+  check(lead.telefono.length >= 8 && lead.telefono.length <= 15, 'f-tel');
   const emailOk = lead.email === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email);
   check(emailOk, 'f-email');
 
