@@ -1252,7 +1252,8 @@ const AQD_CONFIG = {
      - aqd_piscina          (desplegable: Sí / No)
      - aqd_estimacion_manual   (número)
      - aqd_estimacion_autonoma (número)
-   firstname y phone ya existen por defecto. El correo opcional usa\n   aqd_email_contacto, como el formulario configurado del cotizador.
+   firstname y phone ya existen por defecto. El correo opcional usa
+   aqd_email_contacto, como el formulario configurado del cotizador.
    ----------------------------------------------------------- */
 const HS_FIELD_MAP = {
   firstname: l => l.nombre,
@@ -1375,7 +1376,6 @@ function normalizePhone(value){
   if(digits.startsWith('56') && !/^56[2-9]\d{8}$/.test(digits)) return '';
   return '+' + digits;
 }
-
 
 function clp(n){ return "$" + n.toLocaleString('es-CL'); }
 function waLink(msg){ return `https://wa.me/${AQD_CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`; }
