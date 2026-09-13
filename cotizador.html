@@ -745,11 +745,11 @@
           <div class="field" id="f-tel">
             <label for="q-tel">Tu WhatsApp</label>
             <div class="tel-row">
-              <div class="tel-prefix">+</div>
-              <input type="tel" inputmode="tel" id="q-tel" placeholder="56 9 1234 5678" maxlength="20">
+              <div class="tel-prefix" aria-hidden="true">☎</div>
+              <input type="tel" inputmode="tel" id="q-tel" name="phone" autocomplete="tel" placeholder="+56 9 1234 5678" aria-describedby="telHint telError">
             </div>
-            <div class="field-hint">Incluye el código de tu país. Ej: 56 (Chile) · 34 (España) · 54 (Argentina) · 1 (EE.UU.)</div>
-            <span class="err">Ingresa tu número con código de país (entre 8 y 15 dígitos)</span>
+            <div class="field-hint" id="telHint">Chile: 9 1234 5678. Otro país: incluye + y el código de país.</div>
+            <span class="err" id="telError">Revisa el número completo, por ejemplo +56 9 1234 5678.</span>
           </div>
 
           <div class="field" id="f-email">
@@ -848,19 +848,14 @@ const AQD_CONFIG = {
      - aqd_piscina          (desplegable: Sí / No)
      - aqd_estimacion_manual   (número)
      - aqd_estimacion_autonoma (número)
-     - aqd_email_contacto   (texto de una línea) — email OPCIONAL del lead.
-       No usamos la propiedad nativa "email" a propósito: esa propiedad
-       obliga a HubSpot a exigir el dato para crear el contacto. Al usar
-       una propiedad personalizada, el contacto se crea igual sin email
-       (identificado por cookie), solo que no queda habilitado para
-       email marketing/workflows de HubSpot — no es un problema acá,
-       porque el canal real es WhatsApp.
-   firstname y phone ya existen por defecto. NO agregar el campo nativo
-   "email" al formulario de HubSpot — debe estar eliminado del form.
+     - aqd_email_contacto   (texto de una línea) — correo opcional.
+   firstname y phone ya existen por defecto; ambos deben estar incluidos
+   en el formulario. El correo se envía a aqd_email_contacto de acuerdo
+   con la configuración actual del formulario.
    ----------------------------------------------------------- */
 const HS_FIELD_MAP = {
   firstname: l => l.nombre,
-  phone:     l => "+" + l.telefono,
+  phone:     l => normalizePhone(l.telefono),
   aqd_email_contacto: l => l.email,
   aqd_m2_construidos: l => l.m2,
   aqd_comuna: l => l.comuna,
@@ -941,7 +936,8 @@ function submitLead(lead){
   const hutkMatch = document.cookie.match(/hubspotutk=([^;]+)/);
   const fields = Object.entries(HS_FIELD_MAP)
     .map(([name, getter]) => ({ name, value: getter(lead) }))
-    .filter(f => f.value !== "" && f.value !== null && f.value !== undefined);
+    .filter(f => f.value !== "" && f.value !== null && f.value !== undefined)
+    .map(f => ({ objectTypeId: '0-1', name: f.name, value: String(f.value) }));
 
   const payload = {
     fields,
@@ -962,6 +958,25 @@ function submitLead(lead){
 }
 
 /* ---------- helpers ---------- */
+/* Normaliza Chile (8/9 dígitos) y números con código de país.
+   No recorta lo pegado: un número incompleto o demasiado largo es inválido. */
+function normalizePhone(value){
+  const text = String(value || '').trim();
+  if(!/^\+?[\d\s().-]+$/.test(text)) return '';
+  let digits = text.replace(/\D/g, '');
+  const international = text.startsWith('+') || digits.startsWith('00');
+  if(digits.startsWith('00')) digits = digits.slice(2);
+  if(!international){
+    if(digits.length === 8) digits = '569' + digits;
+    else if(/^[2-9]\d{8}$/.test(digits)) digits = '56' + digits;
+  }
+  if(!/^[1-9]\d{7,14}$/.test(digits)) return '';
+  if(digits.startsWith('56') && !/^56[2-9]\d{8}$/.test(digits)) return '';
+  return '+' + digits;
+}
+
+
+
 function clp(n){ return "$" + n.toLocaleString('es-CL') + " CLP"; }
 function waLink(msg){ return `https://wa.me/${AQD_CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`; }
 
@@ -1019,7 +1034,7 @@ function updateProgress(){
   if(lead.comuna.length > 1) done++;
   if(lead.piscina !== null) done++;
   if(lead.nombre.length >= 2) done++;
-  if(lead.telefono.length >= 8) done++;
+  if(normalizePhone(lead.telefono)) done++;
   progressBar.style.width = (done/5*100) + "%";
 }
 function syncChips(){
@@ -1056,18 +1071,15 @@ document.querySelectorAll('[data-group="piscina"] .option-card').forEach(card=>{
 });
 inNombre.addEventListener('input', ()=>{ lead.nombre = inNombre.value.trim(); clearError('f-nombre'); updateProgress(); });
 inTel.addEventListener('input', ()=>{
-  // Solo dígitos. El usuario escribe su número completo, con código de país.
-  const raw = inTel.value.replace(/\D/g,'').slice(0,15);
-  lead.telefono = raw;
-  inTel.value = raw.replace(/(\d{2})(\d{1,4})?(\d{1,4})?(\d{1,5})?/, (m,a,b,c,d)=>
-    [a,b,c,d].filter(Boolean).join(' ')
-  );
+  lead.telefono = normalizePhone(inTel.value);
   clearError('f-tel'); updateProgress();
 });
 inEmail.addEventListener('input', ()=>{ lead.email = inEmail.value.trim(); clearError('f-email'); });
 
 /* ---------- submit ---------- */
 document.getElementById('btnVerEstimacion').addEventListener('click', ()=>{
+  // Leer el DOM también cubre autocompletado sin eventos input.
+  lead.telefono = normalizePhone(inTel.value);
   let firstError = null;
   const check = (cond, id) => { if(!cond){ setError(id); if(!firstError) firstError = id; } };
 
@@ -1075,7 +1087,7 @@ document.getElementById('btnVerEstimacion').addEventListener('click', ()=>{
   check(lead.comuna.length > 1, 'f-comuna');
   check(lead.piscina !== null, 'f-piscina');
   check(lead.nombre.length >= 2, 'f-nombre');
-  check(lead.telefono.length >= 8 && lead.telefono.length <= 15, 'f-tel');
+  check(!!lead.telefono, 'f-tel');
   const emailOk = lead.email === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email);
   check(emailOk, 'f-email');
 
