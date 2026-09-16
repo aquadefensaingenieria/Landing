@@ -44,7 +44,7 @@ for(const file of ['landing.html','cotizador.html']) {
   for(const [input, expected] of cases) {
     for(const autofill of [false,true]) {
       const {context,element,sent} = loadPage(file);
-      vm.runInContext("Object.assign(lead,{m2:150,comuna:'Santiago',nombre:'Prueba local',piscina:true});",context);
+      vm.runInContext("Object.assign(lead,{m2:150,pisos:2,comuna:'Santiago',nombre:'Prueba local',piscina:true});",context);
       element('q-tel').value = input;
       if(!autofill) element('q-tel').events.input();
       assert.equal(element('q-tel').value,input,'Never truncate pasted input');
@@ -63,7 +63,7 @@ for(const file of ['landing.html','cotizador.html']) {
     }
   }
   const {context,element,sent} = loadPage(file);
-  vm.runInContext("Object.assign(lead,{m2:150,comuna:'Santiago',nombre:'Prueba local',piscina:true,email:'test@example.com'});",context);
+  vm.runInContext("Object.assign(lead,{m2:150,pisos:2,comuna:'Santiago',nombre:'Prueba local',piscina:true,email:'test@example.com'});",context);
   element('q-tel').value='+56912345678';
   element('btnVerEstimacion').events.click();
   assert.equal(sent[0].fields.find(f=>f.name==='aqd_email_contacto').value,'test@example.com');
