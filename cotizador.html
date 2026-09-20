@@ -331,8 +331,10 @@
     .option-card{ min-height:96px; }
   }
 </style>
+<link rel="stylesheet" href="cotizador-experiencia.css">
 </head>
 <body>
+<template id="explainer-template"><section class="result-explainer"><span class="eyebrow">Qué estás cotizando</span><h2>Así llega el agua a tu casa</h2><p>Reserva → bomba → red → aspersores de techo y muros. Las dos alternativas comparten este recorrido; cambia cómo se activa el sistema.</p><details><summary><span class="animation-play" aria-hidden="true">▶</span><span>Ver la animación del sistema</span><span class="animation-chevron" aria-hidden="true">⌄</span></summary><iframe title="Animación interactiva del sistema Aquadefensa" loading="lazy" sandbox="allow-scripts" src="animacion-sistema.html"></iframe></details><p class="source-note">El esquema muestra un estanque. Si tu piscina es técnicamente apta, puede cumplir la función de reserva.</p></section></template>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <clipPath id="flameClip" clipPathUnits="userSpaceOnUse">
@@ -692,7 +694,7 @@
               <button type="button" class="chip-btn" data-m2="200">200</button>
               <button type="button" class="chip-btn" data-m2="300">300</button>
             </div>
-            <div class="field-hint">Ingresa un número entero. Usa la huella del techo, sin sumar los pisos. Sobre 300 m² coordinamos una evaluación individual.</div>
+            <div class="field-hint">Ingresa un número entero. Usa la huella del techo, sin sumar los pisos. Sobre 300 m² mostramos los precios de referencia de una casa de 300 m².</div>
             <span class="err">Ingresa una superficie mayor que cero, en m² enteros</span>
           </div>
 
@@ -711,7 +713,7 @@
           </div>
 
           <div class="field" id="f-piscina">
-            <label>¿Tiene una piscina utilizable como fuente de agua?</label>
+            <label>¿Tiene piscina?</label>
             <div class="pool-grid" data-group="piscina">
               <button type="button" class="option-card" data-value="si">
                 <span class="oc-check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></span>
@@ -722,8 +724,8 @@
                   <path d="M4 27c5 3.4 8-3.4 13 0s8-3.4 13 0 8-3.4 13 0 8-3.4 9 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".45"/>
                   <path d="M11 9V5h34v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".6"/>
                 </svg>
-                <strong>Sí, a menos de 30 m</strong>
-                <span class="oc-sub">Fuente utilizable para el sistema</span>
+                <strong>Sí, tengo piscina</strong>
+                <span class="oc-sub">Estimación sin estanque</span>
               </button>
               <button type="button" class="option-card" data-value="no">
                 <span class="oc-check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></span>
@@ -733,11 +735,11 @@
                   <path d="M14 17.5 42 26.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".35"/>
                   <path d="M11 12 45 32" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
                 </svg>
-                <strong>No / a 30 m o más / no sé</strong>
+                <strong>No tengo piscina</strong>
                 <span class="oc-sub">Se dimensiona con estanque</span>
               </button>
             </div>
-            <div class="field-hint">Para considerar la piscina, debe estar a menos de 30 m y ser técnicamente utilizable. Si no sabes la distancia, calculamos con estanque.</div>
+            <div class="field-hint">Si tienes piscina, estimamos sin estanque. Su uso como fuente de agua se confirma en la evaluación técnica.</div>
             <span class="err">Selecciona una opción</span>
           </div>
 
@@ -808,6 +810,7 @@
 </footer>
 
 <script src="main.js"></script>
+<script src="cotizador-experiencia.js"></script>
 <script>
 /* =====================================================================
    AQD_CONFIG — única fuente de verdad. Editar solo este bloque.
@@ -946,7 +949,7 @@ function submitLead(lead){
     fields,
     context: {
       pageUri: window.location.href,
-      pageName: `${document.title} | Techo: ${lead.m2} m² | Pisos: ${lead.pisos} | Piscina a menos de 30 m: ${lead.piscina ? 'sí' : 'no / sin confirmar'} | Montos netos referenciales`,
+      pageName: `${document.title} | Techo: ${lead.m2} m² | Pisos: ${lead.pisos} | Piscina: ${lead.piscina ? 'sí' : 'no'} | Superficie de referencia: ${Math.min(Math.max(lead.m2, AQD_CONFIG.pricing.m2Minimo), AQD_CONFIG.pricing.m2Maximo)} m² | Montos netos referenciales`,
       ...(hutkMatch ? { hutk: hutkMatch[1] } : {})
     }
   };
@@ -985,13 +988,12 @@ function redondearArriba(v){ return Math.ceil(v / AQD_CONFIG.pricing.redondeo) *
 function calcEstimate(){
   const p = AQD_CONFIG.pricing;
   if(!Number.isSafeInteger(lead.m2) || lead.m2 <= 0) return {estado:'ENTRADA_INVALIDA'};
-  if(lead.m2 > p.m2Maximo) return {estado:'SOBRE_RANGO', m2:lead.m2};
-  const area = Math.max(lead.m2, p.m2Minimo);
+  const area = Math.min(Math.max(lead.m2, p.m2Minimo), p.m2Maximo);
   const reserva = lead.piscina === true ? 0 : p.estanquePorM2 * area;
   const base = p.baseFija + p.basePorM2 * area;
   const netoAsistida = redondearArriba(base + reserva);
   const netoAutonoma = redondearArriba(base + reserva + p.autonomia);
-  return {estado:'OK', piscina:lead.piscina === true, area, aplicaPrecioPiso:lead.m2 < p.m2Minimo,
+  return {estado:'OK', piscina:lead.piscina === true, area, aplicaPrecioPiso:lead.m2 < p.m2Minimo, aplicaPrecioTope:lead.m2 > p.m2Maximo,
     manual:netoAsistida, autonomo:netoAutonoma, netoAsistida, netoAutonoma,
     brutoAsistida:redondearArriba(netoAsistida * (1 + p.iva)),
     brutoAutonoma:redondearArriba(netoAutonoma * (1 + p.iva))};
@@ -1118,12 +1120,6 @@ document.getElementById('btnVerEstimacion').addEventListener('click', ()=>{
 
 /* ---------- resultados ---------- */
 function buildResults(est){
-  if(est.estado === 'SOBRE_RANGO'){
-    showView('resultado');
-    document.getElementById('resultTitle').textContent = 'Tu propiedad requiere evaluación individual';
-    document.getElementById('resultsBody').innerHTML = '<div class="fuente-banner warn"><div><b>Sobre 300 m² el sistema cambia de escala.</b> Se debe revisar el caudal de la bomba, el diámetro de la red y el volumen de reserva. Como referencia, una vivienda de 300 m² de techo con activación autónoma y estanque está en torno a <b>$9.900.000 IVA incluido</b>.</div></div><a class="btn btn-primary plan-cta" href="https://wa.me/'+AQD_CONFIG.whatsapp+'?text='+encodeURIComponent(`Hola, soy ${lead.nombre}. Necesito evaluar una vivienda de ${lead.m2} m² de techo, ${lead.pisos} pisos, en ${lead.comuna}.`)+'" target="_blank">Agendar evaluación de mi propiedad</a>';
-    return;
-  }
   showView('resultado');
   track('cotizador_result_view');
   document.getElementById('waFloat').classList.add('visible');
@@ -1131,12 +1127,14 @@ function buildResults(est){
 
   const body = document.getElementById('resultsBody');
   const ubicacion = lead.region ? `${lead.comuna}, ${lead.region}` : lead.comuna;
-  const baseCtx = `mi vivienda de ${lead.m2.toLocaleString('es-CL')} m² de techo y ${lead.pisos} pisos en ${ubicacion}${lead.piscina ? ', con piscina a menos de 30 m' : ', calculada con estanque'}`;
+  const baseCtx = `mi vivienda de ${lead.m2.toLocaleString('es-CL')} m² de techo y ${lead.pisos} pisos en ${ubicacion}${lead.piscina ? ', con piscina' : ', calculada con estanque'}`;
 
   const conPiscina = lead.piscina === true;
   const iva = `<span class="iva-nota">Valor neto: ${clp(est.manual)} + IVA</span>`;
 
   const pisoBanner = est.aplicaPrecioPiso ? '<div class="fuente-banner"><div><b>Precio base del sistema: equivalente a 100 m².</b> Bajo 100 m² se mantiene el equipamiento mínimo de la alternativa seleccionada; por eso la estimación no disminuye con la superficie.</div></div>' : '';
+
+  const topeBanner = est.aplicaPrecioTope ? '<div class="fuente-banner"><div><b>Precios de referencia para una casa de 300 m².</b> Conservamos la superficie que ingresaste. Para casas mayores, mostramos ambas alternativas con la misma base de 300 m²; el alcance y valor final se confirman en la evaluación técnica.</div></div>' : '';
 
   // Ítem de fuente de agua: es lo que diferencia las dos configuraciones.
   const itemFuente = conPiscina
@@ -1144,59 +1142,72 @@ function buildResults(est){
     : `${CHECK} <span><b>Estanque de reserva</b> incluido; volumen sujeto a evaluación técnica</span>`;
 
   const fuenteBanner = conPiscina
-    ? `<div class="fuente-banner ok">${DROP}<div><b>Aprovechamos tu piscina como fuente de agua.</b> La estimación no incluye estanque. Confirmaremos la disponibilidad de agua y la factibilidad hidráulica en la evaluación técnica.</div></div>`
-    : `<div class="fuente-banner">${DROP}<div><b>Tu sistema incluye estanque de reserva.</b> Si confirmamos una piscina utilizable a menos de 30 m, podremos ajustar la propuesta.</div></div>`;
+    ? `<div class="fuente-banner ok">${DROP}<div><b>Estimación considerando tu piscina como fuente de agua.</b> La estimación no incluye estanque. Confirmaremos la disponibilidad de agua y la factibilidad hidráulica en la evaluación técnica.</div></div>`
+    : `<div class="fuente-banner">${DROP}<div><b>Tu sistema incluye estanque de reserva.</b> El volumen y la ubicación se confirman en la evaluación técnica.</div></div>`;
 
   const sufijo = conPiscina ? 'con piscina' : 'con estanque';
-  const msgManual = `Hola, soy ${lead.nombre}. Completé el cotizador web — ${baseCtx}. Me interesa la alternativa de activación asistida ${sufijo} (estimación ${clp(est.brutoAsistida)} IVA incluido) y quiero una asesoría personalizada.`;
-  const msgAuto   = `Hola, soy ${lead.nombre}. Completé el cotizador web — ${baseCtx}. Me interesa la alternativa autónoma ${sufijo} (estimación ${clp(est.brutoAutonoma)} IVA incluido) y quiero una asesoría personalizada.`;
+  const msgManual = `Hola, soy ${lead.nombre}. Completé el cotizador web — ${baseCtx}. Me interesa la alternativa de activación asistida ${sufijo} (estimación ${clp(est.brutoAsistida)} IVA incluido)${est.aplicaPrecioTope ? "; valor de referencia calculado para 300 m²" : ""} y quiero solicitar una cotización para mi vivienda.`;
+  const msgAuto   = `Hola, soy ${lead.nombre}. Completé el cotizador web — ${baseCtx}. Me interesa la alternativa de activación a distancia ${sufijo} (estimación ${clp(est.brutoAutonoma)} IVA incluido)${est.aplicaPrecioTope ? "; valor de referencia calculado para 300 m²" : ""} y quiero solicitar una cotización para mi vivienda.`;
 
   body.innerHTML = `
     ${pisoBanner}
+    ${topeBanner}
     ${fuenteBanner}
 
+    <div id="result-explainer-slot"></div>
     <div class="plan-grid">
       <div class="plan-card">
         <div class="plan-name">Activación asistida · ${conPiscina ? 'con piscina' : 'con estanque'}</div>
-        <div class="plan-desde">Estimación referencial · IVA incluido</div>
+        <div class="plan-desde">Llave en mano · IVA incluido</div>
         <div class="plan-price" id="priceManual">${clp(est.brutoAsistida)}</div>
         <div class="plan-permetro">${iva}</div>
-        <div class="plan-desc">Menor inversión inicial. Requiere que una persona active el sistema cuando existe una amenaza cerca.</div>
-        <div class="plan-incluye">Qué incluye</div>
+        <div class="plan-desc">Incluye todos los materiales, equipos e instalación del sistema. <b>Una persona debe activarlo</b> cuando existe una amenaza cerca.</div>
+        <div class="plan-incluye">Sistema completo, instalado y funcionando</div>
         <ul class="plan-benefits">
           <li>${CHECK} <span>Diseño hidráulico calculado para tu propiedad</span></li>
-          <li>${CHECK} <span>Sistema de impulsión: <b>motobomba de alta presión</b></span></li>
+          <li>${CHECK} <span><b>Equipo de impulsión:</b> motobomba de alta presión</span></li>
+          <li>${CHECK} <span><b>Todos los materiales de la red:</b> tuberías, conexiones y aspersores de techo y muros</span></li>
           <li>${itemFuente}</li>
-          <li>${CHECK} <span>Instalación y puesta en marcha</span></li>
+          <li>${CHECK} <span><b>Instalación completa y puesta en marcha</b> del sistema</span></li>
         </ul>
-        <a class="btn btn-ghost plan-cta" target="_blank" href="${waLink(msgManual)}" onclick="track('cotizador_wa_click',{plan:'asistida'})">Revisar mi caso con Felipe</a>
+        <a class="btn btn-ghost plan-cta" target="_blank" href="${waLink(msgManual)}" onclick="track('cotizador_wa_click',{plan:'asistida'})">Quiero solicitar una cotización</a>
+        <p class="plan-next-step" style="font-size:.76rem;line-height:1.5;color:var(--muted,var(--ink-dim));margin:10px 0 0;text-align:center">Se abre WhatsApp con tu solicitud preparada. Tú decides cuándo enviarla.</p>
       </div>
 
       <div class="plan-card featured">
         <span class="plan-tag">Recomendada</span>
-        <div class="plan-name">Activación autónoma · ${conPiscina ? 'con piscina' : 'con estanque'}</div>
-        <div class="plan-desde">Estimación referencial · IVA incluido</div>
+        <div class="plan-name">Activación a distancia · ${conPiscina ? 'con piscina' : 'con estanque'}</div>
+        <div class="plan-desde">Llave en mano · IVA incluido</div>
         <div class="plan-price" id="priceAuto">${clp(est.brutoAutonoma)}</div>
         <div class="plan-permetro">Valor neto: ${clp(est.autonomo)} + IVA</div>
-        <div class="plan-desc">El sistema responde aunque no haya nadie en la propiedad: incluye equipamiento de activación autónoma, sujeto al diseño técnico del proyecto.</div>
-        <div class="plan-incluye">Qué incluye</div>
+        <div class="plan-desc">Incluye todos los materiales, equipos e instalación del sistema, más el equipamiento de activación remota. <b>Una persona lo activa a distancia</b>, según la configuración del proyecto y la disponibilidad de señal.</div>
+        <div class="plan-incluye">Sistema completo, instalado y funcionando</div>
         <ul class="plan-benefits">
           <li>${CHECK} <span>Diseño hidráulico calculado para tu propiedad</span></li>
-          <li>${CHECK} <span>Sistema de impulsión y red hidráulica, más <b>tablero de control, sensores, válvulas motorizadas e inyección venturi</b></span></li>
+          <li>${CHECK} <span><b>Equipos de impulsión</b> y todos los materiales de la red: tuberías, conexiones y aspersores de techo y muros</span></li>
+          <li>${CHECK} <span><b>Activación a distancia:</b> equipamiento de control remoto para que una persona inicie el sistema sin estar en la propiedad</span></li>
           <li>${itemFuente}</li>
-          <li>${CHECK} <span>Instalación y puesta en marcha</span></li>
+          <li>${CHECK} <span><b>Instalación completa y puesta en marcha</b> del sistema</span></li>
         </ul>
-        <a class="btn btn-primary plan-cta" target="_blank" href="${waLink(msgAuto)}" onclick="track('cotizador_wa_click',{plan:'autonoma'})">Revisar mi caso con Felipe</a>
+        <a class="btn btn-primary plan-cta" target="_blank" href="${waLink(msgAuto)}" onclick="track('cotizador_wa_click',{plan:'autonoma'})">Quiero solicitar una cotización</a>
+        <p class="plan-next-step" style="font-size:.76rem;line-height:1.5;color:var(--muted,var(--ink-dim));margin:10px 0 0;text-align:center">Se abre WhatsApp con tu solicitud preparada. Tú decides cuándo enviarla.</p>
       </div>
     </div>
 
+    <section class="learn-more" aria-labelledby="learn-more-title">
+      <h3 id="learn-more-title">¿Prefieres conocer mejor el sistema?</h3>
+      <p>Explora sus componentes, cómo se activa y cómo distribuye el agua en techo y muros.</p>
+      <a class="btn btn-ghost" href="como-funciona.html?desde=cotizador" onclick="track('cotizador_como_funciona_click')">Ver cómo funciona en detalle →</a>
+    </section>
+
     <div class="trust-line">${SHIELD}<span>Te responde Felipe, ingeniero a cargo — no un call center.</span></div>
 
-    <div class="disclaimer"><b>Importante:</b> esto es un <b>valor referencial IVA incluido</b>, redondeado hacia arriba a $100.000 después de aplicar IVA al neto mostrado, no una cotización formal. El valor final puede variar según distancias, desniveles, red hidráulica, fuente de agua y condiciones de instalación.</div>
+    <div class="disclaimer">El valor final puede variar según distancias, desniveles, red hidráulica, fuente de agua y condiciones de instalación.</div>
   `;
-
-
+  if(window.aqdMountExplainer) window.aqdMountExplainer();
+  if(window.aqdSaveQuote) window.aqdSaveQuote(lead);
 }
+if(window.aqdRestoreQuote) window.aqdRestoreQuote(lead, calcEstimate, buildResults);
 </script>
 </body>
 </html>

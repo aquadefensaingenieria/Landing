@@ -42,7 +42,10 @@ const rows = [
  [225,4.4,5.3,5.6,6.7,6.3,7.5,7.5,9],
  [250,4.5,5.4,5.9,7.1,6.4,7.7,7.8,9.3],
  [275,4.6,5.5,6.1,7.3,6.5,7.8,8,9.6],
- [300,4.7,5.6,6.4,7.7,6.6,7.9,8.3,9.9]
+ [300,4.7,5.6,6.4,7.7,6.6,7.9,8.3,9.9],
+ [301,4.7,5.6,6.4,7.7,6.6,7.9,8.3,9.9],
+ [500,4.7,5.6,6.4,7.7,6.6,7.9,8.3,9.9],
+ [1000,4.7,5.6,6.4,7.7,6.6,7.9,8.3,9.9]
 ];
 let combinations = 0;
 for(const file of ['landing.html','cotizador.html']) {
@@ -72,10 +75,13 @@ for(const file of ['landing.html','cotizador.html']) {
  element('q-tel').value='+56912345678';
  element('btnVerEstimacion').events.click();
  assert.equal(sent.length,1);
- assert.ok(!sent[0].fields.some(f=>f.name.startsWith('aqd_estimacion_')));
+ assert.equal(sent[0].fields.find(f=>f.name==='aqd_estimacion_manual').value, '6400000');
+ assert.equal(sent[0].fields.find(f=>f.name==='aqd_m2_construidos').value, '301');
+ assert.ok(sent[0].context.pageName.includes('Superficie de referencia: 300 m²'));
  assert.ok(sent[0].context.pageName.includes('Techo: 301 m² | Pisos: 2'));
  vm.runInContext('buildResults(calcEstimate())',context);
- assert.ok(!element('resultsBody').innerHTML.includes('plan-price'));
+ assert.ok(element('resultsBody').innerHTML.includes('plan-price'));
+ assert.ok(element('resultsBody').innerHTML.includes('Precios de referencia para una casa de 300 m²'));
  assert.ok(element('resultsBody').innerHTML.includes('$9.900.000'));
  assert.ok(element('resultsBody').innerHTML.includes(encodeURIComponent('301 m² de techo')));
  for(const pisos of [1,2,3]) {
