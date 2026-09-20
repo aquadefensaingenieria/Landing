@@ -5,13 +5,14 @@ const assert=require('node:assert/strict');
 const root=path.join(__dirname,'..');
 (async()=>{
  const browser=await chromium.launch({headless:true});
- for(const width of [390,1280]) for(const file of ['cotizador.html','landing.html']){
+ for(const width of (process.env.AQD_PRETTY_ONLY ? [390] : [390,1280])) for(const file of (process.env.AQD_PRETTY_ONLY ? ['cotizador','landing'] : ['cotizador.html','landing.html'])){
   const p=await browser.newPage({viewport:{width,height:900}});let submissions=0;const errors=[];
   p.on('pageerror',e=>errors.push(e.message));
   await p.route('**/*',async route=>{
    const u=new URL(route.request().url());
    if(u.hostname==='aqd.test'){
-    const f=path.join(root,decodeURIComponent(u.pathname));
+    let f=path.join(root,decodeURIComponent(u.pathname));
+    if(!path.extname(f)) f += '.html';
     if(!fs.existsSync(f)){await route.fulfill({status:404,body:'not found'});return;}
     const ext=path.extname(f), types={'.html':'text/html','.js':'application/javascript','.css':'text/css','.mp4':'video/mp4','.png':'image/png','.jpg':'image/jpeg'};
     await route.fulfill({path:f,contentType:types[ext]||'application/octet-stream'});return;
@@ -42,7 +43,7 @@ const root=path.join(__dirname,'..');
   await p.locator('.more > summary').click();await p.locator('#tg-muro').click();assert.equal(await p.locator('#tg-muro').getAttribute('aria-selected'),'true');
   assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   await p.screenshot({path:'/tmp/aqd-how-'+width+'-'+file+'.png',fullPage:true});
-  await p.locator('#return-to-quote').click();await p.waitForURL('**/'+file+'#mi-estimacion');await p.locator('#priceAuto').waitFor();
+  await p.locator('#return-to-quote').click();await p.waitForURL('**/'+file.replace(/(?:\.html)?$/,'.html')+'#mi-estimacion');await p.locator('#priceAuto').waitFor();
   assert.equal(submissions,1);assert.ok((await p.locator('#priceAuto').innerText()).includes('9.900.000'));
   assert.equal(await p.evaluate(()=>lead.m2),450);
   assert.ok((await p.locator('.plan-card.featured a').getAttribute('href')).includes(encodeURIComponent('activación a distancia')));

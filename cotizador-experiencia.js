@@ -21,7 +21,8 @@
   window.aqdSaveQuote = function(lead){
     // Same-tab return only: no personal data in URLs; snapshot expires after 30 minutes.
     try {
-      var page = location.pathname.split('/').pop();
+      var page = location.pathname.replace(/\/+$/, '').split('/').pop();
+      if(page === 'cotizador' || page === 'landing') page += '.html';
       if(!['cotizador.html','landing.html'].includes(page)) return;
       var data = {};
       ['m2','pisos','piscina','nombre','telefono','email','comuna','region'].forEach(function(k){ data[k] = lead[k]; });
