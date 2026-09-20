@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Propuesta · John Quesada · AQUADEFENSA</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0A; --surface:#141414; --surface-2:#1B1B1B; --line:#2A2A2A;
+    --text:#FFFFFF; --muted:#B3B3B3; --accent:#E84C22; --accent-soft:rgba(232,76,34,.12);
+    --font-display:'Space Grotesk',system-ui,sans-serif;
+    --font-body:'Inter',system-ui,sans-serif;
+    --font-mono:'JetBrains Mono',ui-monospace,monospace;
+    --radius:6px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);
+       font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+  .prosa{max-width:64ch}
+  h1,h2,h3{font-family:var(--font-display);font-weight:600;letter-spacing:-0.02em;margin:0 0 16px}
+  h2{font-size:28px}
+  h3{font-size:19px}
+  p{margin:0 0 16px;color:var(--text)}
+  .muted{color:var(--muted)}
+  .mono{font-family:var(--font-mono)}
+  section{padding:72px 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:none}
+  .kicker{font-family:var(--font-mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.92);backdrop-filter:blur(6px);
+      border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+  .brand{font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.02em}
+  .brand span{color:var(--accent)}
+
+  /* hero */
+  .hero{padding-top:64px}
+  .hero h1{font-size:38px;line-height:1.15}
+  .meta{font-family:var(--font-mono);font-size:14px;color:var(--muted);margin-top:24px;line-height:1.9}
+  .meta b{color:var(--text);font-weight:500}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#FFFFFF;
+       font-family:var(--font-body);font-weight:600;font-size:15px;padding:14px 24px;border-radius:var(--radius);
+       text-decoration:none;border:none;cursor:pointer;transition:opacity .2s ease}
+  .btn:hover{opacity:.88}
+  .btn-ghost{background:transparent;border:1px solid var(--line);color:var(--text)}
+  .btn-sm{padding:9px 16px;font-size:13.5px}
+
+  /* cards / tables */
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  ul.check{list-style:none;padding:0;margin:0}
+  ul.check li{padding:10px 0 10px 28px;position:relative;border-bottom:1px solid var(--line)}
+  ul.check li:last-child{border-bottom:none}
+  ul.check li::before{content:"+";position:absolute;left:0;top:9px;color:var(--accent);font-family:var(--font-mono);font-weight:600}
+  ul.cross{list-style:none;padding:0;margin:0}
+  ul.cross li{padding:8px 0 8px 28px;position:relative;color:var(--muted);font-size:15.5px}
+  ul.cross li::before{content:"–";position:absolute;left:0;top:8px;color:var(--muted);font-family:var(--font-mono)}
+
+  .fase-block{margin-bottom:20px}
+  .fase-block.locked{opacity:.55}
+  .fase-tag{display:inline-block;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+            padding:4px 10px;border-radius:100px;margin-bottom:14px}
+  .fase-tag.activa{background:var(--accent-soft);color:var(--accent);border:1px solid rgba(232,76,34,.35)}
+  .fase-tag.locked-tag{background:transparent;border:1px dashed var(--line);color:var(--muted)}
+
+  /* timeline */
+  .timeline{border-left:2px solid var(--line);padding-left:24px;margin-top:24px}
+  .timeline .step{margin-bottom:26px;position:relative}
+  .timeline .step:last-child{margin-bottom:0}
+  .timeline .step::before{content:"";position:absolute;left:-31px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+  .timeline .step .when{font-family:var(--font-mono);font-size:13px;color:var(--accent);margin-bottom:4px}
+
+  /* inversion */
+  .precio-box{background:var(--surface);border:1px solid var(--accent);border-radius:var(--radius);padding:32px;margin:24px 0}
+  .precio-num{font-family:var(--font-mono);font-size:44px;font-weight:600;color:var(--accent);line-height:1}
+  .precio-label{font-size:14px;color:var(--muted);margin-top:6px}
+  .comparacion{font-size:15px;color:var(--muted);margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+  .pasos{margin-top:24px}
+  .pasos ol{padding-left:20px;margin:0}
+  .pasos li{margin-bottom:10px;color:var(--muted)}
+  .pasos li b{color:var(--text)}
+
+  .futuro-box{background:transparent;border:1px dashed var(--line);border-radius:var(--radius);padding:24px;margin-top:20px}
+
+  mark.falta{background:transparent;color:#E8B04C;border:1px dashed #E8B04C;padding:2px 8px;border-radius:4px;
+             font-family:var(--font-mono);font-size:13px;font-weight:500}
+
+  .cierre{text-align:center;padding:80px 0}
+  .cierre h2{font-size:26px}
+
+  footer{padding:32px 0;text-align:center;color:var(--muted);font-size:13px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+  .reveal.visible,.reveal.forzado{opacity:1;transform:none}
+
+  @media (max-width:640px){
+    body{font-size:16px}
+    .wrap{padding:0 18px}
+    section{padding:52px 0}
+    .hero h1{font-size:29px}
+    h2{font-size:23px}
+    .precio-num{font-size:36px}
+    .card{padding:22px}
+  }
+
+  @media print{
+    @page{margin:16mm}
+    body{background:#fff;color:#000;font-size:11pt}
+    nav,.no-print{display:none!important}
+    .reveal{opacity:1!important;transform:none!important}
+    section{border-bottom:1px solid #ccc;break-inside:avoid;page-break-inside:avoid}
+    h1,h2,h3{color:#000;break-after:avoid}
+    .precio-box{border:1px solid #000;background:#fff!important}
+    .precio-num{color:#000}
+    .kicker{color:#000}
+    mark.falta{border:1px solid #000;color:#000}
+    a[href^="http"]::after{content:" (" attr(href) ")";font-size:8pt;color:#555}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">AQUA<span>DEFENSA</span></div>
+    <a class="btn btn-sm cta-whatsapp no-print" href="https://wa.me/56988154096" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- 1. PORTADA -->
+  <section class="hero">
+    <div class="kicker">Propuesta · Alianza Socio Técnico</div>
+    <h1>Para John Quesada — AQUADEFENSA España</h1>
+    <p class="prosa muted" style="font-size:19px;margin-top:8px">Etapa 1: puesta en marcha del piloto en tu casa y definición del estándar de costos para el mercado español.</p>
+    <div class="meta">
+      Preparada el <b>5 de agosto de 2026</b><br>
+      Firma <b>Felipe Tobosque Meriño</b> — Fundador, AQUADEFENSA
+    </div>
+  </section>
+
+  <!-- 1. LA PROPUESTA -->
+  <section class="reveal">
+    <div class="kicker">01 — La propuesta</div>
+    <div class="prosa">
+      <h2>Ejecutar el piloto de AQUADEFENSA en tu casa, y usar ese proyecto para construir el estándar de costos y proveedores del mercado español.</h2>
+      <p class="muted">No es una instalación de prueba aislada. Es el proyecto que define cómo se van a calcular, cotizar y vender todos los sistemas que vengan después.</p>
+    </div>
+  </section>
+
+  <!-- 2. ALCANCE -->
+  <section class="reveal">
+    <div class="kicker">02 — Alcance</div>
+
+    <div class="fase-block">
+      <span class="fase-tag activa">Etapa 1 — activa ahora</span>
+      <h3>Ejecutar el plan piloto y estandarizar</h3>
+      <div class="card">
+        <ul class="check">
+          <li>Ejecución completa del sistema en tu casa, con acompañamiento de Felipe en cada detalle de la puesta en marcha</li>
+          <li>Análisis de Precio Unitario (APU): costo real de cada material, en el mercado español</li>
+          <li>Definición de proveedores locales: aspersores, bomba, válvulas, generador e instrumentos de medición</li>
+          <li>Procedimiento de puesta en marcha, documentado paso a paso</li>
+          <li>Contrato de trabajo para clientes — plantilla lista para usar con tus propios clientes</li>
+          <li>Orientación para que calcules tus propios costos, márgenes e impuestos, y definas tu rentabilidad — no compartimos las cifras internas de AQUADEFENSA Chile; el objetivo es que definas las tuyas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fase-block locked">
+      <span class="fase-tag locked-tag">Etapa 2 — se activa al completar la Etapa 1</span>
+      <h3>Comercial</h3>
+      <div class="card">
+        <ul class="check">
+          <li>Instagram</li>
+          <li>Landing page de captación, adaptada de la que ya opera en Chile</li>
+          <li>CRM (HubSpot) para digitalizar el proceso de captación: que el flujo desde Instagram → lead → presupuesto quede estandarizado y fluido. Es la base de un embudo de ventas profesional, con seguimiento, trazabilidad y ganancias a futuro</li>
+          <li>Definición del contrato de trabajo en conjunto</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CÓMO FUNCIONA -->
+  <section class="reveal">
+    <div class="kicker">03 — Cómo funciona</div>
+    <p class="muted prosa">Etapa 1 completa: 1 a 2 meses desde la confirmación del pago.</p>
+    <div class="timeline">
+      <div class="step">
+        <div class="when">Semana 1</div>
+        <p style="margin:0">Confirmación y pago. Agendamos la fecha de inicio del proyecto piloto en tu casa.</p>
+      </div>
+      <div class="step">
+        <div class="when">Semanas 2–4</div>
+        <p style="margin:0">Ejecución del proyecto piloto: instalación completa del sistema en tu casa, con acompañamiento remoto de Felipe.</p>
+      </div>
+      <div class="step">
+        <div class="when">Semanas 4–6</div>
+        <p style="margin:0">Análisis de Precio Unitario: se revisan todos los materiales usados y se define el costo real de instalación en el mercado español.</p>
+      </div>
+      <div class="step">
+        <div class="when">Semanas 6–8</div>
+        <p style="margin:0">Definición de proveedores locales y entrega de la orientación para que calcules tus propios costos y margen de rentabilidad.</p>
+      </div>
+      <div class="step">
+        <div class="when">Cierre Etapa 1</div>
+        <p style="margin:0">Con el estándar de costos definido, evaluamos juntos el paso a la Etapa 2.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. LA INVERSIÓN -->
+  <section class="reveal">
+    <div class="kicker">04 — La inversión</div>
+    <h2>Etapa 1</h2>
+    <div class="precio-box">
+      <div class="precio-num">US$500</div>
+      <div class="precio-label">Pago único · da inicio a la Etapa 1 completa</div>
+      <div class="comparacion">Menos del 10% de lo que cuesta hoy un proyecto llave en mano típico (~US$5.000) — y define el estándar con el que se van a cotizar todos los que vengan después.</div>
+    </div>
+
+    <div class="pasos">
+      <h3 style="font-size:16px">Qué pasa al confirmar</h3>
+      <ol>
+        <li><b>Confirmas</b> por WhatsApp que apruebas el inicio de la Etapa 1.</li>
+        <li><b>Pago</b> de US$500 por PayPal — el link de pago ya fue enviado a tu correo.</li>
+        <li><b>Agendamos</b> la fecha de inicio del proyecto piloto en tu casa, dentro de los siguientes 10 días hábiles.</li>
+      </ol>
+    </div>
+
+    <div class="futuro-box">
+      <p style="margin:0 0 8px;font-weight:600;color:var(--text)">Modelo a futuro <span class="muted" style="font-weight:400">— no se cobra ahora</span></p>
+      <p class="muted" style="margin:0;font-size:15px">Una vez que la Etapa 2 esté funcionando y empieces a generar proyectos, AQUADEFENSA cobra un fee de <span class="mono" style="color:var(--text)">US$250</span> por cada proyecto nuevo, que incluye la ingeniería completa: definición de cantidades, análisis de precios y acompañamiento técnico.</p>
+    </div>
+
+    <div style="margin-top:28px">
+      <a class="btn cta-whatsapp" href="https://wa.me/56988154096" target="_blank" rel="noopener">Confirmar inicio Etapa 1 por WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- 9. RETORNO -->
+  <section class="reveal">
+    <div class="kicker">05 — Retorno</div>
+    <div class="prosa">
+      <p>Sin este trabajo, cada proyecto en España se cotiza desde cero, sin saber si el precio es rentable o si asusta al cliente. Con el estándar definido en tu propia casa, cada cotización siguiente toma minutos, no semanas — y ya sabes que el margen funciona antes de enviarla.</p>
+    </div>
+  </section>
+
+  <!-- 10. CONDICIONES -->
+  <section class="reveal">
+    <div class="kicker">06 — Condiciones</div>
+    <div class="prosa">
+      <p>Plazo estimado de la Etapa 1: 1 a 2 meses desde la confirmación del pago, sujeto a la disponibilidad para coordinar la instalación en tu casa.</p>
+      <p class="muted">Esta propuesta es personal, entre Felipe Tobosque Meriño (AQUADEFENSA) y John Quesada. No reemplaza el contrato de trabajo en conjunto que se define en la Etapa 2.</p>
+    </div>
+  </section>
+
+  <!-- 11. SIGUIENTE PASO -->
+  <section class="cierre reveal">
+    <h2>¿Avanzamos con la Etapa 1?</h2>
+    <p class="muted" style="max-width:44ch;margin:0 auto 28px">Un mensaje y quedamos coordinando la fecha de inicio en tu casa.</p>
+    <a class="btn cta-whatsapp" href="https://wa.me/56988154096" target="_blank" rel="noopener">Confirmar inicio Etapa 1 por WhatsApp</a>
+  </section>
+
+</div>
+
+<footer>AQUADEFENSA · Felipe Tobosque Meriño · aquadefensa.ingenieria@gmail.com</footer>
+
+<script>
+(function(){
+  function safe(fn,nombre){ try{ fn(); }catch(e){ console.warn('falló '+nombre,e); } }
+
+  safe(function(){
+    var msg = "Hola Felipe, revisé la propuesta y confirmo que quiero avanzar con la Etapa 1 (US$500).";
+    var url = "https://wa.me/56988154096?text=" + encodeURIComponent(msg);
+    document.querySelectorAll('.cta-whatsapp').forEach(function(el){ el.href = url; });
+  },'whatsapp-links');
+
+  safe(function(){
+    var items=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){el.classList.add('forzado')}); return;
+    }
+    var io=new IntersectionObserver(function(entradas){
+      entradas.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    },{threshold:0.05,rootMargin:'0px 0px -40px 0px'});
+    items.forEach(function(el){io.observe(el)});
+
+    setTimeout(function(){
+      document.querySelectorAll('.reveal:not(.visible)')
+        .forEach(function(el){el.classList.add('forzado')});
+    },4000);
+  },'reveals');
+
+  safe(function(){
+    window.addEventListener('beforeprint',function(){
+      document.querySelectorAll('details').forEach(function(d){d.open=true});
+    });
+  },'print-details');
+})();
+</script>
+</body>
+</html>
