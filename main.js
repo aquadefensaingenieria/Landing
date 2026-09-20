@@ -3,6 +3,93 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+
+  /* ============================================================
+     ANALÍTICA AQUADEFENSA — HubSpot + dataLayer
+     Los eventos se registran como páginas virtuales /_evento/...
+     para que sean visibles incluso sin un plan Enterprise.
+     ============================================================ */
+  function analyticsSlug(value){
+    return String(value || '')
+      .toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 80);
+  }
+
+  function analyticsText(el){
+    return String((el && (el.getAttribute('aria-label') || el.textContent)) || '')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 100);
+  }
+
+  function aqdTrack(eventName, data, options){
+    data = data || {};
+    options = options || {};
+    var eventSlug = analyticsSlug(eventName);
+    if(!eventSlug) return;
+
+    if(options.oncePerSession){
+      var storageKey = 'aqd:event:' + window.location.pathname + ':' + eventSlug;
+      try {
+        if(window.sessionStorage.getItem(storageKey)) return;
+        window.sessionStorage.setItem(storageKey, '1');
+      } catch(ignore){}
+    }
+
+    (window.dataLayer = window.dataLayer || []).push(Object.assign({
+      event: eventName,
+      aqd_page: window.location.pathname,
+      aqd_title: document.title
+    }, data));
+
+    var eventPath = '/_evento/' + eventSlug;
+    if(data.plan) eventPath += '/' + analyticsSlug(data.plan);
+    if(data.avance) eventPath += '/' + analyticsSlug(data.avance);
+
+    var realPath = window.location.pathname + window.location.search;
+    var hsq = window._hsq = window._hsq || [];
+    hsq.push(['setPath', eventPath]);
+    hsq.push(['trackPageView']);
+    hsq.push(['setPath', realPath]);
+
+    if(window.console) console.log('[AQD]', eventName, data);
+  }
+  window.aqdTrack = aqdTrack;
+
+  document.addEventListener('click', function(event){
+    var link = event.target.closest ? event.target.closest('a[href]') : null;
+    if(!link) return;
+
+    var href = link.getAttribute('href') || '';
+    var label = analyticsText(link);
+    var locationName = link.id || (link.classList.contains('wa-float') ? 'flotante' : 'contenido');
+
+    if(/(?:wa\.me|api\.whatsapp\.com)/i.test(href)){
+      aqdTrack('whatsapp_click', { ubicacion: locationName, cta: label });
+    } else if(/(?:^|\/)cotizador\.html(?:$|[?#])|#cotizador$/i.test(href)){
+      aqdTrack('cotizador_cta_click', { ubicacion: locationName, cta: label });
+    } else if(/^mailto:/i.test(href)){
+      aqdTrack('correo_click', { ubicacion: locationName, cta: label });
+    }
+  });
+
+  var quoteStartBox = document.getElementById('quoteBox');
+  if(quoteStartBox){
+    var registerQuoteStart = function(event){
+      if(event.type === 'click' && event.target.closest && event.target.closest('a[href]')) return;
+      aqdTrack('cotizador_inicio', {}, { oncePerSession:true });
+      quoteStartBox.removeEventListener('input', registerQuoteStart);
+      quoteStartBox.removeEventListener('change', registerQuoteStart);
+      quoteStartBox.removeEventListener('click', registerQuoteStart);
+    };
+    quoteStartBox.addEventListener('input', registerQuoteStart);
+    quoteStartBox.addEventListener('change', registerQuoteStart);
+    quoteStartBox.addEventListener('click', registerQuoteStart);
+  }
+
   /* Header scroll state */
   var header = document.getElementById('siteHeader');
   if(header){

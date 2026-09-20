@@ -1211,6 +1211,7 @@
   </div>
 </footer>
 
+<script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/51195038.js"></script>
 <script src="main.js"></script>
 <script>
 /* =====================================================================
@@ -1300,8 +1301,12 @@ const lead = { m2:null, pisos:null, comuna:"", region:"", piscina:null, nombre:"
 
 /* ---------- analytics ---------- */
 function track(evt, data){
-  (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: evt }, data || {}));
-  if(window.console) console.log('[AQD]', evt, data || '');
+  if(window.aqdTrack){
+    window.aqdTrack(evt, data || {});
+  } else {
+    (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: evt }, data || {}));
+    if(window.console) console.log('[AQD]', evt, data || '');
+  }
 }
 track('cotizador_view');
 
@@ -1422,6 +1427,7 @@ const progressBar = document.getElementById('progressBar');
 function clearError(id){ document.getElementById(id).classList.remove('has-error'); }
 function setError(id){ document.getElementById(id).classList.add('has-error'); }
 
+const trackedProgress = new Set();
 function updateProgress(){
   let done = 0;
   if(Number.isSafeInteger(lead.m2) && lead.m2 > 0) done++;
@@ -1430,7 +1436,14 @@ function updateProgress(){
   if(lead.piscina !== null) done++;
   if(lead.nombre.length >= 2) done++;
   if(normalizePhone(lead.telefono)) done++;
-  progressBar.style.width = (done/6*100) + "%";
+  const percent = done/6*100;
+  progressBar.style.width = percent + "%";
+  [25, 50, 75, 100].forEach(milestone => {
+    if(percent >= milestone && !trackedProgress.has(milestone)){
+      trackedProgress.add(milestone);
+      track('cotizador_progreso', { avance: milestone });
+    }
+  });
 }
 function syncChips(){
   document.querySelectorAll('#m2Chips .chip-btn').forEach(c=>{
