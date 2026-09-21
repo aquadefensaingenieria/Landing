@@ -836,7 +836,7 @@ const AQD_CONFIG = {
      El modelo es continuo: BASE + RESERVA + AUTONOMÍA.
      ---------------------------------------------------------- */
   pricing: { baseFija:3350000, basePorM2:4500, estanquePorM2:5500, autonomia:1900000,
-             m2Minimo:100, m2Maximo:300, iva:0.19, redondeo:100000 }
+             m2Minimo:100, m2Maximo:300, iva:0.19, redondeo:100000, rebajaFinal:800000 }
 };
 
 /* ---------------- Mapeo de campos a HubSpot ----------------
@@ -991,12 +991,15 @@ function calcEstimate(){
   const area = Math.min(Math.max(lead.m2, p.m2Minimo), p.m2Maximo);
   const reserva = lead.piscina === true ? 0 : p.estanquePorM2 * area;
   const base = p.baseFija + p.basePorM2 * area;
-  const netoAsistida = redondearArriba(base + reserva);
-  const netoAutonoma = redondearArriba(base + reserva + p.autonomia);
+  // Rebaja fija sobre el total con IVA, después del redondeo comercial.
+  const brutoAsistida = redondearArriba(redondearArriba(base + reserva) * (1 + p.iva)) - p.rebajaFinal;
+  const brutoAutonoma = redondearArriba(redondearArriba(base + reserva + p.autonomia) * (1 + p.iva)) - p.rebajaFinal;
+  // El neto mostrado y enviado a HubSpot corresponde al nuevo total.
+  const netoAsistida = Math.round(brutoAsistida / (1 + p.iva));
+  const netoAutonoma = Math.round(brutoAutonoma / (1 + p.iva));
   return {estado:'OK', piscina:lead.piscina === true, area, aplicaPrecioPiso:lead.m2 < p.m2Minimo, aplicaPrecioTope:lead.m2 > p.m2Maximo,
     manual:netoAsistida, autonomo:netoAutonoma, netoAsistida, netoAutonoma,
-    brutoAsistida:redondearArriba(netoAsistida * (1 + p.iva)),
-    brutoAutonoma:redondearArriba(netoAutonoma * (1 + p.iva))};
+    brutoAsistida, brutoAutonoma};
 }
 
 /* ---------- comunas ---------- */

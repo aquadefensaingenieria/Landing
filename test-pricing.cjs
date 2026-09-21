@@ -30,7 +30,7 @@ function loadPage(file) {
   return {context, element, sent, html};
 }
 
-// Literal expected values from the approved specification (millions CLP).
+// Historical prices (millions CLP), before the fixed $800,000 VAT-inclusive reduction.
 const rows = [
  [80,3.8,4.6,4.4,5.3,5.7,6.8,6.3,7.5],
  [100,3.8,4.6,4.4,5.3,5.7,6.8,6.3,7.5],
@@ -54,7 +54,7 @@ for(const file of ['landing.html','cotizador.html']) {
   vm.runInContext(`Object.assign(lead,{m2:${row[0]},pisos:2,piscina:${piscina}})`,context);
   const est = vm.runInContext('calcEstimate()',context);
   const expected = piscina ? [row[1],row[2],row[5],row[6]] : [row[3],row[4],row[7],row[8]];
-  assert.deepEqual([est.netoAsistida,est.brutoAsistida,est.netoAutonoma,est.brutoAutonoma],expected.map(n=>Math.round(n*1e6)),`${file}, ${row[0]}, pool=${piscina}`);
+  assert.deepEqual([est.netoAsistida,est.brutoAsistida,est.netoAutonoma,est.brutoAutonoma],[Math.round((expected[1]*1e6-800000)/1.19), Math.round(expected[1]*1e6-800000), Math.round((expected[3]*1e6-800000)/1.19), Math.round(expected[3]*1e6-800000)],`${file}, ${row[0]}, pool=${piscina}`);
   vm.runInContext('buildResults(calcEstimate())',context);
   const markup = element('resultsBody').innerHTML;
   assert.equal(markup.includes('Precio base del sistema'),row[0]<100);
@@ -75,18 +75,18 @@ for(const file of ['landing.html','cotizador.html']) {
  element('q-tel').value='+56912345678';
  element('btnVerEstimacion').events.click();
  assert.equal(sent.length,1);
- assert.equal(sent[0].fields.find(f=>f.name==='aqd_estimacion_manual').value, '6400000');
+ assert.equal(sent[0].fields.find(f=>f.name==='aqd_estimacion_manual').value, '5798319');
  assert.equal(sent[0].fields.find(f=>f.name==='aqd_m2_construidos').value, '301');
  assert.ok(sent[0].context.pageName.includes('Superficie de referencia: 300 m²'));
  assert.ok(sent[0].context.pageName.includes('Techo: 301 m² | Pisos: 2'));
  vm.runInContext('buildResults(calcEstimate())',context);
  assert.ok(element('resultsBody').innerHTML.includes('plan-price'));
  assert.ok(element('resultsBody').innerHTML.includes('Precios de referencia para una casa de 300 m²'));
- assert.ok(element('resultsBody').innerHTML.includes('$9.900.000'));
+ assert.ok(element('resultsBody').innerHTML.includes('$9.100.000'));
  assert.ok(element('resultsBody').innerHTML.includes(encodeURIComponent('301 m² de techo')));
  for(const pisos of [1,2,3]) {
   vm.runInContext(`Object.assign(lead,{m2:100,pisos:${pisos},piscina:null})`,context);
-  assert.equal(vm.runInContext('calcEstimate().brutoAutonoma',context),7500000);
+  assert.equal(vm.runInContext('calcEstimate().brutoAutonoma',context),6700000);
  }
 }
 console.log(`${combinations} price combinations match the specification; boundaries, rendering, input validation and mocked lead capture passed. No network requests.`);
