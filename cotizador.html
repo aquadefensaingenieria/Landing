@@ -661,6 +661,7 @@
     <div class="eyebrow">Cotizador · 1 minuto</div>
     <h1>¿Cuánto cuesta proteger tu propiedad?</h1>
     <p class="pavesa-line">La mayoría de las casas no se quema por las llamas: se quema por <b>pavesas</b> que llegan volando desde cientos de metros. Calcula cuánto cuesta defender la tuya.</p>
+    <p class="hero-note">Estimación inmediata · Sin compromiso</p>
   </div>
 </section>
 
@@ -670,106 +671,140 @@
       <div class="quote-progress"><div class="bar" id="progressBar"></div></div>
       <div class="quote-body">
 
-        <!-- VISTA 1 — FORMULARIO COMPLETO -->
+        <!-- VISTA 1 — FORMULARIO EN 2 PASOS -->
         <div class="q-view active" data-view="form">
-          <div class="q-meta">COMPLETA Y CONOCE TU ESTIMACIÓN</div>
-
-          <div class="field" id="f-m2">
-            <label for="q-m2">¿Cuántos m² de techo tiene la vivienda? (huella en planta)</label>
-            <div class="m2-field">
-              <div class="m2-icon" aria-hidden="true">
-                <svg viewBox="0 0 48 48" fill="none" stroke="#E84C22" stroke-width="1.6">
-                  <rect x="8" y="9" width="32" height="30" rx="1.5"/>
-                  <path d="M8 23h14V9"/>
-                  <path d="M4 6l4 4M44 6l-4 4M4 42l4-4M44 42l-4-4" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div class="m2-wrap">
-                <input type="text" inputmode="numeric" id="q-m2" placeholder="Ej: 180">
-                <span class="m2-suffix">m²</span>
-              </div>
+          <div class="business-quote">
+            <div>
+              <strong>¿Es una empresa, predio agrícola o edificio?</strong>
+              <p>Los proyectos industriales requieren una evaluación específica.</p>
             </div>
-            <div class="chips" id="m2Chips">
-              <button type="button" class="chip-btn" data-m2="100">100</button>
-              <button type="button" class="chip-btn" data-m2="200">200</button>
-              <button type="button" class="chip-btn" data-m2="300">300</button>
-            </div>
-            <div class="field-hint">Ingresa un número entero. Usa la huella del techo, sin sumar los pisos. Sobre 300 m² mostramos los precios de referencia de una casa de 300 m².</div>
-            <span class="err">Ingresa una superficie mayor que cero, en m² enteros</span>
+            <a class="btn btn-ghost" id="empresaCtaTop" target="_blank" rel="noopener"
+               href="https://wa.me/56988154096?text=Hola%20Felipe%2C%20quiero%20cotizar%20protecci%C3%B3n%20contra%20incendios%20para%20una%20empresa%20o%20instalaci%C3%B3n.">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.68 13.7L3 21l4.42-1.27A9 9 0 1 0 12 3Z" stroke="currentColor" stroke-width="1.7"/><path d="M8.7 8.1c.2-.4.4-.4.7-.4h.4c.2 0 .4.1.5.4l.8 1.9c.1.3 0 .5-.1.7l-.6.8c-.2.2-.1.4 0 .6.7 1.3 1.7 2.3 3 3 .2.1.4.1.6-.1l.8-1c.2-.2.4-.3.7-.2l2 .9c.3.1.4.3.4.5 0 .5-.3 1.4-.8 1.9-.5.5-1.4.8-2.2.6-1.3-.3-3.3-1-5.2-2.7-1.5-1.4-2.5-3-2.8-4.3-.2-.9.1-1.8.6-2.6Z" fill="currentColor"/></svg><span>Cotizar por WhatsApp</span>
+            </a>
           </div>
-
-          <div class="field" id="f-pisos">
-            <label for="q-pisos">¿Cuántos pisos tiene la vivienda?</label>
-            <input type="number" id="q-pisos" min="1" step="1" inputmode="numeric" placeholder="Ej: 2">
-            <div class="field-hint">Este dato ayuda a evaluar tu vivienda; no modifica la estimación.</div>
-            <span class="err">Ingresa el número de pisos, mayor que cero</span>
-          </div>
-
-          <div class="field" id="f-comuna">
-            <label for="q-comuna">¿En qué comuna está ubicada?</label>
-            <input type="text" id="q-comuna" list="comunasList" placeholder="Escribe tu comuna" autocomplete="off">
-            <datalist id="comunasList"></datalist>
-            <span class="err">Ingresa tu comuna</span>
-          </div>
-
-          <div class="field" id="f-piscina">
-            <label>¿Tiene piscina?</label>
-            <div class="pool-grid" data-group="piscina">
-              <button type="button" class="option-card" data-value="si">
-                <span class="oc-check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></span>
-                <svg class="oc-art" viewBox="0 0 56 40" fill="none">
-                  <rect x="4" y="9" width="48" height="26" rx="4" fill="currentColor" opacity=".10"/>
-                  <rect x="4" y="9" width="48" height="26" rx="4" stroke="currentColor" stroke-width="1.8"/>
-                  <path d="M4 20c5 3.4 8-3.4 13 0s8-3.4 13 0 8-3.4 13 0 8-3.4 9 0" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
-                  <path d="M4 27c5 3.4 8-3.4 13 0s8-3.4 13 0 8-3.4 13 0 8-3.4 9 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".45"/>
-                  <path d="M11 9V5h34v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".6"/>
-                </svg>
-                <strong>Sí, tengo piscina</strong>
-                <span class="oc-sub">Estimación sin estanque</span>
-              </button>
-              <button type="button" class="option-card" data-value="no">
-                <span class="oc-check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></span>
-                <svg class="oc-art" viewBox="0 0 56 40" fill="none">
-                  <rect x="4" y="9" width="48" height="26" rx="4" fill="currentColor" opacity=".06"/>
-                  <rect x="4" y="9" width="48" height="26" rx="4" stroke="currentColor" stroke-width="1.8" stroke-dasharray="5 4" opacity=".75"/>
-                  <path d="M14 17.5 42 26.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".35"/>
-                  <path d="M11 12 45 32" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                </svg>
-                <strong>No tengo piscina</strong>
-                <span class="oc-sub">Se dimensiona con estanque</span>
-              </button>
-            </div>
-            <div class="field-hint">Si tienes piscina, estimamos sin estanque. Su uso como fuente de agua se confirma en la evaluación técnica.</div>
-            <span class="err">Selecciona una opción</span>
-          </div>
-
           <div class="divider"></div>
 
-          <div class="field" id="f-nombre">
-            <label for="q-nombre">Tu nombre</label>
-            <input type="text" id="q-nombre" placeholder="Ej: Felipe" autocomplete="given-name">
-            <span class="err">Ingresa tu nombre</span>
-          </div>
-
-          <div class="field" id="f-tel">
-            <label for="q-tel">Tu WhatsApp</label>
-            <div class="tel-row">
-              <div class="tel-prefix" aria-hidden="true">☎</div>
-              <input type="tel" inputmode="tel" id="q-tel" name="phone" autocomplete="tel" placeholder="+56 9 1234 5678" aria-describedby="telHint telError">
+          <div class="form-step active" id="formStep1">
+            <div class="step-heading">
+              <div class="q-meta">Paso 1 de 2 · Tu propiedad</div>
+              <div class="step-count">1 / 2</div>
             </div>
-            <div class="field-hint" id="telHint">Chile: 9 1234 5678. Otro país: incluye + y el código de país.</div>
-            <span class="err" id="telError">Revisa el número completo, por ejemplo +56 9 1234 5678.</span>
+
+            <div class="field" id="f-m2">
+              <label for="q-m2">¿Cuántos m² de techo tiene la vivienda?</label>
+              <div class="m2-field">
+                <div class="m2-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="#E84C22" stroke-width="1.6">
+                    <rect x="8" y="9" width="32" height="30" rx="1.5"/>
+                    <path d="M8 23h14V9"/>
+                    <path d="M4 6l4 4M44 6l-4 4M4 42l4-4M44 42l-4-4" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="m2-wrap">
+                  <input type="text" inputmode="numeric" id="q-m2" placeholder="Ej: 180">
+                  <span class="m2-suffix">m²</span>
+                </div>
+              </div>
+              <div class="chips" id="m2Chips">
+                <button type="button" class="chip-btn" data-m2="100">100</button>
+                <button type="button" class="chip-btn" data-m2="150">150</button>
+                <button type="button" class="chip-btn" data-m2="200">200</button>
+                <button type="button" class="chip-btn" data-m2="300">300</button>
+              </div>
+              <div class="field-hint">Mide la casa vista desde arriba (largo × ancho), incluyendo aleros. Si tiene dos pisos, no los sumes.</div>
+              <span class="err">Ingresa una superficie mayor que cero, en m² enteros</span>
+            </div>
+
+            <div class="field" id="f-comuna">
+              <label for="q-comuna">¿En qué comuna está ubicada?</label>
+              <input type="text" id="q-comuna" list="comunasList" placeholder="Escribe tu comuna" autocomplete="off">
+              <datalist id="comunasList"></datalist>
+              <span class="err">Ingresa tu comuna</span>
+            </div>
+
+            <div class="field" id="f-piscina">
+              <label>¿Tiene piscina?</label>
+              <div class="pool-grid" data-group="piscina">
+                <button type="button" class="option-card" data-value="si">
+                  <span class="oc-check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></span>
+                  <svg class="oc-art" viewBox="0 0 56 40" fill="none">
+                    <rect x="4" y="9" width="48" height="26" rx="4" fill="currentColor" opacity=".10"/>
+                    <rect x="4" y="9" width="48" height="26" rx="4" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M4 20c5 3.4 8-3.4 13 0s8-3.4 13 0 8-3.4 13 0 8-3.4 9 0" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+                    <path d="M4 27c5 3.4 8-3.4 13 0s8-3.4 13 0 8-3.4 13 0 8-3.4 9 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".45"/>
+                    <path d="M11 9V5h34v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".6"/>
+                  </svg>
+                  <strong>Sí, tengo piscina</strong>
+                  <span class="oc-sub">Evaluamos usarla como reserva de agua</span>
+                </button>
+                <button type="button" class="option-card" data-value="no">
+                  <span class="oc-check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg></span>
+                  <svg class="oc-art" viewBox="0 0 56 40" fill="none">
+                    <rect x="4" y="9" width="48" height="26" rx="4" fill="currentColor" opacity=".06"/>
+                    <rect x="4" y="9" width="48" height="26" rx="4" stroke="currentColor" stroke-width="1.8" stroke-dasharray="5 4" opacity=".75"/>
+                    <path d="M14 17.5 42 26.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".35"/>
+                    <path d="M11 12 45 32" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                  </svg>
+                  <strong>No tengo piscina</strong>
+                  <span class="oc-sub">Incluimos estanque de reserva</span>
+                </button>
+              </div>
+              <span class="err">Selecciona una opción</span>
+            </div>
+
+            <button class="btn btn-primary" id="btnContinuar">Continuar →</button>
           </div>
 
-          <div class="field" id="f-email">
-            <label for="q-email">Email <span class="label-opt">(opcional)</span></label>
-            <input type="email" id="q-email" placeholder="tu@email.com" autocomplete="email">
-            <div class="field-hint">Te enviamos la estimación y la guía técnica por correo.</div>
-            <span class="err">Revisa el formato del email</span>
-          </div>
+          <div class="form-step" id="formStep2">
+            <div class="step-heading">
+              <div class="q-meta">Paso 2 de 2 · Tus datos</div>
+              <div class="step-count">2 / 2</div>
+            </div>
 
-          <button class="btn btn-primary" id="btnVerEstimacion">Quiero ver mi estimación →</button>
-          <p class="q-final-note">Sin compromiso. No compartimos tu información con terceros.</p>
+            <div class="partial-result" id="partialResult"></div>
+            <button type="button" class="edit-data" id="btnEditarDatos">← Editar datos</button>
+
+            <div class="field" id="f-nombre">
+              <label for="q-nombre">Tu nombre</label>
+              <input type="text" id="q-nombre" placeholder="Ej: Felipe" autocomplete="given-name">
+              <span class="err">Ingresa tu nombre</span>
+            </div>
+
+            <div class="field" id="f-tel">
+              <label for="q-tel">Tu WhatsApp</label>
+              <div class="tel-row">
+                <select id="q-prefix" class="tel-prefix-select" aria-label="Código de país">
+                  <option value="+56" selected>🇨🇱 +56</option>
+                  <option value="+54">🇦🇷 +54</option>
+                  <option value="+51">🇵🇪 +51</option>
+                  <option value="+57">🇨🇴 +57</option>
+                  <option value="+52">🇲🇽 +52</option>
+                  <option value="+55">🇧🇷 +55</option>
+                  <option value="+598">🇺🇾 +598</option>
+                  <option value="+595">🇵🇾 +595</option>
+                  <option value="+591">🇧🇴 +591</option>
+                  <option value="+593">🇪🇨 +593</option>
+                  <option value="+34">🇪🇸 +34</option>
+                  <option value="+33">🇫🇷 +33</option>
+                  <option value="+1">🇺🇸 +1</option>
+                </select>
+                <input type="tel" inputmode="tel" id="q-tel" name="phone" autocomplete="tel-national" placeholder="9 1234 5678" aria-describedby="telHint telError">
+              </div>
+              <div class="field-hint" id="telHint">Te enviamos tu estimación por aquí.</div>
+              <span class="err" id="telError">Para Chile ingresa 9 dígitos comenzando en 9.</span>
+            </div>
+
+            <div class="field" id="f-email">
+              <label for="q-email">Email <span class="label-opt">(opcional)</span></label>
+              <input type="email" id="q-email" placeholder="tu@email.com" autocomplete="email">
+              <div class="field-hint">Te enviamos una copia y la guía técnica.</div>
+              <span class="err">Revisa el formato del email</span>
+            </div>
+
+            <button class="btn btn-primary" id="btnVerEstimacion">Ver mi estimación →</button>
+            <p class="q-final-note">Sin compromiso. Usamos tus datos solo para enviarte tu estimación y resolver tus dudas.</p>
+          </div>
         </div>
 
         <!-- VISTA 2 — CALCULANDO -->
@@ -813,52 +848,78 @@
 <script src="cotizador-experiencia.js"></script>
 <script>
 /* =====================================================================
-   AQD_CONFIG — única fuente de verdad. Editar solo este bloque.
+   CONFIG — fuente de verdad del cotizador.
+   Los precios netos se generan desde la fórmula vigente para conservar
+   exactamente los valores actuales; no se inventan nuevos precios.
    ===================================================================== */
-const AQD_CONFIG = {
-  whatsapp: "56988154096", // +56 9 8815 4096
+const PRICE_RULES = {
+  baseFija:3350000,
+  basePorM2:4500,
+  estanquePorM2:5500,
+  autonomia:1900000,
+  m2Minimo:100,
+  m2Maximo:300,
+  iva:0.19,
+  redondeo:100000,
+  rebajaFinal:800000
+};
 
-  /* ---------------- HubSpot ----------------
-     1) Crear un formulario en HubSpot (portal 51195038) con los campos
-        listados en HS_FIELD_MAP más abajo.
-     2) Pegar el ID del formulario en formId.
-     3) trackingScript: true inyecta el script de HubSpot para que las
-        submissions queden atribuidas a la sesión del visitante (hutk).
-     ----------------------------------------- */
+function roundUpCommercial(value){
+  return Math.ceil(value / PRICE_RULES.redondeo) * PRICE_RULES.redondeo;
+}
+
+function netPriceRow(area){
+  const a = Math.min(Math.max(area, PRICE_RULES.m2Minimo), PRICE_RULES.m2Maximo);
+  function net(piscina, distancia){
+    const reserva = piscina ? 0 : PRICE_RULES.estanquePorM2 * a;
+    const base = PRICE_RULES.baseFija + PRICE_RULES.basePorM2 * a + (distancia ? PRICE_RULES.autonomia : 0);
+    const bruto = roundUpCommercial(roundUpCommercial(base + reserva) * (1 + PRICE_RULES.iva)) - PRICE_RULES.rebajaFinal;
+    return Math.round(bruto / (1 + PRICE_RULES.iva));
+  }
+  return {
+    asistida_piscina: net(true,false),
+    asistida_estanque: net(false,false),
+    distancia_piscina: net(true,true),
+    distancia_estanque: net(false,true)
+  };
+}
+
+const PRECIOS_NETOS = {};
+for(let m2=PRICE_RULES.m2Minimo; m2<=PRICE_RULES.m2Maximo; m2++){
+  PRECIOS_NETOS[m2] = netPriceRow(m2);
+}
+
+const CONFIG = {
+  WHATSAPP: "56988154096",
+  UMBRAL_DISENO_A_MEDIDA_M2: 300,
+  PRECIOS_NETOS,
+  pricing: PRICE_RULES,
   hubspot: {
     portalId: "51195038",
     formId: "60aa1d36-6ccd-4722-a5c2-39f99c790aad",
     trackingScript: true
-  },
-
-  /* ---------------- Matriz de precios (CLP) ----------------
-     La estimación usa m² de techo (huella en planta), no m² construidos.
-     El modelo es continuo: BASE + RESERVA + AUTONOMÍA.
-     ---------------------------------------------------------- */
-  pricing: { baseFija:3350000, basePorM2:4500, estanquePorM2:5500, autonomia:1900000,
-             m2Minimo:100, m2Maximo:300, iva:0.19, redondeo:100000, rebajaFinal:800000 }
+  }
 };
+// Alias para compatibilidad con utilidades existentes.
+const AQD_CONFIG = CONFIG;
 
-/* ---------------- Mapeo de campos a HubSpot ----------------
-   Izquierda: nombre interno de la propiedad en HubSpot.
-   Crear en HubSpot las propiedades personalizadas que no existan:
-     - aqd_m2_construidos   (número)
-     - aqd_comuna           (texto)
-     - aqd_region           (texto)
-     - aqd_piscina          (desplegable: Sí / No)
-     - aqd_estimacion_manual   (número)
-     - aqd_estimacion_autonoma (número)
-     - aqd_email_contacto   (texto de una línea) — correo opcional.
-   firstname y phone ya existen por defecto; ambos deben estar incluidos
-   en el formulario. El correo se envía a aqd_email_contacto de acuerdo
-   con la configuración actual del formulario.
-   ----------------------------------------------------------- */
+/* Validación informativa de tramos históricos. No corrige precios. */
+(function validateReferenceTramos(){
+  const tramos=[100,125,150,175,200,210,225,250,275,300];
+  const cols=['asistida_piscina','asistida_estanque','distancia_piscina','distancia_estanque'];
+  for(const col of cols){
+    for(let i=1;i<tramos.length;i++){
+      const prev=CONFIG.PRECIOS_NETOS[tramos[i-1]][col];
+      const curr=CONFIG.PRECIOS_NETOS[tramos[i]][col];
+      if(prev===curr) console.warn('[AQD] Precio repetido entre tramos',tramos[i-1],tramos[i],col,curr);
+    }
+  }
+})();
+
 const HS_FIELD_MAP = {
   firstname: l => l.nombre,
-  phone:     l => normalizePhone(l.telefono),
+  phone:     l => l.telefono,
   aqd_email_contacto: l => l.email,
-  // El campo legado conserva compatibilidad con el formulario; desde esta versión
-  // registra huella de techo. Pisos y semántica se guardan en contexto de envío.
   aqd_m2_construidos: l => l.m2,
   aqd_comuna: l => l.comuna,
   aqd_region: l => l.region,
@@ -891,326 +952,381 @@ Object.entries(REGIONES).forEach(([region, comunas])=>{
   comunas.forEach(c=>{ if(!COMUNA_REGION[c]) COMUNA_REGION[c] = region; });
 });
 
+
 const CHECK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const SHIELD = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6l7-3z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const DROP = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z"/></svg>`;
-const ALERT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4l9 16H3l9-16z" stroke-linejoin="round"/><path d="M12 10v4M12 17.5v.5" stroke-linecap="round"/></svg>`;
+const ENGINEERING_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19h16M7 16l3-8 3 5 4-9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="16" r="1.5"/><circle cx="10" cy="8" r="1.5"/><circle cx="13" cy="13" r="1.5"/><circle cx="17" cy="4" r="1.5"/></svg>`;
+const POWER_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M13 2 5 13h6l-1 9 9-13h-6V2Z" stroke-linejoin="round"/></svg>`;
+const TEST_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h14v16H5z"/><path d="m8 12 2.5 2.5L16 9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const WA_ICON = `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.68 13.7L3 21l4.42-1.27A9 9 0 1 0 12 3Z" stroke="currentColor" stroke-width="1.7"/><path d="M8.7 8.1c.2-.4.4-.4.7-.4h.4c.2 0 .4.1.5.4l.8 1.9c.1.3 0 .5-.1.7l-.6.8c-.2.2-.1.4 0 .6.7 1.3 1.7 2.3 3 3 .2.1.4.1.6-.1l.8-1c.2-.2.4-.3.7-.2l2 .9c.3.1.4.3.4.5 0 .5-.3 1.4-.8 1.9-.5.5-1.4.8-2.2.6-1.3-.3-3.3-1-5.2-2.7-1.5-1.4-2.5-3-2.8-4.3-.2-.9.1-1.8.6-2.6Z" fill="currentColor"/></svg>`;
 
-const lead = { m2:null, pisos:null, comuna:"", region:"", piscina:null, nombre:"", telefono:"", email:"",
-               estimacionManual:null, estimacionAutonoma:null };
+const lead = {
+  m2:null, comuna:"", region:"", piscina:null,
+  nombre:"", telefono:"", email:"",
+  estimacionManual:null, estimacionAutonoma:null
+};
 
 /* ---------- analytics ---------- */
 function track(evt, data){
-  if(window.aqdTrack){
-    window.aqdTrack(evt, data || {});
-  } else {
-    (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: evt }, data || {}));
-    if(window.console) console.log('[AQD]', evt, data || '');
+  if(window.aqdTrack) window.aqdTrack(evt, data || {});
+  else {
+    (window.dataLayer = window.dataLayer || []).push(Object.assign({event:evt},data||{}));
+    if(window.console) console.log('[AQD]',evt,data||'');
   }
 }
 track('cotizador_view');
 
-/* ---------- script de tracking de HubSpot ---------- */
+/* ---------- tracking HubSpot ---------- */
 (function loadHubSpotTracking(){
-  const { portalId, trackingScript } = AQD_CONFIG.hubspot;
-  if(!trackingScript || !portalId) return;
-  const s = document.createElement('script');
-  s.type = 'text/javascript';
-  s.id = 'hs-script-loader';
-  s.async = true; s.defer = true;
-  s.src = `//js.hs-scripts.com/${portalId}.js`;
-  document.head.appendChild(s);
+  const {portalId,trackingScript}=CONFIG.hubspot;
+  if(!trackingScript||!portalId||document.getElementById('hs-script-loader')) return;
+  const sc=document.createElement('script');
+  sc.type='text/javascript'; sc.id='hs-script-loader'; sc.async=true; sc.defer=true;
+  sc.src=`//js.hs-scripts.com/${portalId}.js`;
+  document.head.appendChild(sc);
 })();
 
-/* ---------- envío del lead a HubSpot ----------
-   Se dispara al tocar el CTA, ANTES de mostrar el precio.
-   No bloquea la vista de resultados: si HubSpot falla, el usuario
-   igual ve su estimación y el error queda en consola.
-   ------------------------------------------------ */
-function submitLead(lead){
-  track('cotizador_lead', {
-    m2: lead.m2, comuna: lead.comuna, region: lead.region,
-    piscina: lead.piscina, tiene_email: !!lead.email
-  });
-
-  const { portalId, formId } = AQD_CONFIG.hubspot;
-  if(!portalId || !formId){
-    console.warn('[AQD] HubSpot formId sin configurar — lead no enviado al CRM.');
-    return;
-  }
-
-  const hutkMatch = document.cookie.match(/hubspotutk=([^;]+)/);
-  const fields = Object.entries(HS_FIELD_MAP)
-    .map(([name, getter]) => ({ name, value: getter(lead) }))
-    .filter(f => f.value !== "" && f.value !== null && f.value !== undefined)
-    .map(f => ({ objectTypeId: '0-1', name: f.name, value: String(f.value) }));
-
-  const payload = {
+function submitLead(l){
+  track('cotizador_lead',{m2:l.m2,comuna:l.comuna,region:l.region,piscina:l.piscina,tiene_email:!!l.email});
+  const {portalId,formId}=CONFIG.hubspot;
+  if(!portalId||!formId) return;
+  const hutkMatch=document.cookie.match(/hubspotutk=([^;]+)/);
+  const fields=Object.entries(HS_FIELD_MAP)
+    .map(([name,getter])=>({name,value:getter(l)}))
+    .filter(f=>f.value!==""&&f.value!==null&&f.value!==undefined)
+    .map(f=>({objectTypeId:'0-1',name:f.name,value:String(f.value)}));
+  const refArea=Math.min(Math.max(l.m2,PRICE_RULES.m2Minimo),CONFIG.UMBRAL_DISENO_A_MEDIDA_M2);
+  const payload={
     fields,
-    context: {
-      pageUri: window.location.href,
-      pageName: `${document.title} | Techo: ${lead.m2} m² | Pisos: ${lead.pisos} | Piscina: ${lead.piscina ? 'sí' : 'no'} | Superficie de referencia: ${Math.min(Math.max(lead.m2, AQD_CONFIG.pricing.m2Minimo), AQD_CONFIG.pricing.m2Maximo)} m² | Montos netos referenciales`,
-      ...(hutkMatch ? { hutk: hutkMatch[1] } : {})
+    context:{
+      pageUri:window.location.href,
+      pageName:`${document.title} | Techo: ${l.m2} m² | Piscina: ${l.piscina?'sí':'no'} | Superficie de referencia: ${refArea} m² | Montos netos referenciales`,
+      ...(hutkMatch?{hutk:hutkMatch[1]}:{})
     }
   };
-
-  fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  })
-  .then(r => { if(!r.ok) return r.json().then(e => Promise.reject(e)); track('cotizador_lead_hubspot_ok'); })
-  .catch(err => console.error('[AQD] Error al enviar el lead a HubSpot:', err));
+  fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`,{
+    method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)
+  }).then(resp=>{if(!resp.ok)return resp.json().then(e=>Promise.reject(e));track('cotizador_lead_hubspot_ok');})
+    .catch(err=>console.error('[AQD] Error al enviar el lead a HubSpot:',err));
 }
 
 /* ---------- helpers ---------- */
-/* Normaliza Chile (8/9 dígitos) y números con código de país.
-   No recorta lo pegado: un número incompleto o demasiado largo es inválido. */
-function normalizePhone(value){
-  const text = String(value || '').trim();
-  if(!/^\+?[\d\s().-]+$/.test(text)) return '';
-  let digits = text.replace(/\D/g, '');
-  const international = text.startsWith('+') || digits.startsWith('00');
-  if(digits.startsWith('00')) digits = digits.slice(2);
-  if(!international){
-    if(digits.length === 8) digits = '569' + digits;
-    else if(/^[2-9]\d{8}$/.test(digits)) digits = '56' + digits;
+function clp(n){return "$"+Math.round(n).toLocaleString('es-CL');}
+function waLink(msg,number=CONFIG.WHATSAPP){return `https://wa.me/${number}?text=${encodeURIComponent(msg)}`;}
+function shareWaLink(msg){return `https://wa.me/?text=${encodeURIComponent(msg)}`;}
+
+function normalizePhone(local,prefix){
+  const raw=String(local||'').trim();
+  const pre=String(prefix||'+56').replace(/\D/g,'');
+  if(!/^[\d\s().+-]+$/.test(raw)) return '';
+  let digits=raw.replace(/\D/g,'');
+  if(pre==='56'){
+    if(digits.startsWith('56')&&digits.length===11) digits=digits.slice(2);
+    if(!/^9\d{8}$/.test(digits)) return '';
+    return '+56'+digits;
   }
-  if(!/^[1-9]\d{7,14}$/.test(digits)) return '';
-  if(digits.startsWith('56') && !/^56[2-9]\d{8}$/.test(digits)) return '';
-  return '+' + digits;
+  if(digits.startsWith(pre)&&digits.length>pre.length+6) digits=digits.slice(pre.length);
+  if(!/^\d{7,14}$/.test(digits)) return '';
+  const full=pre+digits;
+  return /^[1-9]\d{7,14}$/.test(full)?'+'+full:'';
 }
 
-function clp(n){ return "$" + n.toLocaleString('es-CL') + " CLP"; }
-function waLink(msg){ return `https://wa.me/${AQD_CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`; }
+/* No existe en el repositorio una regla técnica validada m²→aspersores/m³.
+   Dejamos la interfaz preparada y no inventamos resultados. */
+function calcSystemSizing(){
+  return {aspersores:null,reservaM3:null};
+}
 
-function redondearArriba(v){ return Math.ceil(v / AQD_CONFIG.pricing.redondeo) * AQD_CONFIG.pricing.redondeo; }
 function calcEstimate(){
-  const p = AQD_CONFIG.pricing;
-  if(!Number.isSafeInteger(lead.m2) || lead.m2 <= 0) return {estado:'ENTRADA_INVALIDA'};
-  const area = Math.min(Math.max(lead.m2, p.m2Minimo), p.m2Maximo);
-  const reserva = lead.piscina === true ? 0 : p.estanquePorM2 * area;
-  const base = p.baseFija + p.basePorM2 * area;
-  // Rebaja fija sobre el total con IVA, después del redondeo comercial.
-  const brutoAsistida = redondearArriba(redondearArriba(base + reserva) * (1 + p.iva)) - p.rebajaFinal;
-  const brutoAutonoma = redondearArriba(redondearArriba(base + reserva + p.autonomia) * (1 + p.iva)) - p.rebajaFinal;
-  // El neto mostrado y enviado a HubSpot corresponde al nuevo total.
-  const netoAsistida = Math.round(brutoAsistida / (1 + p.iva));
-  const netoAutonoma = Math.round(brutoAutonoma / (1 + p.iva));
-  return {estado:'OK', piscina:lead.piscina === true, area, aplicaPrecioPiso:lead.m2 < p.m2Minimo, aplicaPrecioTope:lead.m2 > p.m2Maximo,
-    manual:netoAsistida, autonomo:netoAutonoma, netoAsistida, netoAutonoma,
-    brutoAsistida, brutoAutonoma};
+  if(!Number.isSafeInteger(lead.m2)||lead.m2<=0||typeof lead.piscina!=='boolean') return {estado:'ENTRADA_INVALIDA'};
+  const area=Math.min(Math.max(lead.m2,PRICE_RULES.m2Minimo),CONFIG.UMBRAL_DISENO_A_MEDIDA_M2);
+  const row=CONFIG.PRECIOS_NETOS[area];
+  const piscina=lead.piscina===true;
+  return {
+    estado:'OK',
+    piscina,
+    area,
+    disenoMedida:lead.m2>CONFIG.UMBRAL_DISENO_A_MEDIDA_M2,
+    netoAsistida:piscina?row.asistida_piscina:row.asistida_estanque,
+    netoAutonoma:piscina?row.distancia_piscina:row.distancia_estanque,
+    referencia300:piscina?CONFIG.PRECIOS_NETOS[300].asistida_piscina:CONFIG.PRECIOS_NETOS[300].asistida_estanque
+  };
 }
 
 /* ---------- comunas ---------- */
 (function initComunas(){
-  const dl = document.getElementById('comunasList');
+  const dl=document.getElementById('comunasList');
   Object.keys(COMUNA_REGION).sort((a,b)=>a.localeCompare(b,'es')).forEach(c=>{
-    const opt = document.createElement('option');
-    opt.value = c;
-    dl.appendChild(opt);
+    const opt=document.createElement('option'); opt.value=c; dl.appendChild(opt);
   });
 })();
 
 function showView(name){
-  document.querySelectorAll('.q-view').forEach(v => v.classList.toggle('active', v.dataset.view === name));
-  document.getElementById('quoteBox').scrollIntoView({ behavior:'smooth', block:'start' });
+  document.querySelectorAll('.q-view').forEach(v=>v.classList.toggle('active',v.dataset.view===name));
+  document.getElementById('quoteBox').scrollIntoView({behavior:'smooth',block:'start'});
 }
+function clearError(id){document.getElementById(id).classList.remove('has-error');}
+function setError(id){document.getElementById(id).classList.add('has-error');}
 
-/* ---------- inputs ---------- */
-const inM2 = document.getElementById('q-m2');
-const inPisos = document.getElementById('q-pisos');
-const inComuna = document.getElementById('q-comuna');
-const inNombre = document.getElementById('q-nombre');
-const inTel = document.getElementById('q-tel');
-const inEmail = document.getElementById('q-email');
-const progressBar = document.getElementById('progressBar');
+const inM2=document.getElementById('q-m2');
+const inComuna=document.getElementById('q-comuna');
+const inNombre=document.getElementById('q-nombre');
+const inTel=document.getElementById('q-tel');
+const inPrefix=document.getElementById('q-prefix');
+const inEmail=document.getElementById('q-email');
+const progressBar=document.getElementById('progressBar');
+const step1=document.getElementById('formStep1');
+const step2=document.getElementById('formStep2');
 
-function clearError(id){ document.getElementById(id).classList.remove('has-error'); }
-function setError(id){ document.getElementById(id).classList.add('has-error'); }
-
-const trackedProgress = new Set();
-function updateProgress(){
-  let done = 0;
-  if(Number.isSafeInteger(lead.m2) && lead.m2 > 0) done++;
-  if(Number.isSafeInteger(lead.pisos) && lead.pisos > 0) done++;
-  if(lead.comuna.length > 1) done++;
-  if(lead.piscina !== null) done++;
-  if(lead.nombre.length >= 2) done++;
-  if(normalizePhone(lead.telefono)) done++;
-  const percent = done/6*100;
-  progressBar.style.width = percent + "%";
-  [25, 50, 75, 100].forEach(milestone => {
-    if(percent >= milestone && !trackedProgress.has(milestone)){
-      trackedProgress.add(milestone);
-      track('cotizador_progreso', { avance: milestone });
-    }
-  });
+function setStep(n){
+  step1.classList.toggle('active',n===1);
+  step2.classList.toggle('active',n===2);
+  progressBar.style.width=(n===1?'50%':'100%');
 }
+setStep(1);
+
 function syncChips(){
-  document.querySelectorAll('#m2Chips .chip-btn').forEach(c=>{
-    c.classList.toggle('selected', Number(c.dataset.m2) === lead.m2);
-  });
+  document.querySelectorAll('#m2Chips .chip-btn').forEach(c=>c.classList.toggle('selected',Number(c.dataset.m2)===lead.m2));
 }
 
-inM2.addEventListener('input', ()=>{
-  lead.m2 = /^\d+$/.test(inM2.value.trim()) ? Number(inM2.value.trim()) : null;
-  syncChips(); clearError('f-m2'); updateProgress();
+inM2.addEventListener('input',()=>{
+  lead.m2=/^\d+$/.test(inM2.value.trim())?Number(inM2.value.trim()):null;
+  syncChips();clearError('f-m2');
 });
 document.querySelectorAll('#m2Chips .chip-btn').forEach(chip=>{
-  chip.addEventListener('click', ()=>{
-    lead.m2 = Number(chip.dataset.m2);
-    inM2.value = lead.m2.toLocaleString('es-CL');
-    syncChips(); clearError('f-m2'); updateProgress();
+  chip.addEventListener('click',()=>{
+    lead.m2=Number(chip.dataset.m2);inM2.value=String(lead.m2);
+    syncChips();clearError('f-m2');
   });
 });
-inPisos.addEventListener('input', ()=>{
-  lead.pisos = Number(inPisos.value); clearError('f-pisos'); updateProgress();
-});
-inComuna.addEventListener('input', ()=>{
-  lead.comuna = inComuna.value.trim();
-  lead.region = COMUNA_REGION[lead.comuna] || "";
-  clearError('f-comuna'); updateProgress();
+inComuna.addEventListener('input',()=>{
+  lead.comuna=inComuna.value.trim();lead.region=COMUNA_REGION[lead.comuna]||"";
+  clearError('f-comuna');
 });
 document.querySelectorAll('[data-group="piscina"] .option-card').forEach(card=>{
-  card.addEventListener('click', ()=>{
+  card.addEventListener('click',()=>{
     document.querySelectorAll('[data-group="piscina"] .option-card').forEach(c=>c.classList.remove('selected'));
-    card.classList.add('selected');
-    lead.piscina = card.dataset.value === 'si';
-    clearError('f-piscina'); updateProgress();
+    card.classList.add('selected');lead.piscina=card.dataset.value==='si';clearError('f-piscina');
   });
 });
-inNombre.addEventListener('input', ()=>{ lead.nombre = inNombre.value.trim(); clearError('f-nombre'); updateProgress(); });
-inTel.addEventListener('input', ()=>{
-  lead.telefono = normalizePhone(inTel.value);
-  clearError('f-tel'); updateProgress();
-});
-inEmail.addEventListener('input', ()=>{ lead.email = inEmail.value.trim(); clearError('f-email'); });
+inNombre.addEventListener('input',()=>{lead.nombre=inNombre.value.trim();clearError('f-nombre');});
+function syncPhone(){lead.telefono=normalizePhone(inTel.value,inPrefix.value);clearError('f-tel');}
+inTel.addEventListener('input',syncPhone);
+inPrefix.addEventListener('change',syncPhone);
+inEmail.addEventListener('input',()=>{lead.email=inEmail.value.trim();clearError('f-email');});
 
-/* ---------- submit ---------- */
-document.getElementById('btnVerEstimacion').addEventListener('click', ()=>{
-  // Leer el DOM también cubre autocompletado sin eventos input.
-  lead.telefono = normalizePhone(inTel.value);
-  let firstError = null;
-  const check = (cond, id) => { if(!cond){ setError(id); if(!firstError) firstError = id; } };
+function validateStep1(){
+  let first=null;
+  const check=(cond,id)=>{if(!cond){setError(id);if(!first)first=id;}};
+  check(Number.isSafeInteger(lead.m2)&&lead.m2>0,'f-m2');
+  check(lead.comuna.length>1,'f-comuna');
+  check(lead.piscina!==null,'f-piscina');
+  if(first){document.getElementById(first).scrollIntoView({behavior:'smooth',block:'center'});return false;}
+  return true;
+}
 
-  check(Number.isSafeInteger(lead.m2) && lead.m2 > 0, 'f-m2');
-  check(Number.isSafeInteger(lead.pisos) && lead.pisos > 0, 'f-pisos');
-  check(lead.comuna.length > 1, 'f-comuna');
-  check(lead.piscina !== null, 'f-piscina');
-  check(lead.nombre.length >= 2, 'f-nombre');
-  check(!!lead.telefono, 'f-tel');
-  const emailOk = lead.email === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email);
-  check(emailOk, 'f-email');
-
-  if(firstError){
-    document.getElementById(firstError).scrollIntoView({ behavior:'smooth', block:'center' });
+function renderPartialResult(){
+  const box=document.getElementById('partialResult');
+  if(lead.m2>CONFIG.UMBRAL_DISENO_A_MEDIDA_M2){
+    box.innerHTML=`<strong>✓ Tu propiedad califica para un sistema AQUADEFENSA diseñado a medida.</strong><p>Un paso más para recibir tu estimación.</p>`;
     return;
   }
+  const sizing=calcSystemSizing();
+  const technical=(sizing.aspersores&&sizing.reservaM3)
+    ? `~${sizing.aspersores} aspersores de techo y muros · ~${sizing.reservaM3} m³ de reserva${lead.piscina?' (piscina)':''} · Energía independiente de la red eléctrica`
+    : 'Energía independiente de la red eléctrica';
+  box.innerHTML=`<strong>✓ Tu propiedad califica para un sistema AQUADEFENSA.</strong><p>Para tus ${lead.m2.toLocaleString('es-CL')} m² en ${lead.comuna} calculamos:</p><p>${technical}</p><p class="partial-final">Un paso más para ver tu inversión estimada.</p>`;
+}
 
-  const est = calcEstimate();
-  lead.estimacionManual   = est.estado === 'OK' ? est.netoAsistida : null;
-  lead.estimacionAutonoma = est.estado === 'OK' ? est.netoAutonoma : null;
+document.getElementById('btnContinuar').addEventListener('click',()=>{
+  if(!validateStep1()) return;
+  renderPartialResult();setStep(2);track('cotizador_paso1_ok',{m2:lead.m2,comuna:lead.comuna,piscina:lead.piscina});
+  document.getElementById('quoteBox').scrollIntoView({behavior:'smooth',block:'start'});
+});
+document.getElementById('btnEditarDatos').addEventListener('click',()=>{setStep(1);});
 
-  submitLead(lead); // el lead se registra antes de revelar el precio
+function returnToStep1(){
+  showView('form');setStep(1);
+  setTimeout(()=>document.getElementById('quoteBox').scrollIntoView({behavior:'smooth',block:'start'}),20);
+}
+window.returnToStep1=returnToStep1;
 
+document.getElementById('empresaCtaTop').addEventListener('click',()=>track('cta_empresa_click',{ubicacion:'inicio'}));
+
+document.getElementById('btnVerEstimacion').addEventListener('click',()=>{
+  if(!validateStep1()){setStep(1);return;}
+  lead.nombre=inNombre.value.trim();
+  lead.email=inEmail.value.trim();
+  lead.telefono=normalizePhone(inTel.value,inPrefix.value);
+  let first=null;
+  const check=(cond,id)=>{if(!cond){setError(id);if(!first)first=id;}};
+  check(lead.nombre.length>=2,'f-nombre');
+  check(!!lead.telefono,'f-tel');
+  const emailOk=lead.email===""||/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email);
+  check(emailOk,'f-email');
+  if(first){document.getElementById(first).scrollIntoView({behavior:'smooth',block:'center'});return;}
+
+  const est=calcEstimate();
+  lead.estimacionManual=est.estado==='OK'?est.netoAsistida:null;
+  lead.estimacionAutonoma=est.estado==='OK'?est.netoAutonoma:null;
+  submitLead(lead);
+  track('cotizador_paso2_ok',{m2:lead.m2,comuna:lead.comuna});
   showView('calc');
-  const fill = document.getElementById('gaugeFill');
-  requestAnimationFrame(()=> fill.setAttribute('stroke-dashoffset', 0));
-  setTimeout(()=>{ document.getElementById('calcTitle').textContent = `¡Listo, ${lead.nombre}!`; }, 900);
-  setTimeout(()=> buildResults(est), 1500);
+  const fill=document.getElementById('gaugeFill');
+  requestAnimationFrame(()=>fill.setAttribute('stroke-dashoffset',0));
+  setTimeout(()=>{document.getElementById('calcTitle').textContent=`¡Listo, ${lead.nombre}!`;},700);
+  setTimeout(()=>buildResults(est),1150);
 });
 
-/* ---------- resultados ---------- */
 function buildResults(est){
+  if(!est||est.estado!=='OK') return;
   showView('resultado');
-  track('cotizador_result_view');
+  progressBar.style.width='100%';
+  track('cotizador_result_view',{diseno_medida:est.disenoMedida});
   document.getElementById('waFloat').classList.add('visible');
-  document.getElementById('resultTitle').textContent = `Esto es lo que estimamos para tus ${lead.m2.toLocaleString('es-CL')} m² de techo`;
+  document.getElementById('resultTitle').textContent=`${lead.nombre}, esta es la estimación para tu propiedad`;
 
-  const body = document.getElementById('resultsBody');
-  const ubicacion = lead.region ? `${lead.comuna}, ${lead.region}` : lead.comuna;
-  const baseCtx = `mi vivienda de ${lead.m2.toLocaleString('es-CL')} m² de techo y ${lead.pisos} pisos en ${ubicacion}${lead.piscina ? ', con piscina' : ', calculada con estanque'}`;
+  const body=document.getElementById('resultsBody');
+  const fuente=lead.piscina?'Con piscina':'Con estanque de reserva';
+  const sizing=calcSystemSizing();
+  const sizingLine=(!est.disenoMedida&&sizing.aspersores&&sizing.reservaM3)
+    ? `<div class="result-sizing">~${sizing.aspersores} aspersores · ~${sizing.reservaM3} m³ de reserva</div>`:'';
 
-  const conPiscina = lead.piscina === true;
-  const iva = `<span class="iva-nota">Valor neto: ${clp(est.manual)} + IVA</span>`;
+  const fuenteBanner=lead.piscina
+    ? `<div class="fuente-banner ok">${DROP}<div><b>Consideramos tu piscina como reserva de agua.</b> Confirmamos en la visita técnica que sea apta.</div></div>`
+    : `<div class="fuente-banner">${DROP}<div><b>Tu sistema incluye estanque de reserva.</b> El volumen y la ubicación se confirman en la visita técnica.</div></div>`;
 
-  const pisoBanner = est.aplicaPrecioPiso ? '<div class="fuente-banner"><div><b>Precio base del sistema: equivalente a 100 m².</b> Bajo 100 m² se mantiene el equipamiento mínimo de la alternativa seleccionada; por eso la estimación no disminuye con la superficie.</div></div>' : '';
+  const sourceItem=lead.piscina?'Adaptación de tu piscina como reserva':'Estanque de reserva';
+  const suffix=lead.piscina?'con piscina':'con estanque';
+  const msgAsistida=`Hola Felipe, hice mi estimación en aquadefensa.cl: ${lead.m2} m² de techo, ${lead.comuna}, ${suffix}. Me interesa la Activación asistida (${clp(est.netoAsistida)} + IVA). ¿Cuál es el siguiente paso?`;
+  const msgDistancia=`Hola Felipe, hice mi estimación en aquadefensa.cl: ${lead.m2} m² de techo, ${lead.comuna}, ${suffix}. Me interesa la Activación a distancia (${clp(est.netoAutonoma)} + IVA). ¿Cuál es el siguiente paso?`;
+  const msgMedida=`Hola Felipe, hice mi estimación en aquadefensa.cl: ${lead.m2} m² de techo, ${lead.comuna}, ${suffix}. Quiero una evaluación personalizada. ¿Cuál es el siguiente paso?`;
 
-  const topeBanner = est.aplicaPrecioTope ? '<div class="fuente-banner"><div><b>Precios de referencia para una casa de 300 m².</b> Conservamos la superficie que ingresaste. Para casas mayores, mostramos ambas alternativas con la misma base de 300 m²; el alcance y valor final se confirman en la evaluación técnica.</div></div>' : '';
+  const plans=est.disenoMedida
+    ? `<div class="custom-project">
+         <h3>Tu propiedad requiere un diseño a medida.</h3>
+         <p>Sobre 300 m² calculamos cada proyecto de forma individual. Como referencia, los sistemas para viviendas de este tamaño parten desde:</p>
+         <div class="reference-price">${clp(est.referencia300)} <span>+ IVA</span></div>
+         <a class="btn btn-primary" target="_blank" rel="noopener" href="${waLink(msgMedida)}" onclick="track('cta_diseno_medida_click')">Quiero mi evaluación personalizada →</a>
+         <p class="plan-next-step">Se abre WhatsApp con tus datos listos. Tú decides cuándo enviarlo.</p>
+       </div>`
+    : `<div class="included-block">
+         <h3>Ambas alternativas incluyen</h3>
+         <ul class="plan-benefits">
+           <li>${CHECK}<span>Diseño hidráulico calculado para tu propiedad</span></li>
+           <li>${CHECK}<span>Equipo de impulsión de alta presión, independiente de la red eléctrica</span></li>
+           <li>${CHECK}<span>Red completa: tuberías, conexiones y aspersores de techo y muros</span></li>
+           <li>${CHECK}<span>${sourceItem}</span></li>
+           <li>${CHECK}<span>Instalación, pruebas y puesta en marcha</span></li>
+         </ul>
+       </div>
+       <div class="plan-grid">
+         <div class="plan-card">
+           <span class="situation-tag">Ideal si vives en la propiedad</span>
+           <div class="plan-name">Activación asistida · ${lead.piscina?'con piscina':'con estanque'}</div>
+           <div class="plan-desde">Llave en mano</div>
+           <div class="plan-price-row"><div class="plan-price">${clp(est.netoAsistida)}</div><span class="plus-iva">+ IVA</span></div>
+           <div class="prelim-note">Estimación preliminar</div>
+           <div class="plan-headline">Se activa en el lugar, en segundos.</div>
+           <div class="plan-desc">Enciendes la motobomba y el sistema cubre techo y muros. Ideal si vives en la propiedad o tienes a alguien de confianza cerca.</div>
+           <ul class="plan-difference"><li><span class="tick">✓</span><span>Motobomba de alta presión con encendido en el lugar</span></li></ul>
+           <a class="btn btn-primary plan-cta" target="_blank" rel="noopener" href="${waLink(msgAsistida)}" onclick="track('cta_asistida_click')">Quiero esta opción →</a>
+           <p class="plan-next-step">Se abre WhatsApp con tu estimación lista. Tú decides cuándo enviarla.</p>
+         </div>
+         <div class="plan-card">
+           <span class="situation-tag">Ideal si pasas tiempo fuera</span>
+           <div class="plan-name">Activación a distancia · ${lead.piscina?'con piscina':'con estanque'}</div>
+           <div class="plan-desde">Llave en mano</div>
+           <div class="plan-price-row"><div class="plan-price">${clp(est.netoAutonoma)}</div><span class="plus-iva">+ IVA</span></div>
+           <div class="prelim-note">Estimación preliminar</div>
+           <div class="plan-headline">Lo activas desde tu celular, estés donde estés.</div>
+           <div class="plan-desc">Para cuando el fuego avanza rápido y no hay nadie en casa.</div>
+           <ul class="plan-difference"><li><span class="tick">✓</span><span>Sistema completo de encendido a distancia: tablero de control, generador y bomba dedicados</span></li></ul>
+           <a class="btn btn-primary plan-cta" target="_blank" rel="noopener" href="${waLink(msgDistancia)}" onclick="track('cta_distancia_click')">Quiero esta opción →</a>
+           <p class="plan-next-step">Se abre WhatsApp con tu estimación lista. Tú decides cuándo enviarla.</p>
+         </div>
+       </div>`;
 
-  // Ítem de fuente de agua: es lo que diferencia las dos configuraciones.
-  const itemFuente = conPiscina
-    ? `${CHECK} <span><b>Succión desde tu piscina</b> — sin estanque</span>`
-    : `${CHECK} <span><b>Estanque de reserva</b> incluido; volumen sujeto a evaluación técnica</span>`;
+  const shareMsg=est.disenoMedida
+    ? `Mira la evaluación de AQUADEFENSA para nuestra casa: ${lead.m2} m² de techo en ${lead.comuna}. Sistemas desde ${clp(est.referencia300)} + IVA. Calcula la tuya en aquadefensa.cl/cotizador`
+    : `Mira la estimación de AQUADEFENSA para nuestra casa: ${lead.m2} m² de techo en ${lead.comuna}. Activación asistida: ${clp(est.netoAsistida)} + IVA. Activación a distancia: ${clp(est.netoAutonoma)} + IVA. Puedes calcular la tuya en aquadefensa.cl/cotizador`;
 
-  const fuenteBanner = conPiscina
-    ? `<div class="fuente-banner ok">${DROP}<div><b>Estimación considerando tu piscina como fuente de agua.</b> La estimación no incluye estanque. Confirmaremos la disponibilidad de agua y la factibilidad hidráulica en la evaluación técnica.</div></div>`
-    : `<div class="fuente-banner">${DROP}<div><b>Tu sistema incluye estanque de reserva.</b> El volumen y la ubicación se confirman en la evaluación técnica.</div></div>`;
-
-  const sufijo = conPiscina ? 'con piscina' : 'con estanque';
-  const msgManual = `Hola, soy ${lead.nombre}. Completé el cotizador web — ${baseCtx}. Me interesa la alternativa de activación asistida ${sufijo} (estimación ${clp(est.brutoAsistida)} IVA incluido)${est.aplicaPrecioTope ? "; valor de referencia calculado para 300 m²" : ""} y quiero solicitar una cotización para mi vivienda.`;
-  const msgAuto   = `Hola, soy ${lead.nombre}. Completé el cotizador web — ${baseCtx}. Me interesa la alternativa de activación a distancia ${sufijo} (estimación ${clp(est.brutoAutonoma)} IVA incluido)${est.aplicaPrecioTope ? "; valor de referencia calculado para 300 m²" : ""} y quiero solicitar una cotización para mi vivienda.`;
-
-  body.innerHTML = `
-    ${pisoBanner}
-    ${topeBanner}
+  body.innerHTML=`
+    <div class="result-summary"><span>${lead.m2.toLocaleString('es-CL')} m² de techo</span><span>·</span><span>${lead.comuna}</span><span>·</span><span>${fuente}</span><button type="button" class="edit-data" onclick="returnToStep1()">Editar datos</button></div>
+    ${sizingLine}
     ${fuenteBanner}
 
     <div id="result-explainer-slot"></div>
-    <div class="plan-grid">
-      <div class="plan-card">
-        <div class="plan-name">Activación asistida · ${conPiscina ? 'con piscina' : 'con estanque'}</div>
-        <div class="plan-desde">Llave en mano · IVA incluido</div>
-        <div class="plan-price" id="priceManual">${clp(est.brutoAsistida)}</div>
-        <div class="plan-permetro">${iva}</div>
-        <div class="plan-desc">Incluye todos los materiales, equipos e instalación del sistema. <b>Una persona debe activarlo</b> cuando existe una amenaza cerca.</div>
-        <div class="plan-incluye">Sistema completo, instalado y funcionando</div>
-        <ul class="plan-benefits">
-          <li>${CHECK} <span>Diseño hidráulico calculado para tu propiedad</span></li>
-          <li>${CHECK} <span><b>Equipo de impulsión:</b> motobomba de alta presión</span></li>
-          <li>${CHECK} <span><b>Todos los materiales de la red:</b> tuberías, conexiones y aspersores de techo y muros</span></li>
-          <li>${itemFuente}</li>
-          <li>${CHECK} <span><b>Instalación completa y puesta en marcha</b> del sistema</span></li>
-        </ul>
-        <a class="btn btn-ghost plan-cta" target="_blank" href="${waLink(msgManual)}" onclick="track('cotizador_wa_click',{plan:'asistida'})">Quiero solicitar una cotización</a>
-        <p class="plan-next-step" style="font-size:.76rem;line-height:1.5;color:var(--muted,var(--ink-dim));margin:10px 0 0;text-align:center">Se abre WhatsApp con tu solicitud preparada. Tú decides cuándo enviarla.</p>
-      </div>
 
-      <div class="plan-card featured">
-        <span class="plan-tag">Recomendada</span>
-        <div class="plan-name">Activación a distancia · ${conPiscina ? 'con piscina' : 'con estanque'}</div>
-        <div class="plan-desde">Llave en mano · IVA incluido</div>
-        <div class="plan-price" id="priceAuto">${clp(est.brutoAutonoma)}</div>
-        <div class="plan-permetro">Valor neto: ${clp(est.autonomo)} + IVA</div>
-        <div class="plan-desc">Incluye todos los materiales, equipos e instalación del sistema, más el equipamiento de activación remota. <b>Una persona lo activa a distancia</b>, según la configuración del proyecto y la disponibilidad de señal.</div>
-        <div class="plan-incluye">Sistema completo, instalado y funcionando</div>
-        <ul class="plan-benefits">
-          <li>${CHECK} <span>Diseño hidráulico calculado para tu propiedad</span></li>
-          <li>${CHECK} <span><b>Equipos de impulsión</b> y todos los materiales de la red: tuberías, conexiones y aspersores de techo y muros</span></li>
-          <li>${CHECK} <span><b>Activación a distancia:</b> equipamiento de control remoto para que una persona inicie el sistema sin estar en la propiedad</span></li>
-          <li>${itemFuente}</li>
-          <li>${CHECK} <span><b>Instalación completa y puesta en marcha</b> del sistema</span></li>
-        </ul>
-        <a class="btn btn-primary plan-cta" target="_blank" href="${waLink(msgAuto)}" onclick="track('cotizador_wa_click',{plan:'autonoma'})">Quiero solicitar una cotización</a>
-        <p class="plan-next-step" style="font-size:.76rem;line-height:1.5;color:var(--muted,var(--ink-dim));margin:10px 0 0;text-align:center">Se abre WhatsApp con tu solicitud preparada. Tú decides cuándo enviarla.</p>
+    <div class="value-pillars">
+      <div class="value-pillar">${ENGINEERING_ICON}<strong>Ingeniería a medida</strong><span>Presión, caudal y cobertura calculados para tu propiedad.</span></div>
+      <div class="value-pillar">${POWER_ICON}<strong>Independiente de la red eléctrica</strong><span>Funciona aunque se corte la luz.</span></div>
+      <div class="value-pillar">${TEST_ICON}<strong>Instalado y probado</strong><span>Te lo entregamos funcionando, con prueba real.</span></div>
+    </div>
+
+    ${plans}
+
+    <section class="extra-protection">
+      <details>
+        <summary><span>Opciones para ampliar la protección</span><span aria-hidden="true">⌄</span></summary>
+        <div class="extra-list">
+          <div class="extra-item"><strong>Aspersores perimetrales</strong><span>Mantienen húmeda la vegetación alrededor de la casa.</span></div>
+          <div class="extra-item"><strong>Retardante de fuego Clase A</strong><span>Una capa protectora adicional sobre las superficies.</span></div>
+          <div class="extra-item"><strong>Carrete de manguera contra incendios</strong><span>Para defender puntos específicos.</span></div>
+          <p class="extra-note">Se cotizan en la evaluación técnica según tu propiedad.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="next-section">
+      <h3>¿Qué pasa después?</h3>
+      <div class="next-steps">
+        <div class="next-step"><span class="next-num">1</span><strong>Conversamos por WhatsApp.</strong><span>Resolvemos tus dudas y revisamos tu propiedad con fotos.</span></div>
+        <div class="next-step"><span class="next-num">2</span><strong>Visita técnica.</strong><span>Medimos distancias, desniveles, fuente de agua y señal (si eliges activación a distancia).</span></div>
+        <div class="next-step"><span class="next-num">3</span><strong>Propuesta definitiva en 48 horas.</strong><span>Precio cerrado y plano del sistema.</span></div>
+        <div class="next-step"><span class="next-num">4</span><strong>Instalación y prueba.</strong><span>Tu sistema queda funcionando y lo probamos contigo.</span></div>
       </div>
+    </section>
+
+    <!-- VIDEO PILOTO -->
+    <section class="trust-section">
+      <h3>Por qué confiar</h3>
+      <div class="trust-grid">
+        <div class="trust-item"><span class="trust-big">188/188</span><p>viviendas con aspersores exteriores sobrevivieron intactas al incendio de Ham Lake.</p><small>USDA Forest Service</small></div>
+        <div class="trust-item"><span class="trust-big">EPANET</span><p>Diseño hidráulico verificado con el software estándar de la industria.</p></div>
+        <div class="trust-item"><span class="trust-big">+30 años</span><p>de experiencia de nuestro equipo constructor en instalación.</p></div>
+      </div>
+    </section>
+
+    <div class="share-block">
+      <p>¿Lo decides en familia?</p>
+      <a class="btn btn-ghost" target="_blank" rel="noopener" href="${shareWaLink(shareMsg)}" onclick="track('compartir_click')">Enviar esta estimación por WhatsApp →</a>
     </div>
 
     <section class="learn-more" aria-labelledby="learn-more-title">
       <h3 id="learn-more-title">¿Prefieres conocer mejor el sistema?</h3>
       <p>Explora sus componentes, cómo se activa y cómo distribuye el agua en techo y muros.</p>
-      <a class="btn btn-ghost" href="como-funciona.html?desde=cotizador" onclick="track('cotizador_como_funciona_click')">Ver cómo funciona en detalle →</a>
+      <a class="btn btn-ghost" target="_blank" rel="noopener" href="como-funciona.html?desde=cotizador" onclick="track('cotizador_como_funciona_click')">Ver cómo funciona en detalle →</a>
     </section>
 
     <div class="trust-line">${SHIELD}<span>Te responde Felipe, ingeniero a cargo — no un call center.</span></div>
 
-    <div class="disclaimer">El valor final puede variar según distancias, desniveles, red hidráulica, fuente de agua y condiciones de instalación.</div>
+    <div class="disclaimer">Valores netos, más IVA. El valor final se confirma en la visita técnica y puede variar según distancias, desniveles, red hidráulica, fuente de agua y condiciones de instalación.</div>
+
+    <div class="industry-close">
+      <strong>¿Necesitas proteger una empresa o instalación industrial?</strong>
+      <a class="btn btn-ghost" target="_blank" rel="noopener"
+         href="https://wa.me/56988154096?text=Hola%20Felipe%2C%20quiero%20cotizar%20protecci%C3%B3n%20contra%20incendios%20para%20una%20empresa%20o%20instalaci%C3%B3n."
+         onclick="track('cta_empresa_click',{ubicacion:'cierre'})">${WA_ICON}<span>Hablar por WhatsApp</span></a>
+    </div>
   `;
+
   if(window.aqdMountExplainer) window.aqdMountExplainer();
   if(window.aqdSaveQuote) window.aqdSaveQuote(lead);
 }
-if(window.aqdRestoreQuote) window.aqdRestoreQuote(lead, calcEstimate, buildResults);
+
+if(window.aqdRestoreQuote) window.aqdRestoreQuote(lead,calcEstimate,buildResults);
 </script>
 </body>
 </html>
