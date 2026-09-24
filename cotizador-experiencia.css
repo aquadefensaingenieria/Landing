@@ -233,3 +233,7 @@ input[type="number"]:focus,input[type="text"]:focus,input[type="tel"]:focus,inpu
   .next-step{min-height:82px}
   .plan-wa-cta{font-size:.82rem}
 }
+/* Acento de títulos en bloques incorporados en v3 */
+.included-block h3{display:flex;align-items:center;gap:9px}
+.included-block h3::before{content:"";width:24px;height:3px;border-radius:2px;background:var(--ember,#E84C22);flex:none}
+.custom-project h3{color:var(--ember,#E84C22)}
