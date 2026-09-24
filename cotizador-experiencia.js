@@ -25,7 +25,7 @@
       if(page === 'cotizador' || page === 'landing') page += '.html';
       if(!['cotizador.html','landing.html'].includes(page)) return;
       var data = {};
-      ['m2','piscina','nombre','telefono','email','comuna','region'].forEach(function(k){ data[k] = lead[k]; });
+      ['m2','pisos','piscina','nombre','telefono','email','comuna','region'].forEach(function(k){ if(lead[k] !== undefined) data[k] = lead[k]; });
       sessionStorage.setItem(storageKey, JSON.stringify({at:Date.now(), page:page, lead:data}));
     } catch(ignore){}
   };
