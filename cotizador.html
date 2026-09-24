@@ -822,7 +822,7 @@
         <div class="q-view" data-view="resultado">
           <div class="result-head">
             <div class="eyebrow">Tu estimación está lista</div>
-            <h3 id="resultTitle">Alternativas para tu propiedad</h3>
+            <h2 id="resultTitle">Alternativas para tu propiedad</h2>
           </div>
           <div id="resultsBody"></div>
         </div>
@@ -1146,7 +1146,27 @@ document.getElementById('btnContinuar').addEventListener('click',()=>{
 });
 document.getElementById('btnEditarDatos').addEventListener('click',()=>{setStep(1);});
 
+function syncFormFromLead(){
+  inM2.value=lead.m2?String(lead.m2):'';
+  inComuna.value=lead.comuna||'';
+  inNombre.value=lead.nombre||'';
+  inEmail.value=lead.email||'';
+  if(lead.telefono){
+    const digits=lead.telefono.replace(/\D/g,'');
+    const option=[...inPrefix.options].find(o=>digits.startsWith(o.value.replace(/\D/g,'')));
+    if(option){
+      inPrefix.value=option.value;
+      const pd=option.value.replace(/\D/g,'');
+      inTel.value=digits.slice(pd.length);
+    }
+  }
+  document.querySelectorAll('[data-group="piscina"] .option-card').forEach(card=>{
+    card.classList.toggle('selected',lead.piscina!==null && (card.dataset.value==='si')===lead.piscina);
+  });
+  syncChips();
+}
 function returnToStep1(){
+  syncFormFromLead();
   showView('form');setStep(1);
   setTimeout(()=>document.getElementById('quoteBox').scrollIntoView({behavior:'smooth',block:'start'}),20);
 }
