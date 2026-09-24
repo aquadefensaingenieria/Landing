@@ -86,3 +86,11 @@
   .value-pillars,.next-steps,.trust-grid{grid-template-columns:1fr}
   .tel-prefix-select{width:96px}
 }
+/* Ajustes de paleta: celeste solo para elementos de agua */
+.quote-progress .bar{background:var(--ember,#E84C22)!important}
+input[type="number"]:focus,input[type="text"]:focus,input[type="tel"]:focus,input[type="email"]:focus{border-color:var(--ember,#E84C22)!important;box-shadow:0 0 0 3px rgba(232,76,34,.15)!important}
+.chip-btn:hover{border-color:var(--ember,#E84C22)!important;color:var(--ember,#E84C22)!important}
+.chip-btn.selected{background:rgba(232,76,34,.10)!important;border-color:var(--ember,#E84C22)!important;color:#fff!important}
+.trust-line svg{color:var(--ember,#E84C22)!important}
+.learn-more{border-color:rgba(255,255,255,.14)!important;background:rgba(255,255,255,.025)!important}
+.result-head h2{font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:clamp(1.35rem,2.6vw,1.9rem);line-height:1.18;margin:0}
