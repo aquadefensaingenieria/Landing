@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  var storageKey = 'aqd:estimacion:v1';
+  var storageKey = 'aqd:estimacion:v2';
   var ttl = 30 * 60 * 1000;
   var observer;
   function readQuote(){
@@ -10,7 +10,7 @@
       var l = saved.lead;
       if(!Number.isFinite(saved.at) || Date.now() - saved.at > ttl || saved.at > Date.now() ||
         !['cotizador.html','landing.html'].includes(saved.page) || !l ||
-        !Number.isSafeInteger(l.m2) || l.m2 <= 0 || !Number.isSafeInteger(l.pisos) || l.pisos <= 0 ||
+        !Number.isSafeInteger(l.m2) || l.m2 <= 0 ||
         typeof l.piscina !== 'boolean' || !['nombre','telefono','email','comuna','region'].every(function(k){ return typeof l[k] === 'string' && l[k].length <= 200; })) {
         sessionStorage.removeItem(storageKey);
         return null;
@@ -25,7 +25,7 @@
       if(page === 'cotizador' || page === 'landing') page += '.html';
       if(!['cotizador.html','landing.html'].includes(page)) return;
       var data = {};
-      ['m2','pisos','piscina','nombre','telefono','email','comuna','region'].forEach(function(k){ data[k] = lead[k]; });
+      ['m2','piscina','nombre','telefono','email','comuna','region'].forEach(function(k){ data[k] = lead[k]; });
       sessionStorage.setItem(storageKey, JSON.stringify({at:Date.now(), page:page, lead:data}));
     } catch(ignore){}
   };
