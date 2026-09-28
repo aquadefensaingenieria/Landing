@@ -76,6 +76,11 @@
   .err{ display:none; font-size:12px; color:var(--error); margin-top:6px; }
   .field.has-error .err{ display:block; }
   .field-hint{ font-size:11.5px; color:var(--muted-2); margin-top:6px; line-height:1.5; }
+  .comuna-input-wrap{ position:relative; }
+  .comuna-options{ display:none; position:absolute; top:100%; left:0; right:0; z-index:30; max-height:220px; overflow-y:auto; background:var(--panel); border:1px solid var(--border-strong); border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,.25); }
+  .comuna-options.visible{ display:block; }
+  .comuna-option{ display:block; width:100%; padding:10px 15px; border:0; background:none; color:var(--paper); text-align:left; font:inherit; cursor:pointer; }
+  .comuna-option:hover, .comuna-option.active{ background:var(--bg-soft); }
 
   .m2-field{ display:flex; align-items:center; gap:12px; }
   .m2-icon{ flex:none; width:48px; height:48px; background:var(--bg-soft); border:1px solid var(--border-strong); border-radius:10px; display:flex; align-items:center; justify-content:center; }
@@ -721,9 +726,11 @@
 
             <div class="field" id="f-comuna">
               <label for="q-comuna">¿En qué comuna está ubicada?</label>
-              <input type="text" id="q-comuna" list="comunasList" placeholder="Escribe tu comuna" autocomplete="off">
-              <datalist id="comunasList"></datalist>
-              <span class="err">Ingresa tu comuna</span>
+              <div class="comuna-input-wrap">
+                <input type="text" id="q-comuna" placeholder="Escribe tu comuna" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="comunasList">
+                <div id="comunasList" class="comuna-options" role="listbox"></div>
+              </div>
+              <span class="err">Elige tu comuna de la lista.</span>
             </div>
 
             <div class="field" id="f-piscina">
@@ -812,7 +819,7 @@
             </div>
 
             <button class="btn btn-primary" id="btnVerEstimacion">Ver mi estimación →</button>
-            <p class="q-final-note">Sin compromiso. Usamos tus datos solo para enviarte tu estimación y resolver tus dudas.</p>
+            <p class="q-final-note">Al continuar, aceptas que AQUADEFENSA te contacte por WhatsApp sobre tu estimación. Puedes pedir que no te escribamos cuando quieras. No vendemos ni cedemos tus datos a terceros.</p>
           </div>
         </div>
 
@@ -929,6 +936,8 @@ const HS_FIELD_MAP = {
   firstname: l => l.nombre,
   phone:     l => l.telefono,
   aqd_email_contacto: l => l.email,
+  email: l => l.email,
+  codigo_de_referencia: l => l.codigoReferencia,
   aqd_m2_construidos: l => l.m2,
   aqd_comuna: l => l.comuna,
   aqd_region: l => l.region,
@@ -937,23 +946,386 @@ const HS_FIELD_MAP = {
   aqd_estimacion_autonoma: l => l.estimacionAutonoma || ""
 };
 
+/* Catálogo territorial: Biblioteca del Congreso Nacional, SIIT Mapoteca, 346 comunas. */
 const REGIONES = {
-  "Arica y Parinacota": ["Arica","Camarones","Putre","General Lagos"],
-  "Tarapacá": ["Iquique","Alto Hospicio","Pozo Almonte","Camiña","Colchane","Huara","Pica"],
-  "Antofagasta": ["Antofagasta","Calama","Tocopilla","Mejillones","Taltal","San Pedro de Atacama","Ollagüe","María Elena","Sierra Gorda"],
-  "Atacama": ["Copiapó","Caldera","Tierra Amarilla","Vallenar","Freirina","Huasco","Alto del Carmen","Chañaral","Diego de Almagro"],
-  "Coquimbo": ["La Serena","Coquimbo","Andacollo","Vicuña","Paihuano","Ovalle","Río Hurtado","Monte Patria","Combarbalá","Punitaqui","Illapel","Salamanca","Los Vilos","Canela"],
-  "Valparaíso": ["Valparaíso","Viña del Mar","Concón","Quilpué","Villa Alemana","Casablanca","San Antonio","Cartagena","El Quisco","El Tabo","Algarrobo","Santo Domingo","Quillota","La Calera","Nogales","San Felipe","Los Andes","Putaendo","Llay-Llay","Isla de Pascua"],
-  "Metropolitana": ["Santiago","Providencia","Las Condes","Vitacura","Ñuñoa","La Reina","Macul","Peñalolén","La Florida","Puente Alto","San Bernardo","Maipú","Pudahuel","Quilicura","Colina","Lampa","Til Til","Melipilla","Talagante","Buin","Paine"],
-  "O'Higgins": ["Rancagua","Machalí","Graneros","Doñihue","Coltauco","Requínoa","Rengo","San Fernando","Santa Cruz","Chimbarongo","Pichilemu","Litueche","Peralillo","Nancagua","Placilla"],
-  "Maule": ["Talca","Curicó","Linares","Cauquenes","Constitución","San Clemente","Molina","Sagrada Familia","Parral","San Javier","Villa Alegre","Longaví","Yerbas Buenas","Colbún","Pelluhue","Chanco"],
-  "Ñuble": ["Chillán","Chillán Viejo","Bulnes","San Carlos","Coihueco","Pinto","San Ignacio","Quirihue","Cobquecura","Ninhue","Quillón","San Nicolás","El Carmen","Yungay","Pemuco"],
-  "Biobío": ["Concepción","Talcahuano","Hualpén","San Pedro de la Paz","Chiguayante","Coronel","Lota","Hualqui","Santa Juana","Los Ángeles","Nacimiento","Mulchén","Negrete","Laja","San Rosendo","Yumbel","Cabrero","Tucapel","Antuco","Quilaco","Quilleco","Santa Bárbara","Alto Biobío","Lebu","Arauco","Cañete","Contulmo","Curanilahue","Los Álamos","Tirúa","Florida"],
-  "La Araucanía": ["Temuco","Padre Las Casas","Villarrica","Pucón","Lautaro","Angol","Victoria","Traiguén","Nueva Imperial","Carahue","Freire","Vilcún","Loncoche","Gorbea","Curacautín","Collipulli"],
-  "Los Ríos": ["Valdivia","La Unión","Río Bueno","Panguipulli","Los Lagos","Máfil","Corral","Paillaco","Futrono","Lanco"],
-  "Los Lagos": ["Puerto Montt","Puerto Varas","Osorno","Castro","Ancud","Frutillar","Llanquihue","Puerto Octay","Fresia","Quellón","Chonchi","Dalcahue","Calbuco","Los Muermos"],
-  "Aysén": ["Coyhaique","Puerto Aysén","Chile Chico","Cochrane"],
-  "Magallanes": ["Punta Arenas","Puerto Natales","Porvenir","Cabo de Hornos"]
+  "Arica y Parinacota": [
+    "Arica",
+    "Camarones",
+    "General Lagos",
+    "Putre"
+  ],
+  "Tarapacá": [
+    "Alto Hospicio",
+    "Camiña",
+    "Colchane",
+    "Huara",
+    "Iquique",
+    "Pica",
+    "Pozo Almonte"
+  ],
+  "Antofagasta": [
+    "Antofagasta",
+    "Calama",
+    "María Elena",
+    "Mejillones",
+    "Ollagüe",
+    "San Pedro de Atacama",
+    "Sierra Gorda",
+    "Taltal",
+    "Tocopilla"
+  ],
+  "Atacama": [
+    "Alto del Carmen",
+    "Caldera",
+    "Chañaral",
+    "Copiapó",
+    "Diego de Almagro",
+    "Freirina",
+    "Huasco",
+    "Tierra Amarilla",
+    "Vallenar"
+  ],
+  "Coquimbo": [
+    "Andacollo",
+    "Canela",
+    "Combarbalá",
+    "Coquimbo",
+    "Illapel",
+    "La Higuera",
+    "La Serena",
+    "Los Vilos",
+    "Monte Patria",
+    "Ovalle",
+    "Paihuano",
+    "Punitaqui",
+    "Río Hurtado",
+    "Salamanca",
+    "Vicuña"
+  ],
+  "Valparaíso": [
+    "Algarrobo",
+    "Cabildo",
+    "Calle Larga",
+    "Cartagena",
+    "Casablanca",
+    "Catemu",
+    "Concón",
+    "El Quisco",
+    "El Tabo",
+    "Hijuelas",
+    "Isla de Pascua",
+    "Juan Fernández",
+    "La Calera",
+    "La Cruz",
+    "La Ligua",
+    "Limache",
+    "Llaillay",
+    "Los Andes",
+    "Nogales",
+    "Olmué",
+    "Panquehue",
+    "Papudo",
+    "Petorca",
+    "Puchuncaví",
+    "Putaendo",
+    "Quillota",
+    "Quilpué",
+    "Quintero",
+    "Rinconada",
+    "San Antonio",
+    "San Esteban",
+    "San Felipe",
+    "Santa María",
+    "Santo Domingo",
+    "Valparaíso",
+    "Villa Alemana",
+    "Viña del Mar",
+    "Zapallar"
+  ],
+  "Metropolitana": [
+    "Alhué",
+    "Buin",
+    "Calera de Tango",
+    "Cerrillos",
+    "Cerro Navia",
+    "Colina",
+    "Conchalí",
+    "Curacaví",
+    "El Bosque",
+    "El Monte",
+    "Estación Central",
+    "Huechuraba",
+    "Independencia",
+    "Isla de Maipo",
+    "La Cisterna",
+    "La Florida",
+    "La Granja",
+    "Lampa",
+    "La Pintana",
+    "La Reina",
+    "Las Condes",
+    "Lo Barnechea",
+    "Lo Espejo",
+    "Lo Prado",
+    "Macul",
+    "Maipú",
+    "María Pinto",
+    "Melipilla",
+    "Ñuñoa",
+    "Padre Hurtado",
+    "Paine",
+    "Pedro Aguirre Cerda",
+    "Peñaflor",
+    "Peñalolén",
+    "Pirque",
+    "Providencia",
+    "Pudahuel",
+    "Puente Alto",
+    "Quilicura",
+    "Quinta Normal",
+    "Recoleta",
+    "Renca",
+    "San Bernardo",
+    "San Joaquín",
+    "San José de Maipo",
+    "San Miguel",
+    "San Pedro",
+    "San Ramón",
+    "Santiago",
+    "Talagante",
+    "Tiltil",
+    "Vitacura"
+  ],
+  "O'Higgins": [
+    "Chépica",
+    "Chimbarongo",
+    "Codegua",
+    "Coinco",
+    "Coltauco",
+    "Doñihue",
+    "Graneros",
+    "La Estrella",
+    "Las Cabras",
+    "Litueche",
+    "Lolol",
+    "Machalí",
+    "Malloa",
+    "Marchihue",
+    "Mostazal",
+    "Nancagua",
+    "Navidad",
+    "Olivar",
+    "Palmilla",
+    "Paredones",
+    "Peralillo",
+    "Peumo",
+    "Pichidegua",
+    "Pichilemu",
+    "Placilla",
+    "Pumanque",
+    "Quinta de Tilcoco",
+    "Rancagua",
+    "Rengo",
+    "Requínoa",
+    "San Fernando",
+    "Santa Cruz",
+    "San Vicente"
+  ],
+  "Maule": [
+    "Cauquenes",
+    "Chanco",
+    "Colbún",
+    "Constitución",
+    "Curepto",
+    "Curicó",
+    "Empedrado",
+    "Hualañé",
+    "Licantén",
+    "Linares",
+    "Longaví",
+    "Maule",
+    "Molina",
+    "Parral",
+    "Pelarco",
+    "Pelluhue",
+    "Pencahue",
+    "Rauco",
+    "Retiro",
+    "Río Claro",
+    "Romeral",
+    "Sagrada Familia",
+    "San Clemente",
+    "San Javier",
+    "San Rafael",
+    "Talca",
+    "Teno",
+    "Vichuquén",
+    "Villa Alegre",
+    "Yerbas Buenas"
+  ],
+  "Ñuble": [
+    "Bulnes",
+    "Chillán",
+    "Chillán Viejo",
+    "Cobquecura",
+    "Coelemu",
+    "Coihueco",
+    "El Carmen",
+    "Ninhue",
+    "Ñiquén",
+    "Pemuco",
+    "Pinto",
+    "Portezuelo",
+    "Quillón",
+    "Quirihue",
+    "Ránquil",
+    "San Carlos",
+    "San Fabián",
+    "San Ignacio",
+    "San Nicolás",
+    "Treguaco",
+    "Yungay"
+  ],
+  "Biobío": [
+    "Alto Biobío",
+    "Antuco",
+    "Arauco",
+    "Cabrero",
+    "Cañete",
+    "Chiguayante",
+    "Concepción",
+    "Contulmo",
+    "Coronel",
+    "Curanilahue",
+    "Florida",
+    "Hualpén",
+    "Hualqui",
+    "Laja",
+    "Lebu",
+    "Los Álamos",
+    "Los Ángeles",
+    "Lota",
+    "Mulchén",
+    "Nacimiento",
+    "Negrete",
+    "Penco",
+    "Quilaco",
+    "Quilleco",
+    "San Pedro de la Paz",
+    "San Rosendo",
+    "Santa Bárbara",
+    "Santa Juana",
+    "Talcahuano",
+    "Tirúa",
+    "Tomé",
+    "Tucapel",
+    "Yumbel"
+  ],
+  "La Araucanía": [
+    "Angol",
+    "Carahue",
+    "Cholchol",
+    "Collipulli",
+    "Cunco",
+    "Curacautín",
+    "Curarrehue",
+    "Ercilla",
+    "Freire",
+    "Galvarino",
+    "Gorbea",
+    "Lautaro",
+    "Loncoche",
+    "Lonquimay",
+    "Los Sauces",
+    "Lumaco",
+    "Melipeuco",
+    "Nueva Imperial",
+    "Padre Las Casas",
+    "Perquenco",
+    "Pitrufquén",
+    "Pucón",
+    "Purén",
+    "Renaico",
+    "Saavedra",
+    "Temuco",
+    "Teodoro Schmidt",
+    "Toltén",
+    "Traiguén",
+    "Victoria",
+    "Vilcún",
+    "Villarrica"
+  ],
+  "Los Ríos": [
+    "Corral",
+    "Futrono",
+    "Lago Ranco",
+    "Lanco",
+    "La Unión",
+    "Los Lagos",
+    "Máfil",
+    "Mariquina",
+    "Paillaco",
+    "Panguipulli",
+    "Río Bueno",
+    "Valdivia"
+  ],
+  "Los Lagos": [
+    "Ancud",
+    "Calbuco",
+    "Castro",
+    "Chaitén",
+    "Chonchi",
+    "Cochamó",
+    "Curaco de Vélez",
+    "Dalcahue",
+    "Fresia",
+    "Frutillar",
+    "Futaleufú",
+    "Hualaihué",
+    "Llanquihue",
+    "Los Muermos",
+    "Maullín",
+    "Osorno",
+    "Palena",
+    "Puerto Montt",
+    "Puerto Octay",
+    "Puerto Varas",
+    "Puqueldón",
+    "Purranque",
+    "Puyehue",
+    "Queilén",
+    "Quellón",
+    "Quemchi",
+    "Quinchao",
+    "Río Negro",
+    "San Juan de la Costa",
+    "San Pablo"
+  ],
+  "Aysén": [
+    "Aysén",
+    "Chile Chico",
+    "Cisnes",
+    "Cochrane",
+    "Coyhaique",
+    "Guaitecas",
+    "Lago Verde",
+    "O'Higgins",
+    "Río Ibáñez",
+    "Tortel"
+  ],
+  "Magallanes": [
+    "Antártica",
+    "Cabo de Hornos",
+    "Laguna Blanca",
+    "Natales",
+    "Porvenir",
+    "Primavera",
+    "Punta Arenas",
+    "Río Verde",
+    "San Gregorio",
+    "Timaukel",
+    "Torres del Paine"
+  ]
 };
 
 const COMUNA_REGION = {};
@@ -978,8 +1350,22 @@ const HOSE_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 const lead = {
   m2:null, comuna:"", region:"", piscina:null,
   nombre:"", telefono:"", email:"",
+  codigoReferencia:"",
   estimacionManual:null, estimacionAutonoma:null
 };
+
+function nextReferenceCode(){
+  const key='aqd_reference_codes';
+  let used=[];
+  try{used=JSON.parse(sessionStorage.getItem(key)||'[]');}catch(_){used=[];}
+  if(!Array.isArray(used)) used=[];
+  if(used.length>=9000) throw new Error('No quedan códigos de referencia en esta sesión');
+  let code;
+  do{code='AQD-'+String(crypto.getRandomValues(new Uint32Array(1))[0]%9000+1000);}while(used.includes(code));
+  used.push(code);
+  sessionStorage.setItem(key,JSON.stringify(used));
+  return code;
+}
 
 /* ---------- analytics ---------- */
 function track(evt, data){
@@ -1069,12 +1455,10 @@ function calcEstimate(){
 }
 
 /* ---------- comunas ---------- */
-(function initComunas(){
-  const dl=document.getElementById('comunasList');
-  Object.keys(COMUNA_REGION).sort((a,b)=>a.localeCompare(b,'es')).forEach(c=>{
-    const opt=document.createElement('option'); opt.value=c; dl.appendChild(opt);
-  });
-})();
+const COMUNAS=[...Object.keys(COMUNA_REGION).sort((a,b)=>a.localeCompare(b,'es')),'Estoy fuera de Chile'];
+function normalizeSearch(value){
+  return value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+}
 
 function showView(name){
   document.querySelectorAll('.q-view').forEach(v=>v.classList.toggle('active',v.dataset.view===name));
@@ -1114,10 +1498,54 @@ document.querySelectorAll('#m2Chips .chip-btn').forEach(chip=>{
     syncChips();clearError('f-m2');
   });
 });
+const comunaOptions=document.getElementById('comunasList');
+let activeComunaIndex=-1;
+function hideComunas(){
+  comunaOptions.classList.remove('visible');
+  inComuna.setAttribute('aria-expanded','false');
+  inComuna.removeAttribute('aria-activedescendant');
+  activeComunaIndex=-1;
+}
+function selectComuna(value){
+  inComuna.value=value;
+  lead.comuna=value==='Estoy fuera de Chile'?'Fuera de Chile':value;
+  lead.region=value==='Estoy fuera de Chile'?'Extranjero':COMUNA_REGION[value];
+  hideComunas();clearError('f-comuna');
+}
+function showComunas(){
+  const query=normalizeSearch(inComuna.value);
+  const matches=COMUNAS.filter(c=>normalizeSearch(c).includes(query));
+  comunaOptions.replaceChildren();
+  matches.forEach((comuna,index)=>{
+    const option=document.createElement('button');
+    option.type='button';option.className='comuna-option';option.id=`comuna-option-${index}`;
+    option.setAttribute('role','option');option.textContent=comuna;
+    option.addEventListener('mousedown',e=>e.preventDefault());
+    option.addEventListener('click',()=>selectComuna(comuna));
+    comunaOptions.appendChild(option);
+  });
+  comunaOptions.classList.toggle('visible',matches.length>0);
+  inComuna.setAttribute('aria-expanded',String(matches.length>0));
+  activeComunaIndex=-1;
+}
+inComuna.addEventListener('focus',showComunas);
 inComuna.addEventListener('input',()=>{
-  lead.comuna=inComuna.value.trim();lead.region=COMUNA_REGION[lead.comuna]||"";
-  clearError('f-comuna');
+  lead.comuna='';lead.region='';clearError('f-comuna');showComunas();
 });
+inComuna.addEventListener('keydown',e=>{
+  const options=[...comunaOptions.children];
+  if(e.key==='Escape'){hideComunas();return;}
+  if((e.key==='ArrowDown'||e.key==='ArrowUp')&&options.length){
+    e.preventDefault();
+    activeComunaIndex=(activeComunaIndex+(e.key==='ArrowDown'?1:-1)+options.length)%options.length;
+    options.forEach((o,i)=>o.classList.toggle('active',i===activeComunaIndex));
+    inComuna.setAttribute('aria-activedescendant',options[activeComunaIndex].id);
+    options[activeComunaIndex].scrollIntoView({block:'nearest'});
+  }else if(e.key==='Enter'&&activeComunaIndex>=0){
+    e.preventDefault();selectComuna(options[activeComunaIndex].textContent);
+  }
+});
+inComuna.addEventListener('blur',()=>setTimeout(hideComunas,150));
 document.querySelectorAll('[data-group="piscina"] .option-card').forEach(card=>{
   card.addEventListener('click',()=>{
     document.querySelectorAll('[data-group="piscina"] .option-card').forEach(c=>c.classList.remove('selected'));
@@ -1134,7 +1562,7 @@ function validateStep1(){
   let first=null;
   const check=(cond,id)=>{if(!cond){setError(id);if(!first)first=id;}};
   check(Number.isSafeInteger(lead.m2)&&lead.m2>0,'f-m2');
-  check(lead.comuna.length>1,'f-comuna');
+  check(!!lead.comuna&&!!lead.region,'f-comuna');
   check(lead.piscina!==null,'f-piscina');
   if(first){document.getElementById(first).scrollIntoView({behavior:'smooth',block:'center'});return false;}
   return true;
@@ -1162,7 +1590,7 @@ document.getElementById('btnEditarDatos').addEventListener('click',()=>{setStep(
 
 function syncFormFromLead(){
   inM2.value=lead.m2?String(lead.m2):'';
-  inComuna.value=lead.comuna||'';
+  inComuna.value=lead.region==='Extranjero'?'Estoy fuera de Chile':lead.comuna||'';
   inNombre.value=lead.nombre||'';
   inEmail.value=lead.email||'';
   if(lead.telefono){
@@ -1204,6 +1632,7 @@ document.getElementById('btnVerEstimacion').addEventListener('click',()=>{
   const est=calcEstimate();
   lead.estimacionManual=est.estado==='OK'?est.netoAsistida:null;
   lead.estimacionAutonoma=est.estado==='OK'?est.netoAutonoma:null;
+  lead.codigoReferencia=nextReferenceCode();
   submitLead(lead);
   track('cotizador_paso2_ok',{m2:lead.m2,comuna:lead.comuna});
   showView('calc');
@@ -1233,9 +1662,10 @@ function buildResults(est){
 
   const sourceItem=lead.piscina?'Adaptación de tu piscina como reserva':'Estanque de reserva';
   const suffix=lead.piscina?'con piscina':'con estanque';
-  const msgAsistida=`Hola Felipe, hice mi estimación en aquadefensa.cl: ${lead.m2} m² de techo, ${lead.comuna}, ${suffix}. Me interesa la Activación asistida (${clp(est.netoAsistida)} + IVA). ¿Cuál es el siguiente paso?`;
-  const msgDistancia=`Hola Felipe, hice mi estimación en aquadefensa.cl: ${lead.m2} m² de techo, ${lead.comuna}, ${suffix}. Me interesa la Activación a distancia (${clp(est.netoAutonoma)} + IVA). ¿Cuál es el siguiente paso?`;
-  const msgMedida=`Hola Felipe, hice mi estimación en aquadefensa.cl: ${lead.m2} m² de techo, ${lead.comuna}, ${suffix}. Quiero una evaluación personalizada. ¿Cuál es el siguiente paso?`;
+  const msgBase=`Hola Felipe, soy ${lead.nombre} 👋\nHice mi estimación en aquadefensa.cl (ref. ${lead.codigoReferencia}):\n- ${lead.m2} m² de techo · ${lead.comuna} · ${suffix}`;
+  const msgAsistida=`${msgBase}\n- Opción: Activación asistida — ${clp(est.netoAsistida)} + IVA\nQuiero revisar mi proyecto. ¿Cuál es el siguiente paso?`;
+  const msgDistancia=`${msgBase}\n- Opción: Activación a distancia — ${clp(est.netoAutonoma)} + IVA\nQuiero revisar mi proyecto. ¿Cuál es el siguiente paso?`;
+  const msgMedida=`${msgBase}\nQuiero una evaluación personalizada. ¿Cuál es el siguiente paso?`;
 
   const plans=est.disenoMedida
     ? `<div class="custom-project">
