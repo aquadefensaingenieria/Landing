@@ -727,10 +727,11 @@
             <div class="field" id="f-comuna">
               <label for="q-comuna">¿En qué comuna está ubicada?</label>
               <div class="comuna-input-wrap">
-                <input type="text" id="q-comuna" placeholder="Escribe tu comuna" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="comunasList">
+                <input type="text" id="q-comuna" placeholder="Escribe tu comuna" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="comunasList" aria-describedby="comunaHint">
                 <div id="comunasList" class="comuna-options" role="listbox"></div>
               </div>
-              <span class="err">Elige tu comuna de la lista.</span>
+              <p class="field-hint" id="comunaHint">Si tu comuna no aparece, escríbela y continúa.</p>
+              <span class="err">Escribe tu comuna para continuar.</span>
             </div>
 
             <div class="field" id="f-piscina">
@@ -1506,11 +1507,19 @@ function hideComunas(){
   inComuna.removeAttribute('aria-activedescendant');
   activeComunaIndex=-1;
 }
+function syncComuna(){
+  const value=inComuna.value.trim();
+  const match=COMUNAS.find(c=>normalizeSearch(c)===normalizeSearch(value));
+  lead.comuna=match==='Estoy fuera de Chile'?'Fuera de Chile':(match||value);
+  lead.region=match==='Estoy fuera de Chile'?'Extranjero':(COMUNA_REGION[match]||'');
+  clearError('f-comuna');
+}
 function selectComuna(value){
   inComuna.value=value;
-  lead.comuna=value==='Estoy fuera de Chile'?'Fuera de Chile':value;
-  lead.region=value==='Estoy fuera de Chile'?'Extranjero':COMUNA_REGION[value];
-  hideComunas();clearError('f-comuna');
+  syncComuna();hideComunas();
+}
+function escapeHtml(value){
+  return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 function showComunas(){
   const query=normalizeSearch(inComuna.value);
@@ -1530,7 +1539,7 @@ function showComunas(){
 }
 inComuna.addEventListener('focus',showComunas);
 inComuna.addEventListener('input',()=>{
-  lead.comuna='';lead.region='';clearError('f-comuna');showComunas();
+  syncComuna();showComunas();
 });
 inComuna.addEventListener('keydown',e=>{
   const options=[...comunaOptions.children];
@@ -1545,7 +1554,8 @@ inComuna.addEventListener('keydown',e=>{
     e.preventDefault();selectComuna(options[activeComunaIndex].textContent);
   }
 });
-inComuna.addEventListener('blur',()=>setTimeout(hideComunas,150));
+inComuna.addEventListener('change',syncComuna);
+inComuna.addEventListener('blur',()=>{syncComuna();setTimeout(hideComunas,150);});
 document.querySelectorAll('[data-group="piscina"] .option-card').forEach(card=>{
   card.addEventListener('click',()=>{
     document.querySelectorAll('[data-group="piscina"] .option-card').forEach(c=>c.classList.remove('selected'));
@@ -1559,10 +1569,11 @@ inPrefix.addEventListener('change',syncPhone);
 inEmail.addEventListener('input',()=>{lead.email=inEmail.value.trim();clearError('f-email');});
 
 function validateStep1(){
+  syncComuna();
   let first=null;
   const check=(cond,id)=>{if(!cond){setError(id);if(!first)first=id;}};
   check(Number.isSafeInteger(lead.m2)&&lead.m2>0,'f-m2');
-  check(!!lead.comuna&&!!lead.region,'f-comuna');
+  check(!!lead.comuna,'f-comuna');
   check(lead.piscina!==null,'f-piscina');
   if(first){document.getElementById(first).scrollIntoView({behavior:'smooth',block:'center'});return false;}
   return true;
@@ -1578,7 +1589,7 @@ function renderPartialResult(){
   const technical=(sizing.aspersores&&sizing.reservaM3)
     ? `~${sizing.aspersores} aspersores de techo y muros · ~${sizing.reservaM3} m³ de reserva${lead.piscina?' (piscina)':''} · Energía independiente de la red eléctrica`
     : 'Energía independiente de la red eléctrica';
-  box.innerHTML=`<strong>✓ Tu propiedad califica para un sistema AQUADEFENSA.</strong><p>Para tus ${lead.m2.toLocaleString('es-CL')} m² en ${lead.comuna} calculamos:</p><p>${technical}</p><p class="partial-final">Un paso más para ver tu inversión estimada.</p>`;
+  box.innerHTML=`<strong>✓ Tu propiedad califica para un sistema AQUADEFENSA.</strong><p>Para tus ${lead.m2.toLocaleString('es-CL')} m² en ${escapeHtml(lead.comuna)} calculamos:</p><p>${technical}</p><p class="partial-final">Un paso más para ver tu inversión estimada.</p>`;
 }
 
 document.getElementById('btnContinuar').addEventListener('click',()=>{
@@ -1714,7 +1725,7 @@ function buildResults(est){
     : `Mira la estimación de AQUADEFENSA para nuestra casa: ${lead.m2} m² de techo en ${lead.comuna}. Activación asistida: ${clp(est.netoAsistida)} + IVA. Activación a distancia: ${clp(est.netoAutonoma)} + IVA. Puedes calcular la tuya en aquadefensa.cl/cotizador`;
 
   body.innerHTML=`
-    <div class="result-summary"><span>${lead.m2.toLocaleString('es-CL')} m² de techo</span><span>·</span><span>${lead.comuna}</span><span>·</span><span>${fuente}</span><button type="button" class="edit-data" onclick="returnToStep1()">Editar datos</button></div>
+    <div class="result-summary"><span>${lead.m2.toLocaleString('es-CL')} m² de techo</span><span>·</span><span>${escapeHtml(lead.comuna)}</span><span>·</span><span>${fuente}</span><button type="button" class="edit-data" onclick="returnToStep1()">Editar datos</button></div>
     ${sizingLine}
     ${fuenteBanner}
 
