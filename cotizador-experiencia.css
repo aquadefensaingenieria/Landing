@@ -62,7 +62,7 @@
 .next-step{border:1px solid rgba(255,255,255,.11);border-radius:12px;padding:14px}
 .next-num{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--ember,#E84C22);color:#0A0A0A;font:800 .78rem 'Montserrat',sans-serif;margin-bottom:10px}
 .next-step strong{display:block;color:#fff;font-size:.82rem;line-height:1.35;margin-bottom:4px}
-.next-step span{display:block;color:var(--ink-dim,#b7b7b7);font-size:.76rem;line-height:1.45}
+.next-copy span{display:block;color:var(--ink-dim,#b7b7b7);font-size:.76rem;line-height:1.45}
 .trust-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .trust-item{text-align:center;border:1px solid rgba(255,255,255,.11);border-radius:12px;padding:17px 13px}
 .trust-big{display:block;color:var(--ember,#E84C22);font:800 1.35rem 'Montserrat',sans-serif;margin-bottom:7px}
@@ -162,10 +162,10 @@ input[type="number"]:focus,input[type="text"]:focus,input[type="tel"]:focus,inpu
 
 /* Qué pasa después */
 .next-steps{position:relative}
-.next-steps::before{content:"";position:absolute;top:34px;left:12.5%;right:12.5%;height:1px;background:rgba(232,76,34,.30);z-index:0}
-.next-step{display:flex;align-items:flex-start;gap:12px;position:relative;z-index:1;background:rgba(20,20,20,.96)}
-.next-num{width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;border-radius:50%;background:var(--ember,#E84C22);color:#fff;font:800 .9rem 'Montserrat',sans-serif;margin:0}
-.next-copy{min-width:0;padding-top:1px}
+.next-steps::before{content:"";position:absolute;top:36px;left:36px;right:calc(25% - 45px);height:1px;background:rgba(232,76,34,.30);z-index:0}
+.next-step{display:flex;flex-direction:column;align-items:flex-start;gap:12px;position:relative;z-index:1;background:rgba(20,20,20,.96)}
+.next-step .next-num{width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:50%;background:var(--ember,#E84C22);color:#fff;font:800 18px 'Montserrat',sans-serif;line-height:1;margin:0}
+.next-copy{min-width:0}
 .next-step strong{margin-bottom:5px}
 
 /* Confianza */
@@ -218,7 +218,7 @@ input[type="number"]:focus,input[type="text"]:focus,input[type="tel"]:focus,inpu
   .plan-desc,.plan-difference li{font-size:calc(.84rem + 1px)}
   .extra-item span,.extra-note{font-size:calc(.8rem + 1px)}
   .next-step strong{font-size:calc(.82rem + 1px)}
-  .next-step span:not(.next-num){font-size:calc(.76rem + 1px)}
+  .next-copy span{font-size:calc(.76rem + 1px)}
   .trust-item p{font-size:calc(.78rem + 1px)}
   .trust-item small{font-size:calc(.68rem + 1px)}
   .industry-close strong{font-size:calc(.88rem + 1px)}
@@ -229,8 +229,9 @@ input[type="number"]:focus,input[type="text"]:focus,input[type="tel"]:focus,inpu
 @media(max-width:700px){
   .business-copy{align-items:center}
   .next-steps{grid-template-columns:1fr}
-  .next-steps::before{top:34px;bottom:34px;left:33px;right:auto;width:1px;height:auto}
-  .next-step{min-height:82px}
+  .next-steps::before{top:36px;bottom:46px;left:36px;right:auto;width:1px;height:auto}
+  .next-step{min-height:82px;flex-direction:row;align-items:flex-start}
+  .next-copy{padding-top:2px}
   .plan-wa-cta{font-size:.82rem}
 }
 /* Acento de títulos en bloques incorporados en v3 */
