@@ -1662,10 +1662,10 @@ function buildResults(est){
 
   const sourceItem=lead.piscina?'Adaptación de tu piscina como reserva':'Estanque de reserva';
   const suffix=lead.piscina?'con piscina':'con estanque';
-  const msgBase=`Hola Felipe, soy ${lead.nombre} 👋\nHice mi estimación en aquadefensa.cl (ref. ${lead.codigoReferencia}):\n- ${lead.m2} m² de techo · ${lead.comuna} · ${suffix}`;
-  const msgAsistida=`${msgBase}\n- Opción: Activación asistida — ${clp(est.netoAsistida)} + IVA\nQuiero revisar mi proyecto. ¿Cuál es el siguiente paso?`;
-  const msgDistancia=`${msgBase}\n- Opción: Activación a distancia — ${clp(est.netoAutonoma)} + IVA\nQuiero revisar mi proyecto. ¿Cuál es el siguiente paso?`;
-  const msgMedida=`${msgBase}\nQuiero una evaluación personalizada. ¿Cuál es el siguiente paso?`;
+  const msgDatos=`• ${lead.m2} m² de techo • ${lead.comuna} • ${suffix}`;
+  const msgAsistida=`Hola Felipe, soy ${lead.nombre}, hice mi estimación en aquadefensa.cl, te dejo los datos:\n${msgDatos}\nQuisiera revisar la opción de Activación asistida (${clp(est.netoAsistida)} + IVA). ¿Cuál es el siguiente paso?`;
+  const msgDistancia=`Hola Felipe, soy ${lead.nombre}, hice mi estimación en aquadefensa.cl, te dejo los datos:\n${msgDatos}\nQuisiera revisar la opción de Activación a distancia (${clp(est.netoAutonoma)} + IVA). ¿Cuál es el siguiente paso?`;
+  const msgMedida=`Hola Felipe, soy ${lead.nombre}. Hice mi estimación en aquadefensa.cl, te dejo los datos:\n${msgDatos}\nQuisiera una evaluación personalizada. ¿Cuál es el siguiente paso?`;
 
   const plans=est.disenoMedida
     ? `<div class="custom-project">
@@ -1744,7 +1744,7 @@ function buildResults(est){
       <span class="eyebrow">Siguiente paso</span>
       <h3>¿Qué pasa después?</h3>
       <div class="next-steps">
-        <div class="next-step"><span class="next-num">1</span><div class="next-copy"><strong>Conversamos por WhatsApp.</strong><span>Resolvemos tus dudas y revisamos tu propiedad con fotos.</span></div></div>
+        <div class="next-step"><span class="next-num">1</span><div class="next-copy"><strong>Conversamos por WhatsApp.</strong><span>Resolvemos tus dudas y coordinamos una llamada corta con Felipe.</span></div></div>
         <div class="next-step"><span class="next-num">2</span><div class="next-copy"><strong>Visita técnica.</strong><span>Medimos distancias, desniveles, fuente de agua y señal (si eliges activación a distancia).</span></div></div>
         <div class="next-step"><span class="next-num">3</span><div class="next-copy"><strong>Propuesta definitiva en 48 horas.</strong><span>Precio cerrado y plano del sistema.</span></div></div>
         <div class="next-step"><span class="next-num">4</span><div class="next-copy"><strong>Instalación y prueba.</strong><span>Tu sistema queda funcionando y lo probamos contigo.</span></div></div>
