@@ -164,7 +164,7 @@ input[type="number"]:focus,input[type="text"]:focus,input[type="tel"]:focus,inpu
 .next-steps{position:relative}
 .next-steps::before{content:"";position:absolute;top:36px;left:36px;right:calc(25% - 45px);height:1px;background:rgba(232,76,34,.30);z-index:0}
 .next-step{display:flex;flex-direction:column;align-items:flex-start;gap:12px;position:relative;z-index:1;background:rgba(20,20,20,.96)}
-.next-step .next-num{width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;border-radius:50%;background:var(--ember,#E84C22);color:#fff;font:800 18px 'Montserrat',sans-serif;margin:0}
+.next-step .next-num{width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:50%;background:var(--ember,#E84C22);color:#fff;font:800 18px 'Montserrat',sans-serif;line-height:1;margin:0}
 .next-copy{min-width:0}
 .next-step strong{margin-bottom:5px}
 
