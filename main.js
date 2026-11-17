@@ -69,7 +69,7 @@
 
     if(/(?:wa\.me|api\.whatsapp\.com)/i.test(href)){
       aqdTrack('whatsapp_click', { ubicacion: locationName, cta: label });
-    } else if(/(?:^|\/)cotizador\.html(?:$|[?#])|#cotizador$/i.test(href)){
+    } else if(/(?:^|\/)cotizador(?:\.html)?(?:\/?$|\/?[?#])|#cotizador$/i.test(href)){
       aqdTrack('cotizador_cta_click', { ubicacion: locationName, cta: label });
     } else if(/^mailto:/i.test(href)){
       aqdTrack('correo_click', { ubicacion: locationName, cta: label });
